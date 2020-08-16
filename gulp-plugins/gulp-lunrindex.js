@@ -2,8 +2,6 @@
 var gutil = require('gulp-util');
 var through = require('through2');
 var lunr = require('lunr');
-var fs = require('fs');
-var marked = require('marked');
 
 module.exports = function (opts) {
 

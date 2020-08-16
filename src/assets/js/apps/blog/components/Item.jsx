@@ -1,7 +1,7 @@
 /*global FB:true*/
 
 import React from 'react';
-import marked from 'marked';
+import marked from '@onlinejavaclass/marked';
 import moment from 'moment';
 import Spinner from './../components/Spinner.jsx';
 import {

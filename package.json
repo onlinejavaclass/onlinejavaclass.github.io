@@ -6,6 +6,7 @@
     "deploy": "gulp"
   },
   "dependencies": {
+    "@onlinejavaclass/marked": "0.0.1",
     "body-parser": "latest",
     "cheerio": "latest",
     "d3": "latest",
@@ -16,7 +17,6 @@
     "jquery": "latest",
     "lru-cache": "^2.5.0",
     "lunr": "^0.5.7",
-    "marked": "^0.3.3",
     "masonry-layout": "^3.2.2",
     "moment": "^2.9.0",
     "react": "~0.13.1",

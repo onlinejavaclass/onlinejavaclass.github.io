@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: http://onlinejavaclass.com/sitemap.xml
+Sitemap: https://onlinejavaclass.com/sitemap.xml
