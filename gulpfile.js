@@ -12,7 +12,7 @@ const gulp = require('gulp'),
     sitemap = require('./gulp-plugins/gulp-sitemap.js'),
     clean = require('gulp-clean');
 
-const dest = './dest',
+const dest = './',
     fontName = 'appfont';
 
 gulp.task('clean', function () {
