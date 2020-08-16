@@ -5994,8 +5994,16 @@ webpackJsonp([0],[
 	                        _react2['default'].createElement(
 	                            'span',
 	                            null,
-	                            'Published: ',
 	                            date
+	                        ),
+	                        _react2['default'].createElement(
+	                            'a',
+	                            { id: 'viewSourceOnGithub', className: 'btn btn-primary',
+	                                href: '{`https://github.com/${data}`}',
+	                                target: '_blank' },
+	                            ' ',
+	                            _react2['default'].createElement('span', { className: 'fap fap-github' }),
+	                            'View Source on Github  '
 	                        )
 	                    ),
 	                    _react2['default'].createElement('div', { className: 'markdown', dangerouslySetInnerHTML: { __html: txt } })

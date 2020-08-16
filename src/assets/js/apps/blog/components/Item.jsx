@@ -89,7 +89,12 @@ export default class Item extends React.Component {
                     </div>
                 </div>
                 <hr/>
-                <div className="date"><span>Published: {date}</span></div>
+                <div className="date">
+                    <span>{date}</span>
+                    <a id="viewSourceOnGithub" className="btn btn-primary"
+                       href="{`https://github.com/${data}`}"
+                       target="_blank"> <span className="fap fap-github"/>View Source on Github &nbsp;</a>
+                </div>
                 <div className="markdown" dangerouslySetInnerHTML={{__html: txt}}/>
             </div>;
         }
