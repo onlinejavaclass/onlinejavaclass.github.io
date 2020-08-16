@@ -80,7 +80,7 @@ export default class Item extends React.Component {
                                 onClick={() => this.getResource(this.state.pre)}>previous
                         </button>
                         <button className="button button1" disabled={!this.state.next}
-                                onClick={() => this.getResource(this.state.next)}>Next
+                                onClick={() => this.getResource(this.state.next)}>Nexti
                         </button>
                     </div>
                     <div className="operational-link">
