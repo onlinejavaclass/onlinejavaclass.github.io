@@ -1,0 +1,13 @@
+.markdown {
+	padding: 26px;
+	@media screen and (max-width: 639px) {
+		padding: 11px;
+		font-size: 1em;
+	}
+	.gray {
+	    color:#aaa;
+	}
+	.date {
+        margin: 4px;
+    }
+}

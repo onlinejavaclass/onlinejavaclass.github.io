@@ -1,0 +1,92 @@
+.top-header {
+  background: url("/assets/img/matrix.svg");
+  display: block;
+  font-size: 50px;
+  font-weight: 600;
+  @media screen and (min-width: 639px) {
+    font-size: 36px;
+    font-weight: 100;
+  }
+
+  .top-header-wrap-1 {
+    margin: 0 auto;
+    max-width: 1190px;
+    display: block;
+
+    .top-header-wrap-2 {
+      @include clearfix;
+      display: block;
+      position: relative;
+      background-color: rgba(0, 233, 148, 0.45);
+      @media screen and (min-width: 639px) {
+        font-size: 17px;
+      }
+
+      .top-header-and {
+        color: #fff;
+        float: right;
+        padding-top: 30px;
+        padding-right: 5px;
+        padding-left: 5px;
+      }
+
+      .top-header-h1 {
+        display: block;
+        color: #000000;
+        font-weight: 200;
+        font-family: monospace;
+        padding: 22px;
+        margin: 0 auto;
+        width: 230px;
+        @media screen and (min-width: 639px) {
+          font-size: 20px;
+          padding: 46px;
+        }
+        font-size: 30px;
+        font-style: italic;
+        vertical-align: bottom;
+        @media screen and (max-width: 639px) {
+          font-size: 15px;
+        }
+      }
+
+      .top-header-title {
+        @media screen and (max-width: 638px) {
+          padding-left: 0;
+        }
+      }
+
+      .face {
+        position: absolute;
+        left: 10px;
+        bottom: -167px;
+        display: block;
+        height: 200px;
+        @media screen and (max-width: 639px) {
+          bottom: -177px;
+        }
+        @media screen and (max-width: 495px) {
+          bottom: -60px;
+          height: 80px;
+        }
+        .avatar {
+          background: #fff;
+          border: 5px solid #fff;
+          border-radius: 12px;
+          box-shadow: 0 1px 1px rgba(136, 153, 166, 0.15);
+          width: 80px;
+          height: 80px;
+          @media screen and (max-width: 639px) {
+            width: 60px;
+            height: 60px;
+          }
+        }
+
+        .name {
+          font-size: 28px;
+          line-height: 0;
+        }
+      }
+    }
+  }
+}

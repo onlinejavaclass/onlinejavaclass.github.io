@@ -1,0 +1,10 @@
+.pull-right {
+    float: right !important;
+}
+
+.pull-left {
+    @media screen and (max-width: 662px) {
+        float: right !important;
+    }
+    float: left !important;
+}
