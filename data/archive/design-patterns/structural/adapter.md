@@ -204,8 +204,6 @@ public class MusicPlayer {
 ~
 
 That was all about the adapter design pattern! As always thanks for reading this article.
-You can find the whole code of this article at [this address](https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/adapter).
-You can find the whole codes and another deign pattern examples in [link](https://github.com/metao1)
+You can find the whole code of this article at [this address](https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/composite).
 
-To support me simply give me a star in the [GitHub project of this project](https://github.com/metao1/design-patterns)
-
+To check another deign pattern code on GitHub check [GitHub project](https://github.com/metao1/design-patterns)
