@@ -363,6 +363,7 @@
                         char.charCodeAt(0) === 59 ||
                         char.charCodeAt(0) === 10 ||
                         char.charCodeAt(0) === 40 ||
+                        char.charCodeAt(0) === 44 ||
                         char.charCodeAt(0) === 46 ||
                         char.charCodeAt(0) === 34 ||
                         char.charCodeAt(0) === 125 ||
