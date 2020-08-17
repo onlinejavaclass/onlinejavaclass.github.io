@@ -137,5 +137,21 @@
     ],
     "pre": "/design-patterns-structural-adapter",
     "src": "/data/archive/design-patterns/structural/bridge.md"
+  },
+  "/design-patterns-structural-composite": {
+    "type": "archive",
+    "date": "2020-08-17T11:49:26.733Z",
+    "title": "Design Pattern Guide: Composite Pattern",
+    "tags": [
+      "design",
+      "software",
+      "structural",
+      "patterns",
+      "adapter",
+      "architecture",
+      "java"
+    ],
+    "pre": "/design-patterns-structural-bridge",
+    "src": "/data/archive/design-patterns/structural/composite.md"
   }
 }

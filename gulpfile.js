@@ -111,7 +111,7 @@ gulp.task('deploypages', function () {
 gulp.task('watch', function () {
     gulp.watch('./src/assets/scss/**', gulp.series('styles'));
     gulp.watch('./src/assets/icons/**', gulp.series('iconfont'));
-    gulp.watch('./node_modules/marked/lib/**', gulp.series('webpack'));
+    gulp.watch('./node_modules/@onlinejavaclass/marked/lib/**', gulp.series('webpack'));
     gulp.watch(['./src/**', '!./src/assets/**'], gulp.series('resources'));
     gulp.watch(['./src/assets/js/apps/**'], gulp.series('webpack'));
     gulp.watch('./src/assets/img/**', gulp.series('img'));
