@@ -56,6 +56,7 @@ export default class Item extends React.Component {
                 link: ref.link,
                 next: ref.next ? ref.next : undefined,
                 pre: ref.pre ? ref.pre : undefined,
+                repo: ref.repo ? ref.repo : undefined,
                 postLink: ref.date,
                 src: ref.src,
                 tags: ref.tags,
@@ -91,8 +92,8 @@ export default class Item extends React.Component {
                 <hr/>
                 <div className="date">
                     <span>{date}</span>
-                    <a id="viewSourceOnGithub" className="btn btn-primary"
-                       href="{`https://github.com/${data}`}"
+                    <a hidden={this.state.repo} id="viewSourceOnGithub" className="btn btn-primary"
+                       href={this.state.repo}
                        target="_blank"> <span className="fap fap-github"/>View Source on Github &nbsp;</a>
                 </div>
                 <div className="markdown" dangerouslySetInnerHTML={{__html: txt}}/>
@@ -101,7 +102,7 @@ export default class Item extends React.Component {
         return jsx;
     }
 
-    filter(link): string {
+    filter(link) {
         if (!!link) {
             return link.split('-')
                 .join(' ')

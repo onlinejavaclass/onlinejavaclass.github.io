@@ -115,7 +115,7 @@ abstract class BaseShape implements Shape {
         graphics.setColor(Color.LIGHT_GRAY);
 
         Graphics2D g2 = (Graphics2D) graphics;
-        float dash1[] = {2.0f};
+        float[] dash1 = {2.0f};
         g2.setStroke(new BasicStroke(1.0f,
                 BasicStroke.CAP_BUTT,
                 BasicStroke.JOIN_MITER,
@@ -275,7 +275,7 @@ public class CompoundShape extends BaseShape {
 
     @Override
     public int getX() {
-        if (children.size() == 0) {
+        if (children.isEmpty()) {
             return 0;
         }
         int x = children.get(0).getX();

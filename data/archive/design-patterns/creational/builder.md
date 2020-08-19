@@ -6,7 +6,7 @@ Separate the construction of a complex object from its representation so that th
 ``
 Allows you to create different flavors of an object while avoiding constructor pollution. Useful when there could be several flavors of an object. Or when there are a lot of steps involved in creation of an object.
 ``
-
+ 
 Usage examples: Imagine a character generator for a role playing game. The easiest option is to let computer create the character for you. But if you want to select the character details like profession, gender, hair color etc. the character generation becomes a step-by-step process that completes when all the selections are ready.
 
 Wikipedia says
@@ -22,7 +22,13 @@ public Hero(Profession profession, String name, HairType hairType, HairColor hai
 }
 ~
 
-###Programmatic Example
+Benefits:
+
+    1. Best usecase for builder is creating immutable objects. Once object created the values can't be altered;
+    2. Fast to create complex objects without needed different arguments in constroctors.
+    3. The object is thread-safe hence it is an immutable object. 
+
+### Programmatic Example
 
 The sane alternative is to use the Builder pattern. First of all we have our hero that we want to create
 
@@ -46,55 +52,114 @@ public final class Hero {
 }
 ~
 
-And then we have the builder
+And then we have the static builder inside the ***Hero*** class; 
 
 ~
-public static class Builder {
-    private final Profession profession;
+package com.metao.dp.builder;
+
+public final class Hero {
+    private final String profession;
     private final String name;
-    private HairType hairType;
-    private HairColor hairColor;
-    private Armor armor;
-    private Weapon weapon;
+    private final String hairType;
+    private final String hairColor;
+    private final String armor;
+    private final String weapon;
 
-    public Builder(Profession profession, String name) {
-      if (profession == null || name == null) {
-        throw new IllegalArgumentException("profession and name can not be null");
-      }
-      this.profession = profession;
-      this.name = name;
+    private Hero(HeroBuilder heroBuilder) {
+        this.profession = heroBuilder.profession;
+        this.name = heroBuilder.name;
+        this.hairColor = heroBuilder.hairColor;
+        this.hairType = heroBuilder.hairType;
+        this.weapon = heroBuilder.weapon;
+        this.armor = heroBuilder.armor;
     }
 
-    public Builder withHairType(HairType hairType) {
-      this.hairType = hairType;
-      return this;
+    public static class HeroBuilder {
+        private final String profession;
+        private final String name;
+        private String hairType;
+        private String hairColor;
+        private String armor;
+        private String weapon;
+
+        public HeroBuilder(String name, String profession) {
+            this.name = name;
+            this.profession = profession;
+        }
+
+        public HeroBuilder hairType(String hairType) {
+            this.hairType = hairType;
+            return this;
+        }
+
+        public HeroBuilder hairColor(String hairColor) {
+            this.hairColor = hairColor;
+            return this;
+        }
+
+        public HeroBuilder armor(String armor) {
+            this.armor = armor;
+            return this;
+        }
+
+        public HeroBuilder weapon(String weapon) {
+            this.weapon = weapon;
+            return this;
+        }
+
+        public static HeroBuilder builder(String name, String profession) {
+            return new HeroBuilder(name, profession);
+        }
+
+        public Hero build() {
+            return new Hero(this);
+        }
     }
 
-    public Builder withHairColor(HairColor hairColor) {
-      this.hairColor = hairColor;
-      return this;
+    public String getArmor() {
+        return armor;
     }
 
-    public Builder withArmor(Armor armor) {
-      this.armor = armor;
-      return this;
+    public String getHairColor() {
+        return hairColor;
     }
 
-    public Builder withWeapon(Weapon weapon) {
-      this.weapon = weapon;
-      return this;
+    public String getHairType() {
+        return hairType;
     }
 
-    public Hero build() {
-      return new Hero(this);
+    public String getName() {
+        return name;
     }
-  }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public String getWeapon() {
+        return weapon;
+    }
+}
 ~
 
 And then it can be used as:
 
 ~
-var mage = new Hero.Builder(Profession.MAGE, "Riobard").withHairColor(HairColor.BLACK).withWeapon(Weapon.DAGGER).build();
+package com.metao.dp.builder;
+
+public class Main {
+    public static void main(String[] args) {
+        Hero crazyFrog = Hero.HeroBuilder
+                .builder("Crazy Frog", "fighter")
+                .hairColor("Black")
+                .armor("Knife")
+                .hairType("Blond")
+                .weapon("DAGGER")
+                .build();
+
+        System.out.println(crazyFrog.getName() + " is a " + crazyFrog.getProfession());
+    }
+}
 ~
 
 #### Real world examples

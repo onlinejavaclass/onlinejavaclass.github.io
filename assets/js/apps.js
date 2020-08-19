@@ -5926,6 +5926,7 @@ webpackJsonp([0],[
 	                    link: ref.link,
 	                    next: ref.next ? ref.next : undefined,
 	                    pre: ref.pre ? ref.pre : undefined,
+	                    repo: ref.repo ? ref.repo : undefined,
 	                    postLink: ref.date,
 	                    src: ref.src,
 	                    tags: ref.tags,
@@ -5998,8 +5999,8 @@ webpackJsonp([0],[
 	                        ),
 	                        _react2['default'].createElement(
 	                            'a',
-	                            { id: 'viewSourceOnGithub', className: 'btn btn-primary',
-	                                href: '{`https://github.com/${data}`}',
+	                            { hidden: this.state.repo, id: 'viewSourceOnGithub', className: 'btn btn-primary',
+	                                href: this.state.repo,
 	                                target: '_blank' },
 	                            ' ',
 	                            _react2['default'].createElement('span', { className: 'fap fap-github' }),
@@ -6409,6 +6410,7 @@ webpackJsonp([0],[
 	                        char.charCodeAt(0) === 46 ||
 	                        char.charCodeAt(0) === 34 ||
 	                        char.charCodeAt(0) === 125 ||
+	                        char.charCodeAt(0) === 38 ||
 	                        char.charCodeAt(0) === 41;
 	                }
 	
