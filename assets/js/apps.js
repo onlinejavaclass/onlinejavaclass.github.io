@@ -6416,7 +6416,7 @@ webpackJsonp([0],[
 	                }
 	
 	                function matchQuote(line) {
-	                    return line.toLowerCase().match(/^(["'])(?:(?=(\\?))\2.)*?\1/g);
+	                    return line.toLowerCase().match(/"(.*?)"/g);
 	                }
 	
 	                function processLine(line) {
@@ -6448,7 +6448,7 @@ webpackJsonp([0],[
 	                }
 	
 	                function matchesComment(line) {
-	                    return (line.trim().match(/(.|[\r\n\s])*?\*\/$/g) || line.trim().match(/(\/{2})[\r\n\s]*\w*/g));
+	                    return (line.trim().match(/(.|[\r\n\s])*?\*\/$/g) || line.trim().match(/(\/{2})[\r\n\s]*\w*/g)) && !line.includes(":");
 	                }
 	
 	                const keywords = ["abstract", "continue", "for", "new", "switch",
@@ -6997,7 +6997,6 @@ webpackJsonp([0],[
 	    };
 	
 	    Renderer.prototype.codeBlock = function (text) {
-	        //console.log(item);
 	        return '<pre class="lang-java prettyprint prettyprinted">\n' +
 	            text.body +
 	            '\n</pre>';
