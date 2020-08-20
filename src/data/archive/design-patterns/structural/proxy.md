@@ -1,206 +1,385 @@
-# Design patterns
-### Structural Adapter pattern
-Ever tried to use your camera memory card in your laptop. You cannot use it directly simply because there is no port in the laptop which accept it.You must use a compatible card reader.
-You put your memory card into the card reader and then inject the card reader into the laptop. This card reader can be called the adapter.
+# Structural Design patterns
+### Flyweight pattern
 
-A similar example is your mobile charger, or your laptop charger which can be used with any power supply without fear of the variance power supply in different locations. That is also called power “adapter”. 
+Proxy is a structural design pattern that provides an object that acts as a substitute for a real service object used by a client. 
 
-In programming as well, adapter pattern used for similar purposes. It enables two incompatible interfaces to work smoothly with each other. Going by definition:
+```
+A proxy receives client requests, does some work (access control, caching, etc.) and then passes the request to a service object.
+```
 
+The proxy object has the same interface as a service, which makes it interchangeable with a real object when passed to a client.
 
-```Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can work together. The object, that joins these unrelated interfaces, is called an Adapter.```
-
-Adapter pattern is helpful when some other existing components you want to adapt  by the existing code but you have not access to the source code.
-
-Take a look at the typical interaction like this:
-
-<ul class="banner-landing-nav" markdown="1">
-    <li class="image-part-avatar" markdown="1">
-        ![adapter_design_pattern](data/cv/adapter_sequence.png)    
-    </li>
-</ul>
+#### Usage examples: 
+While the Proxy pattern isn’t a frequent guest in most Java applications, it’s still very handy in some special cases.
+It’s irreplaceable when you want to add some additional behaviors to an object of some existing class without changing the client code.
 
 
-Here the **Adaptee** functions are not accessible for Client so client uses an **Adapter** to call the required functions.
+#### Some examples of proxies in standard Java libraries:
 
-Let's start with one example. 
+```
+java.lang.reflect.Proxy
+java.rmi.*
+javax.ejb.EJB (see comments)
+javax.inject.Inject (see comments)
+javax.persistence.PersistenceContext
+```
 
-Consider a **MusicPlayer** needs to play musics with different formats. It does not have access to **MusicConverter**
-To give **MusicPlayer** access to any converter we use **MusicAdapter** that can negotiate in between.
-Simply put any kind of Music formats e.g **MP3Format** or "MP4Format" and adapter facilitates stream from MusicPlayer
-to Converter, and the converter returns the expected stream as output stream.
-Pretty good idea! 
-Now let's take a look at each entity separately below.
+Identification: Proxies delegate all of the real work to some other object. 
+Each proxy method should, in the end, refer to a service object unless the proxy is a subclass of a service.
 
-**MP3Format** as a domain class contains all the relevant methods and attributes. 
-Here **convertToMP3** does convert to mp3 format.
-  
+#### Caching proxy
+In this example, the Proxy pattern helps to implement the lazy initialization and caching to an inefficient 3rd-party YouTube integration library.
+
+Proxy is invaluable when you have to add some additional behaviors to a class which code you can’t change.
+
+
+#### Remote service interface
+
 ~
-public class MP3Format implements MusicConverter {
-    OutputStream convertToMP3(String musicType, InputStream inputStream){
-        //do convert 
-    }
+import java.util.HashMap;
+
+public interface ThirdPartyYouTubeLib {
+    HashMap<String, Video> popularVideos();
+
+    Video getVideo(String videoId);
 }
 ~
 
-**MusicConverter** is an interface. It just needs to get musicType and inputStream as arguments 
-and returns the OutputStream; OutputStream can be used for **MusicPlayer** to play a song with!
+#### Remote service implementation
 
 ~
-public interface MusicConverter {
-    
-    /* This is the method for using in adapter */
-    OutputStream convertTo(String musicType, InputStream inputStream);
-} 
-~
- 
-Here **MusicAdapter** just should have the same methods that **MP3Format** class has.
-So we implement **MusicConverter** and **convertTo** is available inside the class.
- 
-~ 
+import java.util.HashMap;
 
-public class MusicAdapter implements MusicConverter {
-  
-    @Override
-    OutputStream convertTo(String musicType, InputStream inputStream) {
-     
-        /* one can use switch-case here to determine the propper call */
-        // converts to any music type based-on the musicType
-        final Mp3Format mp3Format = new MP3Format();
-        return mp3Format.convertToMP3(inputStream);     
-    }
-}       
-~
-
-**MusicPlayer** class simply creates **MusicAdapter** object to call the converter method.
-You can pass **OutputStream** that actually is comming from a converter and is transparent for
-**MusicPlayer** class.
-   
-~
-public class MusicPlayer {
-    
-    void playMusic(){
-        // read file and put in one inputStream
-        // InputStream inputStream = ...
-        MusicAdapter musicAdapter = new MusicAdapter();
-        OutputStream outputStream = musicAdapter.convertTo("mp3", inputStream) {
-        //...pass outputStream to player       
-    }    
-}
-~
-
-This was a simple case of using adapter pattern to access. It is using one class 
-as mediator to access other classes. 
-
-Let me go further and make our adapter a little better.
-
-~ 
-
-public class MusicAdapter implements MusicConverter {
-  
-    @Override
-    OutputStream convertTo(String musicType, InputStream inputStream) {
-     
-        /* one can use switch-case here to determine the propper call */
-        // converts to any music type based-on the musicType
-        final Mp3Format mp3Format = new MP3Format();
-        return mp3Format.convertToMP3(inputStream);     
-    }
-}       
-~  
-
-There is a better adapter to access any classes and converts every type like a swiss knife!
-
-We said we can use a switch case inside the **convertTo** method to indentify the music format type.
-For example if the format is mp3 we simply check the string and create one object of **MP3Format**.
-
-If you want to support mp4 formats for example , then you simply can add new class called MP4Format 
-and so on. As you can see inside the **convertTo** method you don't see all the supported formats.
-Specially this is the case when you deliver this class in a library for other developers in the team
-,and they need to know which format supported. It is unlikely they check the implementation of the method.
-All of this problem comes because string variable "musicType" can accept any character and 
-one may have typos then he will get an nullException as returned value.
-To minimize the error I like the idea to pass an interface instead of a string type as an argument.
-
-#### how this helps?
-
-Let me rewrite the  **MusicConverter** interface revisely.
-    
-
-We have a pretty nice inheritance of **MusicFormat** as we can define here like this.
-
-~
-public interface MusicFormat {
-
-     /* This is the method for using in adapter */
-     OutputStream convertTo(InputStream inputStream);
-}
- 
-~
-
-**MP3Format** is a music format so is the **MP4Format** and so on. 
-
-~
-public class MP3Format implements MusicFormat {
+public class ThirdPartyYouTubeClass implements ThirdPartyYouTubeLib {
 
     @Override
-    OutputStream convert(InputStream inputStream){
-        //Convert to mp3 format 
+    public HashMap<String, Video> popularVideos() {
+        connectToServer("http://www.youtube.com");
+        return getRandomVideos();
     }
-}
-~
-
-And now we can support mp4 format too!
-
-~
-public class MP4Format implements MusicFormat {
 
     @Override
-    OutputStream convert(InputStream inputStream){
-        //Convert to mp4 format 
+    public Video getVideo(String videoId) {
+        connectToServer("http://www.youtube.com/" + videoId);
+        return getSomeVideo(videoId);
     }
-}
-~
 
-Let's go further and make our adapter a little better.
+    // -----------------------------------------------------------------------
+    // Fake methods to simulate network activity. They as slow as a real life.
 
-~ 
-
-public class MusicAdapter {
-  
-   
-    OutputStream convertTo(MusicFormat musicFormat, InputStream inputStream) {
-     
-        // converts to any music type based-on the musicType       
-        return musicFormat.convert(inputStream);     
+    private int random(int min, int max) {
+        return min + (int) (Math.random() * ((max - min) + 1));
     }
-}       
-~  
 
-Our adapter is very simple now! That is all a music adapter now should have.
-We could reduce complexity and increase the maintainability of our code.
-
-At the end our music player would look like below:
-
-~
-public class MusicPlayer {
-    
-    void playMusic(){
-        // read file and put in one inputStream
-        // InputStream inputStream = ...
-        final MusicAdapter musicAdapter = new MusicAdapter();
-        try(OutputStream mp3OutStream = musicAdapter.convertTo(new MP3Format(), inputStream)){
-            //...pass outputStream to player
-            //...save it to a file    
-        }      
-               
-        try(OutputStream mp4OutStream = musicAdapter.convertTo(new MP4Format(), inputStream)){      
-            //...pass outputStream to player
-            //...save it to a file
+    private void experienceNetworkLatency() {
+        int randomLatency = random(5, 10);
+        for (int i = 0; i < randomLatency; i++) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
+            }
         }
-    }    
+    }
+
+    private void connectToServer(String server) {
+        System.out.print("Connecting to " + server + "... ");
+        experienceNetworkLatency();
+        System.out.print("Connected!" + "\n");
+    }
+
+    private HashMap<String, Video> getRandomVideos() {
+        System.out.print("Downloading populars... ");
+
+        experienceNetworkLatency();
+        HashMap<String, Video> hmap = new HashMap<String, Video>();
+        hmap.put("catzzzzzzzzz", new Video("sadgahasgdas", "Catzzzz.avi"));
+        hmap.put("mkafksangasj", new Video("mkafksangasj", "Dog play with ball.mp4"));
+        hmap.put("dancesvideoo", new Video("asdfas3ffasd", "Dancing video.mpq"));
+        hmap.put("dlsdk5jfslaf", new Video("dlsdk5jfslaf", "Barcelona vs RealM.mov"));
+        hmap.put("3sdfgsd1j333", new Video("3sdfgsd1j333", "Programing lesson#1.avi"));
+
+        System.out.print("Done!" + "\n");
+        return hmap;
+    }
+
+    private Video getSomeVideo(String videoId) {
+        System.out.print("Downloading video... ");
+
+        experienceNetworkLatency();
+        Video video = new Video(videoId, "Some video title");
+
+        System.out.print("Done!" + "\n");
+        return video;
+    }
+
 }
 ~
+
+
+#### Video file
+
+~
+public class Video {
+    public String id;
+    public String title;
+    public String data;
+
+    Video(String id, String title) {
+        this.id = id;
+        this.title = title;
+        this.data = "Random video.";
+    }
+}
+~
+
+#### Caching proxy
+
+~
+import java.util.HashMap;
+
+public class YouTubeCacheProxy implements ThirdPartyYouTubeLib {
+    private ThirdPartyYouTubeLib youtubeService;
+    private HashMap<String, Video> cachePopular = new HashMap<String, Video>();
+    private HashMap<String, Video> cacheAll = new HashMap<String, Video>();
+
+    public YouTubeCacheProxy() {
+        this.youtubeService = new ThirdPartyYouTubeClass();
+    }
+
+    @Override
+    public HashMap<String, Video> popularVideos() {
+        if (cachePopular.isEmpty()) {
+            cachePopular = youtubeService.popularVideos();
+        } else {
+            System.out.println("Retrieved list from cache.");
+        }
+        return cachePopular;
+    }
+
+    @Override
+    public Video getVideo(String videoId) {
+        Video video = cacheAll.get(videoId);
+        if (video == null) {
+            video = youtubeService.getVideo(videoId);
+            cacheAll.put(videoId, video);
+        } else {
+            System.out.println("Retrieved video '" + videoId + "' from cache.");
+        }
+        return video;
+    }
+
+    public void reset() {
+        cachePopular.clear();
+        cacheAll.clear();
+    }
+}
+~
+
+#### Media downloader app
+
+~
+import java.util.HashMap;
+
+public class YouTubeDownloader {
+    private ThirdPartyYouTubeLib api;
+
+    public YouTubeDownloader(ThirdPartyYouTubeLib api) {
+        this.api = api;
+    }
+
+    public void renderVideoPage(String videoId) {
+        Video video = api.getVideo(videoId);
+        System.out.println("\n-------------------------------");
+        System.out.println("Video page (imagine fancy HTML)");
+        System.out.println("ID: " + video.id);
+        System.out.println("Title: " + video.title);
+        System.out.println("Video: " + video.data);
+        System.out.println("-------------------------------\n");
+    }
+
+    public void renderPopularVideos() {
+        HashMap<String, Video> list = api.popularVideos();
+        System.out.println("\n-------------------------------");
+        System.out.println("Most popular videos on YouTube (imagine fancy HTML)");
+        for (Video video : list.values()) {
+            System.out.println("ID: " + video.id + " / Title: " + video.title);
+        }
+        System.out.println("-------------------------------\n");
+    }
+}
+~
+
+#### Initialization code
+
+~
+public class Demo {
+
+    public static void main(String[] args) {
+        YouTubeDownloader naiveDownloader = new YouTubeDownloader(new ThirdPartyYouTubeClass());
+        YouTubeDownloader smartDownloader = new YouTubeDownloader(new YouTubeCacheProxy());
+
+        long naive = test(naiveDownloader);
+        long smart = test(smartDownloader);
+        System.out.print("Time saved by caching proxy: " + (naive - smart) + "ms");
+
+    }
+
+    private static long test(YouTubeDownloader downloader) {
+        long startTime = System.currentTimeMillis();
+
+        // User behavior in our app:
+        downloader.renderPopularVideos();
+        downloader.renderVideoPage("catzzzzzzzzz");
+        downloader.renderPopularVideos();
+        downloader.renderVideoPage("dancesvideoo");
+        // Users might visit the same page quite often.
+        downloader.renderVideoPage("catzzzzzzzzz");
+        downloader.renderVideoPage("someothervid");
+
+        long estimatedTime = System.currentTimeMillis() - startTime;
+        System.out.print("Time elapsed: " + estimatedTime + "ms\n");
+        return estimatedTime;
+    }
+}
+
+~
+
+####  OutputDemo.txt: Execution result
+
+
+```
+Connecting to http://www.youtube.com... Connected!
+Downloading populars... Done!
+
+-------------------------------
+Most popular videos on YouTube (imagine fancy HTML)
+ID: sadgahasgdas / Title: Catzzzz.avi
+ID: asdfas3ffasd / Title: Dancing video.mpq
+ID: 3sdfgsd1j333 / Title: Programing lesson#1.avi
+ID: mkafksangasj / Title: Dog play with ball.mp4
+ID: dlsdk5jfslaf / Title: Barcelona vs RealM.mov
+-------------------------------
+
+Connecting to http://www.youtube.com/catzzzzzzzzz... Connected!
+Downloading video... Done!
+
+-------------------------------
+Video page (imagine fancy HTML)
+ID: catzzzzzzzzz
+Title: Some video title
+Video: Random video.
+-------------------------------
+
+Connecting to http://www.youtube.com... Connected!
+Downloading populars... Done!
+
+-------------------------------
+Most popular videos on YouTube (imagine fancy HTML)
+ID: sadgahasgdas / Title: Catzzzz.avi
+ID: asdfas3ffasd / Title: Dancing video.mpq
+ID: 3sdfgsd1j333 / Title: Programing lesson#1.avi
+ID: mkafksangasj / Title: Dog play with ball.mp4
+ID: dlsdk5jfslaf / Title: Barcelona vs RealM.mov
+-------------------------------
+
+Connecting to http://www.youtube.com/dancesvideoo... Connected!
+Downloading video... Done!
+
+-------------------------------
+Video page (imagine fancy HTML)
+ID: dancesvideoo
+Title: Some video title
+Video: Random video.
+-------------------------------
+
+Connecting to http://www.youtube.com/catzzzzzzzzz... Connected!
+Downloading video... Done!
+
+-------------------------------
+Video page (imagine fancy HTML)
+ID: catzzzzzzzzz
+Title: Some video title
+Video: Random video.
+-------------------------------
+
+Connecting to http://www.youtube.com/someothervid... Connected!
+Downloading video... Done!
+
+-------------------------------
+Video page (imagine fancy HTML)
+ID: someothervid
+Title: Some video title
+Video: Random video.
+-------------------------------
+
+Time elapsed: 9354ms
+Connecting to http://www.youtube.com... Connected!
+Downloading populars... Done!
+
+-------------------------------
+Most popular videos on YouTube (imagine fancy HTML)
+ID: sadgahasgdas / Title: Catzzzz.avi
+ID: asdfas3ffasd / Title: Dancing video.mpq
+ID: 3sdfgsd1j333 / Title: Programing lesson#1.avi
+ID: mkafksangasj / Title: Dog play with ball.mp4
+ID: dlsdk5jfslaf / Title: Barcelona vs RealM.mov
+-------------------------------
+
+Connecting to http://www.youtube.com/catzzzzzzzzz... Connected!
+Downloading video... Done!
+
+-------------------------------
+Video page (imagine fancy HTML)
+ID: catzzzzzzzzz
+Title: Some video title
+Video: Random video.
+-------------------------------
+
+Retrieved list from cache.
+
+-------------------------------
+Most popular videos on YouTube (imagine fancy HTML)
+ID: sadgahasgdas / Title: Catzzzz.avi
+ID: asdfas3ffasd / Title: Dancing video.mpq
+ID: 3sdfgsd1j333 / Title: Programing lesson#1.avi
+ID: mkafksangasj / Title: Dog play with ball.mp4
+ID: dlsdk5jfslaf / Title: Barcelona vs RealM.mov
+-------------------------------
+
+Connecting to http://www.youtube.com/dancesvideoo... Connected!
+Downloading video... Done!
+
+-------------------------------
+Video page (imagine fancy HTML)
+ID: dancesvideoo
+Title: Some video title
+Video: Random video.
+-------------------------------
+
+Retrieved video 'catzzzzzzzzz' from cache.
+
+-------------------------------
+Video page (imagine fancy HTML)
+ID: catzzzzzzzzz
+Title: Some video title
+Video: Random video.
+-------------------------------
+
+Connecting to http://www.youtube.com/someothervid... Connected!
+Downloading video... Done!
+
+-------------------------------
+Video page (imagine fancy HTML)
+ID: someothervid
+Title: Some video title
+Video: Random video.
+-------------------------------
+
+Time elapsed: 5875ms
+Time saved by caching proxy: 3479ms
+
+```
 
 That was all about the adapter design pattern! As always thanks for reading this article.
 You can find the whole code of this article at [this address](https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/composite).

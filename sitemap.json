@@ -200,7 +200,45 @@
       "java"
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/facade",
-    "pre": "/design-patterns-structural-facade",
+    "pre": "/design-patterns-structural-decorator",
+    "next": "/design-patterns-structural-flyweight",
     "src": "/data/archive/design-patterns/structural/facade.md"
+  },
+  "/design-patterns-structural-flyweight": {
+    "type": "archive",
+    "date": "2020-08-20T10:49:26.733Z",
+    "title": "Design Pattern Guide: Flyweight Pattern",
+    "tags": [
+      "design",
+      "software",
+      "structural",
+      "facade",
+      "patterns",
+      "flyweight",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/flyweight",
+    "pre": "/design-patterns-structural-facade",
+    "next": "/design-patterns-structural-proxy",
+    "src": "/data/archive/design-patterns/structural/flyweight.md"
+  },
+  "/design-patterns-structural-proxy": {
+    "type": "archive",
+    "date": "2020-08-20T20:49:26.733Z",
+    "title": "Design Pattern Guide: Proxy Pattern",
+    "tags": [
+      "design",
+      "software",
+      "structural",
+      "proxy",
+      "patterns",
+      "flyweight",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/proxy",
+    "pre": "/design-patterns-structural-flyweight",
+    "src": "/data/archive/design-patterns/structural/proxy.md"
   }
 }
