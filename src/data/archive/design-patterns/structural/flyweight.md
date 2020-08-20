@@ -176,7 +176,8 @@ Total: 7MB (instead of 36MB)
 ```
 
 
-
+###  OutputDemo.png: Screenshot
+![output](data/archive/design-patterns/structural/assets/Flyweight_OutputDemo.png)  
 
 
 
