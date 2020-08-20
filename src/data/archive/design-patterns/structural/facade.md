@@ -1,209 +1,166 @@
-# Design patterns
-### Structural Adapter pattern
-Ever tried to use your camera memory card in your laptop. You cannot use it directly simply because there is no port in the laptop which accept it.You must use a compatible card reader.
-You put your memory card into the card reader and then inject the card reader into the laptop. This card reader can be called the adapter.
+# Structural Design patterns
+### Facade pattern
 
-A similar example is your mobile charger, or your laptop charger which can be used with any power supply without fear of the variance power supply in different locations. That is also called power “adapter”. 
+Facade is a structural design pattern that provides a simplified (but limited) interface to a complex system of classes, library or framework.
 
-In programming as well, adapter pattern used for similar purposes. It enables two incompatible interfaces to work smoothly with each other. Going by definition:
+```
+While Facade decreases the overall complexity of the application, it also helps to move unwanted dependencies to one place.
+```
 
+### Usage of the pattern in Java
 
-```Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can work together. The object, that joins these unrelated interfaces, is called an Adapter.```
+In this example, the Facade simplifies communication with a complex video conversion framework.
 
-Adapter pattern is helpful when some other existing components you want to adapt  by the existing code but you have not access to the source code.
-
-Take a look at the typical interaction like this:
-
-<ul class="banner-landing-nav" markdown="1">
-    <li class="image-part-avatar" markdown="1">
-        ![adapter_design_pattern](data/cv/adapter_sequence.png)    
-    </li>
-</ul>
+The Facade provides a single class with a single method that handles all the complexity of configuring the right classes of the framework and retrieving the result in a correct format.
 
 
-Here the **Adaptee** functions are not accessible for Client so client uses an **Adapter** to call the required functions.
+#### Complex video conversion library
 
-Let's start with one example. 
-
-Consider a **MusicPlayer** needs to play musics with different formats. It does not have access to **MusicConverter**
-To give **MusicPlayer** access to any converter we use **MusicAdapter** that can negotiate in between.
-Simply put any kind of Music formats e.g **MP3Format** or "MP4Format" and adapter facilitates stream from MusicPlayer
-to Converter, and the converter returns the expected stream as output stream.
-Pretty good idea! 
-Now let's take a look at each entity separately below.
-
-**MP3Format** as a domain class contains all the relevant methods and attributes. 
-Here **convertToMP3** does convert to mp3 format.
-  
 ~
-public class MP3Format implements MusicConverter {
-    OutputStream convertToMP3(String musicType, InputStream inputStream){
-        //do convert 
+public class VideoFile {
+    private String name;
+    private String codecType;
+
+    public VideoFile(String name) {
+        this.name = name;
+        this.codecType = name.substring(name.indexOf(".") + 1);
+    }
+
+    public String getCodecType() {
+        return codecType;
+    }
+
+    public String getName() {
+        return name;
     }
 }
 ~
 
-**MusicConverter** is an interface. It just needs to get musicType and inputStream as arguments 
-and returns the OutputStream; OutputStream can be used for **MusicPlayer** to play a song with!
+#### Codec.java
 
 ~
-public interface MusicConverter {
-    
-    /* This is the method for using in adapter */
-    OutputStream convertTo(String musicType, InputStream inputStream);
-} 
-~
- 
-Here **MusicAdapter** just should have the same methods that **MP3Format** class has.
-So we implement **MusicConverter** and **convertTo** is available inside the class.
- 
-~ 
-
-public class MusicAdapter implements MusicConverter {
-  
-    @Override
-    OutputStream convertTo(String musicType, InputStream inputStream) {
-     
-        /* one can use switch-case here to determine the propper call */
-        // converts to any music type based-on the musicType
-        final Mp3Format mp3Format = new MP3Format();
-        return mp3Format.convertToMP3(inputStream);     
-    }
-}       
-~
-
-**MusicPlayer** class simply creates **MusicAdapter** object to call the converter method.
-You can pass **OutputStream** that actually is comming from a converter and is transparent for
-**MusicPlayer** class.
-   
-~
-public class MusicPlayer {
-    
-    void playMusic(){
-        // read file and put in one inputStream
-        // InputStream inputStream = ...
-        MusicAdapter musicAdapter = new MusicAdapter();
-        OutputStream outputStream = musicAdapter.convertTo("mp3", inputStream) {
-        //...pass outputStream to player       
-    }    
+public interface Codec {
 }
 ~
 
-This was a simple case of using adapter pattern to access. It is using one class 
-as mediator to access other classes. 
 
-Let me go further and make our adapter a little better.
-
-~ 
-
-public class MusicAdapter implements MusicConverter {
-  
-    @Override
-    OutputStream convertTo(String musicType, InputStream inputStream) {
-     
-        /* one can use switch-case here to determine the propper call */
-        // converts to any music type based-on the musicType
-        final Mp3Format mp3Format = new MP3Format();
-        return mp3Format.convertToMP3(inputStream);     
-    }
-}       
-~  
-
-There is a better adapter to access any classes and converts every type like a swiss knife!
-
-We said we can use a switch case inside the **convertTo** method to indentify the music format type.
-For example if the format is mp3 we simply check the string and create one object of **MP3Format**.
-
-If you want to support mp4 formats for example , then you simply can add new class called MP4Format 
-and so on. As you can see inside the **convertTo** method you don't see all the supported formats.
-Specially this is the case when you deliver this class in a library for other developers in the team
-,and they need to know which format supported. It is unlikely they check the implementation of the method.
-All of this problem comes because string variable "musicType" can accept any character and 
-one may have typos then he will get an nullException as returned value.
-To minimize the error I like the idea to pass an interface instead of a string type as an argument.
-
-#### how this helps?
-
-Let me rewrite the  **MusicConverter** interface revisely.
-    
-
-We have a pretty nice inheritance of **MusicFormat** as we can define here like this.
+#### MPEG4CompressionCodec
 
 ~
-public interface MusicFormat {
-
-     /* This is the method for using in adapter */
-     OutputStream convertTo(InputStream inputStream);
-}
- 
-~
-
-**MP3Format** is a music format so is the **MP4Format** and so on. 
-
-~
-public class MP3Format implements MusicFormat {
-
-    @Override
-    OutputStream convert(InputStream inputStream){
-        //Convert to mp3 format 
-    }
+public class MPEG4CompressionCodec implements Codec {
+    public String type = "mp4";
 }
 ~
 
-And now we can support mp4 format too!
+#### OggCompressionCodec
 
 ~
-public class MP4Format implements MusicFormat {
-
-    @Override
-    OutputStream convert(InputStream inputStream){
-        //Convert to mp4 format 
-    }
+public class OggCompressionCodec implements Codec {
+    public String type = "ogg";
 }
 ~
 
-Let's go further and make our adapter a little better.
-
-~ 
-
-public class MusicAdapter {
-  
-   
-    OutputStream convertTo(MusicFormat musicFormat, InputStream inputStream) {
-     
-        // converts to any music type based-on the musicType       
-        return musicFormat.convert(inputStream);     
-    }
-}       
-~  
-
-Our adapter is very simple now! That is all a music adapter now should have.
-We could reduce complexity and increase the maintainability of our code.
-
-At the end our music player would look like below:
+#### CodeFactory
 
 ~
-public class MusicPlayer {
-    
-    void playMusic(){
-        // read file and put in one inputStream
-        // InputStream inputStream = ...
-        final MusicAdapter musicAdapter = new MusicAdapter();
-        try(OutputStream mp3OutStream = musicAdapter.convertTo(new MP3Format(), inputStream)){
-            //...pass outputStream to player
-            //...save it to a file    
-        }      
-               
-        try(OutputStream mp4OutStream = musicAdapter.convertTo(new MP4Format(), inputStream)){      
-            //...pass outputStream to player
-            //...save it to a file
+public class CodecFactory {
+    public static Codec extract(VideoFile file) {
+        String type = file.getCodecType();
+        if (type.equals("mp4")) {
+            System.out.println("CodecFactory: extracting mpeg audio...");
+            return new MPEG4CompressionCodec();
         }
-    }    
+        else {
+            System.out.println("CodecFactory: extracting ogg audio...");
+            return new OggCompressionCodec();
+        }
+    }
 }
 ~
+
+#### BitrateReader
+
+~
+public class BitrateReader {
+    public static VideoFile read(VideoFile file, Codec codec) {
+        System.out.println("BitrateReader: reading file...");
+        return file;
+    }
+
+    public static VideoFile convert(VideoFile buffer, Codec codec) {
+        System.out.println("BitrateReader: writing file...");
+        return buffer;
+    }
+}
+~
+
+#### AudioMixer
+
+~
+import java.io.File;
+
+public class AudioMixer {
+    public File fix(VideoFile result){
+        System.out.println("AudioMixer: fixing audio...");
+        return new File("tmp");
+    }
+}
+~
+
+At the end the last part is this Facade class that simplifies interaction with a complex video conversion framework.
+#### Facade provides simple interface of video conversion
+
+~
+import java.io.File;
+
+public class VideoConversionFacade {
+    public File convertVideo(String fileName, String format) {
+        System.out.println("VideoConversionFacade: conversion started.");
+        VideoFile file = new VideoFile(fileName);
+        Codec sourceCodec = CodecFactory.extract(file);
+        Codec destinationCodec;
+        if (format.equals("mp4")) {
+            destinationCodec = new OggCompressionCodec();
+        } else {
+            destinationCodec = new MPEG4CompressionCodec();
+        }
+        VideoFile buffer = BitrateReader.read(file, sourceCodec);
+        VideoFile intermediateResult = BitrateReader.convert(buffer, destinationCodec);
+        File result = (new AudioMixer()).fix(intermediateResult);
+        System.out.println("VideoConversionFacade: conversion completed.");
+        return result;
+    }
+}
+~
+
+#### Client code
+
+~
+import java.io.File;
+
+public class Demo {
+    public static void main(String[] args) {
+        VideoConversionFacade converter = new VideoConversionFacade();
+        File mp4Video = converter.convertVideo("youtubevideo.ogg", "mp4");
+        // ...
+    }
+}
+~
+
+#### OutputDemo.txt: Execution result
+
+```
+VideoConversionFacade: conversion started.
+CodecFactory: extracting ogg audio...
+BitrateReader: reading file...
+BitrateReader: writing file...
+AudioMixer: fixing audio...
+VideoConversionFacade: conversion completed.
+```
+
 
 That was all about the adapter design pattern! As always thanks for reading this article.
-You can find the whole code of this article at [this address](https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/composite).
+You can find the whole code of this article at [this address](https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/facade).
 
 To check another deign patterns's example on GitHub check [GitHub project](https://github.com/metao1/design-patterns)
 

@@ -10,6 +10,7 @@
       "architecture",
       "java"
     ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp",
     "next": "/design-patterns-creational-abstract-factory",
     "src": "/data/archive/design-patterns/2020-07-17.md"
   },
@@ -24,6 +25,7 @@
       "architecture",
       "java"
     ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/abstract-factory",
     "pre": "/design-patterns",
     "next": "/design-patterns-creational-builder",
     "src": "/data/archive/design-patterns/creational/abstract-factory.md"
@@ -39,6 +41,7 @@
       "architecture",
       "java"
     ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/builder",
     "pre": "/design-patterns-creational-abstract-factory",
     "next": "/design-patterns-creational-factory",
     "src": "/data/archive/design-patterns/creational/builder.md"
@@ -54,6 +57,7 @@
       "architecture",
       "java"
     ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/factory",
     "pre": "/design-patterns-creational-builder",
     "next": "/design-patterns-creational-prototype",
     "src": "/data/archive/design-patterns/creational/factory.md"
@@ -69,6 +73,7 @@
       "architecture",
       "java"
     ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/prototype",
     "pre": "/design-patterns-creational-factory",
     "next": "/design-patterns-creational-singleton",
     "src": "/data/archive/design-patterns/creational/prototype.md"
@@ -84,6 +89,7 @@
       "architecture",
       "java"
     ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/singleton",
     "pre": "/design-patterns-creational-prototype",
     "next": "/design-patterns-behavioral-chain-of-responsibilities",
     "src": "/data/archive/design-patterns/creational/singleton.md"
@@ -101,6 +107,7 @@
       "architecture",
       "java"
     ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/cor",
     "pre": "/design-patterns-creational-singleton",
     "next": "/design-patterns-structural-adapter",
     "src": "/data/archive/design-patterns/behavioral/cor.md"
@@ -118,6 +125,7 @@
       "architecture",
       "java"
     ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/adapter",
     "pre": "/design-patterns",
     "next": "/design-patterns-structural-bridge",
     "src": "/data/archive/design-patterns/structural/adapter.md"
@@ -135,14 +143,15 @@
       "architecture",
       "java"
     ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/bridge",
     "pre": "/design-patterns-structural-adapter",
+    "next": "/design-patterns-structural-composite",
     "src": "/data/archive/design-patterns/structural/bridge.md"
   },
   "/design-patterns-structural-composite": {
     "type": "archive",
     "date": "2020-08-17T11:49:26.733Z",
     "title": "Design Pattern Guide: Composite Pattern",
-    "repo": "https://github.com/metao1",
     "tags": [
       "design",
       "software",
@@ -152,7 +161,46 @@
       "architecture",
       "java"
     ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/composite",
     "pre": "/design-patterns-structural-bridge",
+    "next": "/design-patterns-structural-decorator",
     "src": "/data/archive/design-patterns/structural/composite.md"
+  },
+  "/design-patterns-structural-decorator": {
+    "type": "archive",
+    "date": "2020-08-17T11:49:26.733Z",
+    "title": "Design Pattern Guide: Decorator Pattern",
+    "tags": [
+      "design",
+      "software",
+      "structural",
+      "decorator",
+      "patterns",
+      "adapter",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/decorator",
+    "pre": "/design-patterns-structural-composite",
+    "next": "/design-patterns-structural-facade",
+    "src": "/data/archive/design-patterns/structural/decorator.md"
+  },
+  "/design-patterns-structural-facade": {
+    "type": "archive",
+    "date": "2020-08-19T18:49:26.733Z",
+    "title": "Design Pattern Guide: Facade Pattern",
+    "tags": [
+      "design",
+      "software",
+      "structural",
+      "facade",
+      "patterns",
+      "adapter",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/facade",
+    "pre": "/design-patterns-structural-facade",
+    "src": "/data/archive/design-patterns/structural/facade.md"
   }
 }

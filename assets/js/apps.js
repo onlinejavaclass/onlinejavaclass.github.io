@@ -5926,7 +5926,7 @@ webpackJsonp([0],[
 	                    link: ref.link,
 	                    next: ref.next ? ref.next : undefined,
 	                    pre: ref.pre ? ref.pre : undefined,
-	                    repo: ref.repo ? ref.repo : undefined,
+	                    repo: ref.repo ? ref.repo : 'https://github.com/metao1',
 	                    postLink: ref.date,
 	                    src: ref.src,
 	                    tags: ref.tags,
