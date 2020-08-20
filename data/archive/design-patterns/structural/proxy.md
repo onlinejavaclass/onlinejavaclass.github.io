@@ -282,7 +282,7 @@ public class YouTubeDownloader {
 
 #### Initialization code
 
-<pre class="prettyprint">
+~
 public class Demo {
 
     public static void main(String[] args) {
@@ -312,8 +312,7 @@ public class Demo {
         return estimatedTime;
     }
 }
-
-</pre>
+~
 
 ####  OutputDemo.txt: Execution result
 
