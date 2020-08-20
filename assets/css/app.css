@@ -230,7 +230,8 @@ kbd,
 pre,
 samp {
   font-family: monospace, monospace;
-  font-size: 1em;
+  font-size: 1.1em;
+  color: #45e843;
 }
 
 /* Forms
@@ -870,39 +871,6 @@ body {
   max-width: 1190px;
 }
 
-code {
-  font-size: 1.2em;
-  color: #31ff00;
-}
-
-pre, code {
-  font-family: 'Monaco', 'Menlo', monospace;
-  font-size: 1.2em;
-  background-color: #1c1d1e;
-  display: block;
-  padding: 8px;
-  overflow: auto;
-  margin: 8px 0;
-  clear: both;
-}
-
-@media screen and (max-width: 639px) {
-  pre, code {
-    font-size: 0.8em;
-  }
-}
-
-code, kbd, pre, samp {
-  font-family: monospace, monospace;
-  font-size: 1.1em;
-}
-
-@media screen and (max-width: 639px) {
-  code, kbd, pre, samp {
-    font-size: 1em;
-  }
-}
-
 table {
   border-collapse: collapse;
   width: 100%;
@@ -1051,19 +1019,6 @@ td:first-child {
   }
 }
 
-.prettyprint {
-  display: block;
-  color: #55ff00;
-  padding: 24px;
-}
-
-@media screen and (max-width: 638px) {
-  .prettyprint {
-    font-size: 0.7em;
-    padding: 4px;
-  }
-}
-
 .banner-landing-nav {
   margin: 10px 66px 10px 10px;
 }
@@ -1096,11 +1051,33 @@ p {
   color: #b754bddb;
 }
 
-pre {
-  white-space: pre-wrap;
-  padding: 1px 5px;
-  color: #55ff00;
-  background-color: #000000;
+code {
+  font-family: 'Monaco', 'Menlo', monospace;
+  font-size: 1.2em;
+  background-color: #e7e7e7;
+  display: block;
+  padding: 8px;
+  overflow: auto;
+  margin: 8px 0;
+  clear: both;
+}
+
+@media screen and (max-width: 639px) {
+  code {
+    font-size: 0.8em;
+  }
+}
+
+code, kbd, samp {
+  font-family: monospace, monospace;
+  font-size: 1.1em;
+  color: #09983c;
+}
+
+@media screen and (max-width: 639px) {
+  code, kbd, samp {
+    font-size: 1em;
+  }
 }
 
 .search {

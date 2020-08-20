@@ -419,33 +419,32 @@
                     "class", "finally", "long", "strictfp", "volatile",
                     "const", "float", "native", "super", "while"
                 ]
-                let arr = cap[2].split(/\n+/);
-                let paragraph = '';
-                for (let i = -1; i++ < arr.length;) {
-                    if (arr[i]) {
-                        let line = arr[i];
-                        let word = '';
-                        let sentence = '';
-                        if (line.trim().startsWith("@")) {
-                            sentence = '<span class="pun">' + line + '</span>';
-                        } else if (matchesComment(line)) {
-                            let section = line.substr(0, line.indexOf("/"));
-                            if (section && section.length > 0) {
-                                section = processLine(section);
-                            }
-                            let comment = line.substr(line.indexOf("/"));
-                            sentence = section + '<span class="str">' + comment + '</span>';
-                        }
-                        if (sentence.length === 0) {
-                            sentence = processLine(line);
-                        }
-                        paragraph += sentence + '\n';
-                        sentence = '';
-                    }
-                }
+                //let arr = cap[2].split(/\n+/);
+                // for (let i = -1; i++ < arr.length;) {
+                //     if (arr[i]) {
+                //         let line = arr[i];
+                //         let word = '';
+                //         let sentence = '';
+                //         if (line.trim().startsWith("@")) {
+                //             sentence = '<span class="pun">' + line + '</span>';
+                //         } else if (matchesComment(line)) {
+                //             let section = line.substr(0, line.indexOf("/"));
+                //             if (section && section.length > 0) {
+                //                 section = processLine(section);
+                //             }
+                //             let comment = line.substr(line.indexOf("/"));
+                //             sentence = section + '<span class="str">' + comment + '</span>';
+                //         }
+                //         if (sentence.length === 0) {
+                //             sentence = processLine(line);
+                //         }
+                //         paragraph += sentence + '\n';
+                //         sentence = '';
+                //     }
+                // }
                 item = {
                     type: 'codeBlock',
-                    body: paragraph,
+                    body: cap[2],
                 };
                 this.tokens.push(item);
                 continue;
@@ -954,7 +953,7 @@
     };
 
     Renderer.prototype.codeBlock = function (text) {
-        return '<pre class="lang-java prettyprint prettyprinted">\n' +
+        return '<pre class="prettyprint language-java">\n' +
             text.body +
             '\n</pre>';
     };
