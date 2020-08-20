@@ -6404,19 +6404,25 @@ webpackJsonp([0],[
 	                    return char.charCodeAt(0) === 32 ||
 	                        char.charCodeAt(0) === 123 ||
 	                        char.charCodeAt(0) === 59 ||
+	                        char.charCodeAt(0) === 60 ||
+	                        char.charCodeAt(0) === 62 ||
 	                        char.charCodeAt(0) === 10 ||
 	                        char.charCodeAt(0) === 40 ||
 	                        char.charCodeAt(0) === 44 ||
 	                        char.charCodeAt(0) === 46 ||
-	                        char.charCodeAt(0) === 34 ||
 	                        char.charCodeAt(0) === 125 ||
 	                        char.charCodeAt(0) === 38 ||
 	                        char.charCodeAt(0) === 41;
 	                }
 	
+	                function matchQuote(line) {
+	                    return line.toLowerCase().match(/^(["'])(?:(?=(\\?))\2.)*?\1/g);
+	                }
+	
 	                function processLine(line) {
 	                    let sentence = '';
 	                    let word = '';
+	
 	                    for (var index = 0; (index < line.length); index++) {
 	                        if (!line[index]) {
 	                            continue;
@@ -6424,7 +6430,9 @@ webpackJsonp([0],[
 	                        word += line[index];
 	                        if (matchesTo(line[index])) {
 	                            word = word.substr(0, word.length - 1);
-	                            if (word.trim().match(/^[A-Z]+[\w]+$/g)) {
+	                            if (matchQuote(word)) {
+	                                word = '<span class="pun">' + word + '</span>';
+	                            } else if (word.trim().match(/^[A-Z]+[\w]+$/g)) {
 	                                word = '<span class="typ">' + word + '</span>';
 	                            } else if (keywords.indexOf(word.trim()) !== -1) {
 	                                word = '<span class="kwd">' + word + '</span>';
@@ -6463,8 +6471,7 @@ webpackJsonp([0],[
 	                        let sentence = '';
 	                        if (line.trim().startsWith("@")) {
 	                            sentence = '<span class="pun">' + line + '</span>';
-	                        }
-	                        if (matchesComment(line)) {
+	                        } else if (matchesComment(line)) {
 	                            let section = line.substr(0, line.indexOf("/"));
 	                            if (section && section.length > 0) {
 	                                section = processLine(section);
