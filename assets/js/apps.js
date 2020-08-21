@@ -8498,7 +8498,14 @@ webpackJsonp([0],[
 	    };
 	
 	    Renderer.prototype.codeBlock = function (text) {
-	        return '<pre class="prettyprint language-java">\n' +
+	        return '<div class="marked">' +
+	            '<a class="btn data-reactid=".0.2.1.1.2.1">' +
+	            '<span data-reactid=".0.2.1.1.2.1.0"> </span>' +
+	            '<span class="fap fap-fork" data-reactid=".0.2.1.1.2.1.1"></span>' +
+	            '<span data-reactid=".0.2.1.1.2.1.2"></span>' +
+	            '</a>' +
+	            '</div>' +
+	            '<pre class="display prettyprint language-java">\n' +
 	            text.body +
 	            '\n</pre>';
 	    };

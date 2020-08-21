@@ -3,9 +3,9 @@
 
 A factory of factories; a factory that groups the individual but related/dependent factories together without specifying their concrete classes.
 
-``
+```
 Allows you to create different flavors of an object while avoiding constructor pollution. Useful when there could be several flavors of an object. Or when there are a lot of steps involved in creation of an object.
-``
+```
 
 Usage examples: Imagine a character generator for a role playing game. The easiest option is to let computer create the character for you. But if you want to select the character details like profession, gender, hair color etc. the character generation becomes a step-by-step process that completes when all the selections are ready.
 
@@ -21,7 +21,7 @@ Like our factory pattern post, we will use the same superclass and sub-classes.
 
 #### Abstract Factory Design Pattern Super Class and Subclasses
 
-Example:
+#### Example:
 
 ~
 public abstract class Computer {

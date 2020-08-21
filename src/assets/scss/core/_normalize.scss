@@ -243,14 +243,16 @@ pre {
  * Address odd `em`-unit font size rendering in all browsers.
  */
 
-code,
 kbd,
 pre,
 samp {
+  margin: 0;
+  padding: 9px;
   font-family: monospace, monospace;
   font-size: 1em;
+  box-shadow: 1px 1px 2px 1px #bfbfbf;
   @media screen and (max-width: 639px) {
-    font-size: 0.7em;
+    font-size: 0.8em;
   }
 }
 
