@@ -230,8 +230,16 @@ kbd,
 pre,
 samp {
   font-family: monospace, monospace;
-  font-size: 1.1em;
-  color: #45e843;
+  font-size: 1em;
+}
+
+@media screen and (max-width: 639px) {
+  code,
+  kbd,
+  pre,
+  samp {
+    font-size: 0.7em;
+  }
 }
 
 /* Forms
@@ -1071,7 +1079,6 @@ code {
 code, kbd, samp {
   font-family: monospace, monospace;
   font-size: 1.1em;
-  color: #09983c;
 }
 
 @media screen and (max-width: 639px) {
