@@ -2454,14 +2454,19 @@
         return '<p>' + text + '</p>\n';
     };
 
+    function $rand() {
+        return Math.random().toString(5).substring(2, 5);
+    }
+
     Renderer.prototype.codeBlock = function (text) {
+        const number = $rand();
         return '<div class="marked">' +
             <!-- Trigger -->
-            '<button class="copy-button" type="button" data-clipboard-target="#markdown">' +
-            '    <img class="clippy" src="assets/img/clippy.svg" width="13" alt="Copy to clipboard">'+
-            '</button>'+
+            '<button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-' + number + '" aria-label="Copy it!" data-balloon-pos="up">' +
+            '    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard">' +
+            '</button>' +
             '</div>' +
-            '<pre id="markdown" class="prettyprint language-java">\n' +
+            '<pre id="marker-' + number + '" class="display prettyprint language-java">\n' +
             text.body +
             '\n</pre>';
     };

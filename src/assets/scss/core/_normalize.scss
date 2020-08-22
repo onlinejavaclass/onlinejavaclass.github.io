@@ -243,6 +243,10 @@ pre {
  * Address odd `em`-unit font size rendering in all browsers.
  */
 
+code {
+  white-space: pre-wrap;
+}
+
 kbd,
 pre,
 samp {
@@ -250,7 +254,6 @@ samp {
   font-family: monospace, monospace;
   font-size: 1em;
   box-shadow: 1px 1px 2px 1px #bfbfbf;
-  white-space: pre-wrap;
   @media screen and (max-width: 639px) {
     font-size: 0.8em;
   }
@@ -450,8 +453,8 @@ th {
 
 
 ul, li {
-  margin:0;
-  padding:0;
+  margin: 0;
+  padding: 0;
 }
 
 a {

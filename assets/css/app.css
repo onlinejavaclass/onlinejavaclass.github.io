@@ -225,6 +225,10 @@ pre {
 /**
  * Address odd `em`-unit font size rendering in all browsers.
  */
+code {
+  white-space: pre-wrap;
+}
+
 kbd,
 pre,
 samp {
@@ -232,7 +236,6 @@ samp {
   font-family: monospace, monospace;
   font-size: 1em;
   box-shadow: 1px 1px 2px 1px #bfbfbf;
-  white-space: pre-wrap;
 }
 
 @media screen and (max-width: 639px) {
@@ -743,6 +746,7 @@ body {
 @media screen and (max-width: 639px) {
   .top-header .top-header-wrap-1 .top-header-wrap-2 .top-header-h1 {
     font-size: 15px;
+    max-width: 230px;
   }
 }
 
@@ -1129,7 +1133,7 @@ pre.prettyprint {
   z-index: 9999;
   top: 40px;
   left: -37px;
-  width: 114px;
+  width: 50px;
   height: 36px;
   color: #fff;
   font-size: 10px;
