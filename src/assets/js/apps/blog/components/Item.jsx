@@ -38,7 +38,7 @@ export default class Item extends React.Component {
     }
 
     getResource(link) {
-        var clipboard = new ClipboardJS('.copy-button');
+        const clipboard = new ClipboardJS('.copy-button');
         clipboard.on('success', function(e) {
             e.clearSelection();
         });

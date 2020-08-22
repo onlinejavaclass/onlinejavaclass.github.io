@@ -6,7 +6,7 @@
     "deploy": "gulp"
   },
   "dependencies": {
-    "@onlinejavaclass/marked": "0.0.1",
+    "@onlinejavaclass/marked": "0.0.2",
     "body-parser": "latest",
     "cheerio": "latest",
     "d3": "latest",
