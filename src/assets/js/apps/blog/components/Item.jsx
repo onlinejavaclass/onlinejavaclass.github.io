@@ -27,6 +27,12 @@ export default class Item extends React.Component {
     componentDidMount() {
         this.AppStore.addListener('change', this.getFromStore);
         this.getResource(this.props.link);
+        const clipboard = new ClipboardJS('.copy-button');
+        clipboard.on('success', function (e) {
+            e.clearSelection();
+        });
+        clipboard.on('error', function (e) {
+        });
     }
 
     componentWillUnmount() {
@@ -37,12 +43,13 @@ export default class Item extends React.Component {
         this.setState(this.AppStore.getResource(this.props.link));
     }
 
+    setUrl(link) {
+        if (typeof window !== 'undefined' && link && link !== 'undefined') {
+            window.location.href = "#" + link;
+        }
+    }
+
     getResource(link) {
-        const clipboard = new ClipboardJS('.copy-button');
-        clipboard.on('success', function(e) {
-            e.clearSelection();
-        });
-        clipboard.on('error', function(e) {});
         let appActions = this.context.flux.getActions('appActions');
         let siteMap = this.AppStore.getSiteMap();
         let resourceDef = siteMap[link];
@@ -50,9 +57,7 @@ export default class Item extends React.Component {
             return;
         }
         resourceDef.link = link;
-        if (typeof window !== 'undefined') {
-            window.location.href = "#" + link;
-        }
+        this.setUrl(link);
         document.title = this.filter(link);
         appActions.getResource(resourceDef).then(ref => {
             this.setState({
@@ -83,10 +88,16 @@ export default class Item extends React.Component {
                 <div className="operational-btn">
                     <div className="operational-link">
                         <button className="button button1" disabled={!this.state.pre}
-                                onClick={() => this.getResource(this.state.pre)}>previous
+                                onClick={() => {
+                                    this.setUrl(this.state.pre);
+                                    location.reload();
+                                }}>previous
                         </button>
                         <button className="button button1" disabled={!this.state.next}
-                                onClick={() => this.getResource(this.state.next)}>next
+                                onClick={() => {
+                                    this.setUrl(this.state.next);
+                                    location.reload();
+                                }}>next
                         </button>
                     </div>
                     <div className="operational-link">
