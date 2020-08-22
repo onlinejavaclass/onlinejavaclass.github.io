@@ -5886,11 +5886,13 @@ webpackJsonp([0],[
 	        value: function componentWillMount() {
 	            this.AppStore = this.context.flux.getStore('appStore');
 	            this.getFromStore();
+	            console.log('componentWillMount  ');
 	        }
 	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            this.AppStore.addListener('change', this.getFromStore);
+	            console.log('componentDidMount ');
 	            this.getResource(this.props.link);
 	            var clipboard = new ClipboardJS('.copy-button');
 	            clipboard.on('success', function (e) {
@@ -5901,19 +5903,13 @@ webpackJsonp([0],[
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
+	            console.log('componentWillUnmount');
 	            this.AppStore.removeListener('change', this.getFromStore);
 	        }
 	    }, {
 	        key: 'getFromStore',
 	        value: function getFromStore() {
 	            this.setState(this.AppStore.getResource(this.props.link));
-	        }
-	    }, {
-	        key: 'setUrl',
-	        value: function setUrl(link) {
-	            if (typeof window !== 'undefined' && link && link !== 'undefined') {
-	                window.location.href = "#" + link;
-	            }
 	        }
 	    }, {
 	        key: 'getResource',
@@ -5927,7 +5923,9 @@ webpackJsonp([0],[
 	                return;
 	            }
 	            resourceDef.link = link;
-	            this.setUrl(link);
+	            if (typeof window !== 'undefined') {
+	                window.location.href = "#" + link;
+	            }
 	            document.title = this.filter(link);
 	            appActions.getResource(resourceDef).then(function (ref) {
 	                _this.setState({
@@ -5970,8 +5968,7 @@ webpackJsonp([0],[
 	                                'button',
 	                                { className: 'button button1', disabled: !this.state.pre,
 	                                    onClick: function () {
-	                                        _this2.setUrl(_this2.state.pre);
-	                                        location.reload();
+	                                        return _this2.getResource(_this2.state.pre);
 	                                    } },
 	                                'previous'
 	                            ),
@@ -5979,8 +5976,7 @@ webpackJsonp([0],[
 	                                'button',
 	                                { className: 'button button1', disabled: !this.state.next,
 	                                    onClick: function () {
-	                                        _this2.setUrl(_this2.state.next);
-	                                        location.reload();
+	                                        return _this2.getResource(_this2.state.next);
 	                                    } },
 	                                'next'
 	                            )
