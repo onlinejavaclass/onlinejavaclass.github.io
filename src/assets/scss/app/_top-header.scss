@@ -10,7 +10,6 @@
 
   .top-header-wrap-1 {
     margin: 0 auto;
-    max-width: 1190px;
     display: block;
 
     .top-header-wrap-2 {
@@ -32,12 +31,12 @@
 
       .top-header-h1 {
         display: block;
-        color: #000000;
+        color: white;
         font-weight: 200;
         font-family: monospace;
         padding: 22px;
         margin: 0 auto;
-        width: 230px;
+        width: 517px;
         @media screen and (min-width: 639px) {
           font-size: 20px;
           padding: 46px;

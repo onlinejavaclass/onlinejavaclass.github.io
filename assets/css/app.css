@@ -691,7 +691,6 @@ body {
 
 .top-header .top-header-wrap-1 {
   margin: 0 auto;
-  max-width: 1190px;
   display: block;
 }
 
@@ -723,12 +722,12 @@ body {
 
 .top-header .top-header-wrap-1 .top-header-wrap-2 .top-header-h1 {
   display: block;
-  color: #000000;
+  color: white;
   font-weight: 200;
   font-family: monospace;
   padding: 22px;
   margin: 0 auto;
-  width: 230px;
+  width: 517px;
   font-size: 30px;
   font-style: italic;
   vertical-align: bottom;
@@ -1098,6 +1097,20 @@ code, kbd, samp {
   margin: 10px 0 auto;
   box-shadow: 1px 1px 2px 1px #bfbfbf;
   background: transparent;
+}
+
+pre.prettyprint {
+  border: 0 !important;
+}
+
+.clippy {
+  margin-top: -3px;
+  top: 3px;
+}
+
+.copy-button {
+  float: right;
+  height: 30px;
 }
 
 .search {

@@ -205,3 +205,17 @@ code, kbd, samp {
   box-shadow: 1px 1px 2px 1px #bfbfbf;
   background: transparent
 }
+
+pre.prettyprint {
+  border: 0 !important;
+}
+
+.clippy {
+  margin-top: -3px;
+  top: 3px;
+}
+
+.copy-button {
+  float: right;
+  height: 30px;
+}

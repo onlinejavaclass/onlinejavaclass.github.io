@@ -2456,13 +2456,12 @@
 
     Renderer.prototype.codeBlock = function (text) {
         return '<div class="marked">' +
-            '<a class="btn data-reactid=".0.2.1.1.2.1">' +
-            '<span data-reactid=".0.2.1.1.2.1.0"> </span>' +
-            '<span class="fap fap-fork" data-reactid=".0.2.1.1.2.1.1"></span>' +
-            '<span data-reactid=".0.2.1.1.2.1.2"></span>' +
-            '</a>' +
+            <!-- Trigger -->
+            '<button class="copy-button" type="button" data-clipboard-target="#markdown">' +
+            '    <img class="clippy" src="assets/img/clippy.svg" width="13" alt="Copy to clipboard">'+
+            '</button>'+
             '</div>' +
-            '<pre class="display prettyprint language-java">\n' +
+            '<pre id="markdown" class="display prettyprint language-java">\n' +
             text.body +
             '\n</pre>';
     };
