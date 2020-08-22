@@ -2461,7 +2461,7 @@
             '    <img class="clippy" src="assets/img/clippy.svg" width="13" alt="Copy to clipboard">'+
             '</button>'+
             '</div>' +
-            '<pre id="markdown" class="display prettyprint language-java">\n' +
+            '<pre id="markdown" class="prettyprint language-java">\n' +
             text.body +
             '\n</pre>';
     };

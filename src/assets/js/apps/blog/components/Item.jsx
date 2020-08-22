@@ -38,6 +38,11 @@ export default class Item extends React.Component {
     }
 
     getResource(link) {
+        var clipboard = new ClipboardJS('.copy-button');
+        clipboard.on('success', function(e) {
+            e.clearSelection();
+        });
+        clipboard.on('error', function(e) {});
         let appActions = this.context.flux.getActions('appActions');
         let siteMap = this.AppStore.getSiteMap();
         let resourceDef = siteMap[link];
