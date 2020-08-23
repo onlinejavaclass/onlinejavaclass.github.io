@@ -5954,7 +5954,7 @@ webpackJsonp([0],[
 	                var date = (0, _moment2['default'])(this.state.date).fromNow();
 	                jsx = _react2['default'].createElement(
 	                    'div',
-	                    { className: 'post markdown' },
+	                    { className: 'post markdown center-box' },
 	                    _react2['default'].createElement(
 	                        'div',
 	                        { className: 'operational-btn' },
@@ -26868,13 +26868,13 @@ webpackJsonp([0],[
 	            if (items.length === 0) {
 	                jsx = _react2['default'].createElement(
 	                    'div',
-	                    { className: 'post' },
+	                    { className: 'post center-box' },
 	                    'No data'
 	                );
 	            } else {
 	                jsx = _react2['default'].createElement(
 	                    'div',
-	                    null,
+	                    { className: 'post center-box' },
 	                    items.map(function (it, i) {
 	                        var date = it.date ? (0, _moment2['default'])(it.date).fromNow() : '';
 	                        var title = it.title ? it.title : '';
@@ -26899,7 +26899,7 @@ webpackJsonp([0],[
 	                            ),
 	                            _react2['default'].createElement(
 	                                'div',
-	                                { className: 'tags' },
+	                                { className: 'tags center-box' },
 	                                tags.map(function (tag, i) {
 	                                    return _react2['default'].createElement(
 	                                        _reactRouter.Link,
@@ -26996,7 +26996,7 @@ webpackJsonp([0],[
 	      } else {
 	        jsx = _react2['default'].createElement(
 	          'div',
-	          { key: '0', className: 'post' },
+	          { key: '0', className: 'post center-box' },
 	          _react2['default'].createElement(
 	            'div',
 	            { className: 'tags' },

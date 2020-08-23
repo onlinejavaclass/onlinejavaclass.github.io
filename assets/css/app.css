@@ -1197,12 +1197,12 @@ pre.prettyprint {
 section ul.menu {
   background-color: #fff;
   border: 1px solid #e1e8ed;
-  margin-bottom: -1px;
   border-radius: 5px 5px 0 0;
   list-style: none;
   padding: 0;
   display: list-item;
-  margin-top: 31px;
+  max-width: 923px;
+  margin: 0 auto;
 }
 
 @media screen and (min-width: 639px) {
@@ -1236,6 +1236,12 @@ section ul.menu li.item .fap {
   section ul.menu li.item .fap {
     font-size: 20px;
   }
+}
+
+.center-box {
+  max-width: 923px;
+  margin: 0 auto;
+  box-sizing: border-box;
 }
 
 .post {

@@ -8,9 +8,9 @@ export default class ItemList extends React.Component {
         let jsx;
 
         if (items.length === 0) {
-            jsx = <div className="post">No data</div>;
+            jsx = <div className="post center-box">No data</div>;
         } else {
-            jsx = <div>
+            jsx = <div className="post center-box">
                 {items.map((it, i) => {
                     let date = it.date ? moment(it.date).fromNow() : '';
                     let title = it.title ? it.title : '';
@@ -22,7 +22,7 @@ export default class ItemList extends React.Component {
                         <Link className="post-title" to="experiment" params={{link: link}}>
                             <span>{title}</span>
                         </Link>
-                        <div className="tags">
+                        <div className="tags center-box">
                             {tags.map((tag, i) => {
                                 return <Link key={tag + i} className="tag" to="search" params={{query: tag}}>
                                     {tag}

@@ -33,7 +33,7 @@ export default class ExperimentTagsHandler extends React.Component {
     if (items.STORE_MISS) {
         jsx = <Spinner/>;
     } else {
-       jsx = <div key="0" className="post">
+       jsx = <div key="0" className="post center-box">
               <div className="tags">
               {items.map((tag, i) => {
                 return <Link key={tag+i} className="tag" to="search" params={{query: tag}}>

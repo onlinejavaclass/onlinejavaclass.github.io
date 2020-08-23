@@ -25,7 +25,7 @@
       "architecture",
       "java"
     ],
-    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/abstract-factory",
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/abstractfactory",
     "pre": "/design-patterns",
     "next": "/design-patterns-creational-builder",
     "src": "/data/archive/design-patterns/creational/abstract-factory.md"

@@ -80,7 +80,7 @@ export default class Item extends React.Component {
         } else {
             let txt = marked(this.state.text);
             let date = moment(this.state.date).fromNow();
-            jsx = <div className="post markdown">
+            jsx = <div className="post markdown center-box">
                 <div className="operational-btn">
                     <div className="operational-link">
                         <button className="button button1" disabled={!this.state.pre}
