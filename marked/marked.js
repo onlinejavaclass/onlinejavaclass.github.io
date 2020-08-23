@@ -873,7 +873,7 @@ Renderer.prototype.paragraph = function(text) {
 };
 
 Renderer.prototype.codeBlock = function(body) {
-  return '<pre class="lang-java prettyprint prettyprinted">'
+  return '<pre class="lang-java prettyprint">'
       + body
       + '</pre>';
 };

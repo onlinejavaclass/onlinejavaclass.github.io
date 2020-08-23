@@ -1155,6 +1155,10 @@ code, kbd, samp {
   content: 'Copied!';
 }
 
+pre.prettyprint {
+  border: 0 solid #888 !important;
+}
+
 .search {
   width: 527px;
   margin: 0 auto;

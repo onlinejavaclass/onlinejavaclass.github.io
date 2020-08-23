@@ -5886,13 +5886,11 @@ webpackJsonp([0],[
 	        value: function componentWillMount() {
 	            this.AppStore = this.context.flux.getStore('appStore');
 	            this.getFromStore();
-	            console.log('componentWillMount  ');
 	        }
 	    }, {
 	        key: 'componentDidMount',
 	        value: function componentDidMount() {
 	            this.AppStore.addListener('change', this.getFromStore);
-	            console.log('componentDidMount ');
 	            this.getResource(this.props.link);
 	            var clipboard = new ClipboardJS('.copy-button');
 	            clipboard.on('success', function (e) {
@@ -5903,7 +5901,6 @@ webpackJsonp([0],[
 	    }, {
 	        key: 'componentWillUnmount',
 	        value: function componentWillUnmount() {
-	            console.log('componentWillUnmount');
 	            this.AppStore.removeListener('change', this.getFromStore);
 	        }
 	    }, {
@@ -6015,7 +6012,8 @@ webpackJsonp([0],[
 	                            'View Source on Github  '
 	                        )
 	                    ),
-	                    _react2['default'].createElement('div', { className: 'markdown', dangerouslySetInnerHTML: { __html: txt } })
+	                    _react2['default'].createElement('div', { onLoad: this.rp(txt), className: 'markdown',
+	                        dangerouslySetInnerHTML: { __html: txt } })
 	                );
 	            }
 	            return jsx;
@@ -6032,6 +6030,11 @@ webpackJsonp([0],[
 	        key: 'checkRightSize',
 	        value: function checkRightSize() {
 	            return _reactDeviceDetect.isMobile ? 50 : 60;
+	        }
+	    }, {
+	        key: 'rp',
+	        value: function rp(txt) {
+	            console.log(PR.prettyPrintOne(txt, 'java', true));
 	        }
 	    }]);
 	
@@ -7997,7 +8000,7 @@ webpackJsonp([0],[
 	                // }
 	                item = {
 	                    type: 'codeBlock',
-	                    body: cap[2],
+	                    body:  PR.prettyPrintOne(cap[2], 'java', false),
 	                };
 	                this.tokens.push(item);
 	                continue;

@@ -22,22 +22,20 @@ export default class Item extends React.Component {
     componentWillMount() {
         this.AppStore = this.context.flux.getStore('appStore');
         this.getFromStore();
-        console.log('componentWillMount  ')
     }
 
     componentDidMount() {
         this.AppStore.addListener('change', this.getFromStore);
-        console.log('componentDidMount ')
         this.getResource(this.props.link);
         const clipboard = new ClipboardJS('.copy-button');
         clipboard.on('success', function (e) {
             e.clearSelection();
         });
-        clipboard.on('error', function (e) {});
+        clipboard.on('error', function (e) {
+        });
     }
 
     componentWillUnmount() {
-        console.log('componentWillUnmount')
         this.AppStore.removeListener('change', this.getFromStore);
     }
 
@@ -104,7 +102,8 @@ export default class Item extends React.Component {
                        href={this.state.repo}
                        target="_blank"> <span className="fap fap-github"/>View Source on Github &nbsp;</a>
                 </div>
-                <div className="markdown" dangerouslySetInnerHTML={{__html: txt}}/>
+                <div onLoad={this.rp(txt)} className="markdown"
+                     dangerouslySetInnerHTML={{__html:  txt}}/>
             </div>;
         }
         return jsx;
@@ -124,6 +123,10 @@ export default class Item extends React.Component {
 
     checkRightSize() {
         return isMobile ? 50 : 60;
+    }
+
+    rp(txt) {
+        console.log(PR.prettyPrintOne(txt, 'java', true));
     }
 }
 
