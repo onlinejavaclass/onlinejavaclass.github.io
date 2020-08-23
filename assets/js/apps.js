@@ -26881,32 +26881,36 @@ webpackJsonp([0],[
 	                        var tags = it.tags ? it.tags : '';
 	                        var link = it.link.split('/').pop();
 	                        return _react2['default'].createElement(
-	                            'div',
-	                            { key: i, className: 'post itemlist' },
+	                            _reactRouter.Link,
+	                            { to: 'experiment', params: { link: link } },
 	                            _react2['default'].createElement(
 	                                'div',
-	                                { className: 'date' },
-	                                date
-	                            ),
-	                            _react2['default'].createElement(
-	                                _reactRouter.Link,
-	                                { className: 'post-title', to: 'experiment', params: { link: link } },
+	                                { key: i, className: 'post itemlist' },
 	                                _react2['default'].createElement(
-	                                    'span',
-	                                    null,
-	                                    title
+	                                    'div',
+	                                    { className: 'date' },
+	                                    date
+	                                ),
+	                                _react2['default'].createElement(
+	                                    _reactRouter.Link,
+	                                    { className: 'post-title', to: 'experiment', params: { link: link } },
+	                                    _react2['default'].createElement(
+	                                        'span',
+	                                        null,
+	                                        title
+	                                    )
+	                                ),
+	                                _react2['default'].createElement(
+	                                    'div',
+	                                    { className: 'tags center-box' },
+	                                    tags.map(function (tag, i) {
+	                                        return _react2['default'].createElement(
+	                                            _reactRouter.Link,
+	                                            { key: tag + i, className: 'tag', to: 'search', params: { query: tag } },
+	                                            tag
+	                                        );
+	                                    })
 	                                )
-	                            ),
-	                            _react2['default'].createElement(
-	                                'div',
-	                                { className: 'tags center-box' },
-	                                tags.map(function (tag, i) {
-	                                    return _react2['default'].createElement(
-	                                        _reactRouter.Link,
-	                                        { key: tag + i, className: 'tag', to: 'search', params: { query: tag } },
-	                                        tag
-	                                    );
-	                                })
 	                            )
 	                        );
 	                    })
