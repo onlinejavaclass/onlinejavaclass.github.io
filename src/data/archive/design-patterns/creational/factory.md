@@ -162,6 +162,10 @@ public class Demo {
 
 ~ 
 
+#### Output would be like this:
+        
+![factory](data/archive/design-patterns/creational/assets/factory.png)
+
 #### Real world examples
 ```
 java.swing.Button

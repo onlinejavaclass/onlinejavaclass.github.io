@@ -31,7 +31,7 @@ class Sheep implements Cloneable {
   public Sheep clone() {
     try {
       return (Sheep)super.clone();
-    } catch(CloneNotSuportedException) {
+    } catch(CloneNotSupportedException ex) {
       throw new InternalError();
     }
   }
@@ -51,6 +51,13 @@ cloned.setName("Dolly");
 System.out.println(cloned.getName()); // Dolly
 
 ~
+
+#### Output would be like this:
+
+```
+Jolly
+Dolly
+```
 
 #### Real world examples
 ```

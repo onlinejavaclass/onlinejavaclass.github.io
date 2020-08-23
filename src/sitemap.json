@@ -1,4 +1,38 @@
 {
+  "/solid-principals": {
+    "type": "archive",
+    "date": "2020-08-23T15:16:26.733Z",
+    "title": "SOLID Principals Guide",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "architecture",
+      "java",
+      "solid"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/solid",
+    "next": "/lsp",
+    "src": "/data/archive/solid-principal/solid.md"
+  },
+  "/lsp": {
+    "type": "archive",
+    "date": "2020-08-23T15:21:26.733Z",
+    "title": "Liskov Substitution Principal Guide",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "architecture",
+      "java",
+      "lsp",
+      "Liskov Substitution Principal",
+      "solid"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/lsp",
+    "next": "/design-patterns",
+    "src": "/data/archive/solid-principal/lsp.md"
+  },
   "/design-patterns": {
     "type": "archive",
     "date": "2020-08-15T15:49:26.733Z",
