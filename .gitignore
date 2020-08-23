@@ -3,6 +3,12 @@
 npm-debug.log
 /tmp/
 /.publish/
-/dest
+/data
+/marked
+/assets
+index.html
+sitemap.json
+searchindex.json
+sitemap.xml
 /.idea
 /.publish
