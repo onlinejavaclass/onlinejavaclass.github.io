@@ -102,8 +102,7 @@ export default class Item extends React.Component {
                        href={this.state.repo}
                        target="_blank"> <span className="fap fap-github"/>View Source on Github &nbsp;</a>
                 </div>
-                <div onLoad={this.rp(txt)} className="markdown"
-                     dangerouslySetInnerHTML={{__html:  txt}}/>
+                <div className="markdown" dangerouslySetInnerHTML={{__html:  txt}}/>
             </div>;
         }
         return jsx;
@@ -123,10 +122,6 @@ export default class Item extends React.Component {
 
     checkRightSize() {
         return isMobile ? 50 : 60;
-    }
-
-    rp(txt) {
-        console.log(PR.prettyPrintOne(txt, 'java', true));
     }
 }
 

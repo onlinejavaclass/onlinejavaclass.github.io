@@ -6012,8 +6012,7 @@ webpackJsonp([0],[
 	                            'View Source on Github  '
 	                        )
 	                    ),
-	                    _react2['default'].createElement('div', { onLoad: this.rp(txt), className: 'markdown',
-	                        dangerouslySetInnerHTML: { __html: txt } })
+	                    _react2['default'].createElement('div', { className: 'markdown', dangerouslySetInnerHTML: { __html: txt } })
 	                );
 	            }
 	            return jsx;
@@ -6030,11 +6029,6 @@ webpackJsonp([0],[
 	        key: 'checkRightSize',
 	        value: function checkRightSize() {
 	            return _reactDeviceDetect.isMobile ? 50 : 60;
-	        }
-	    }, {
-	        key: 'rp',
-	        value: function rp(txt) {
-	            console.log(PR.prettyPrintOne(txt, 'java', true));
 	        }
 	    }]);
 	
@@ -8000,7 +7994,7 @@ webpackJsonp([0],[
 	                // }
 	                item = {
 	                    type: 'codeBlock',
-	                    body:  PR.prettyPrintOne(cap[2], 'java', false),
+	                    body: PR.prettyPrintOne(cap[2], 'java', false)
 	                };
 	                this.tokens.push(item);
 	                continue;

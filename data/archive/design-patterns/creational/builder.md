@@ -32,8 +32,8 @@ Benefits:
 
 The sane alternative is to use the Builder pattern. First of all we have our hero that we want to create
 
-<pre><code class="java">
-    public final class Hero {
+~
+public final class Hero {
       private final Profession profession;
       private final String name;
       private final HairType hairType;
@@ -50,7 +50,8 @@ The sane alternative is to use the Builder pattern. First of all we have our her
         this.armor = builder.armor;
       }
     }
-</code></pre>
+}
+~
 
 
 ~

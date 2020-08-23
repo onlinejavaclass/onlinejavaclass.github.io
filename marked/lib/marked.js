@@ -1946,7 +1946,7 @@
                 // }
                 item = {
                     type: 'codeBlock',
-                    body: cap[2],
+                    body: PR.prettyPrintOne(cap[2], 'java', false)
                 };
                 this.tokens.push(item);
                 continue;
