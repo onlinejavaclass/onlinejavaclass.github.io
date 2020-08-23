@@ -3,6 +3,7 @@
 npm-debug.log
 /tmp/
 /.publish/
+/test
 /data
 /marked
 /assets
