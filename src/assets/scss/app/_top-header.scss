@@ -69,18 +69,6 @@
           bottom: -60px;
           height: 80px;
         }
-        .avatar {
-          background: #fff;
-          border: 5px solid #fff;
-          border-radius: 12px;
-          box-shadow: 0 1px 1px rgba(136, 153, 166, 0.15);
-          width: 80px;
-          height: 80px;
-          @media screen and (max-width: 639px) {
-            width: 60px;
-            height: 60px;
-          }
-        }
 
         .name {
           font-size: 28px;
@@ -88,5 +76,18 @@
         }
       }
     }
+  }
+}
+
+.avatar {
+  background: #fff;
+  border: 5px solid #fff;
+  border-radius: 12px;
+  box-shadow: 0 1px 1px rgba(136, 153, 166, 0.15);
+  width: 80px;
+  height: 80px;
+  @media screen and (max-width: 639px) {
+    width: 60px;
+    height: 60px;
   }
 }

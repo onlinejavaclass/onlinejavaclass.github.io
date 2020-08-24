@@ -27414,10 +27414,6 @@ webpackJsonp([0],[
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _onlinejavaclassMarked = __webpack_require__(253);
-	
-	var _onlinejavaclassMarked2 = _interopRequireDefault(_onlinejavaclassMarked);
-	
 	var About = (function (_React$Component) {
 	    _inherits(About, _React$Component);
 	
@@ -27469,8 +27465,145 @@ webpackJsonp([0],[
 	            if (this.state.STORE_MISS) {
 	                return _react2['default'].createElement('div', null);
 	            } else {
-	                var txt = (0, _onlinejavaclassMarked2['default'])(this.state.text);
-	                return _react2['default'].createElement('div', { className: 'markdown', dangerouslySetInnerHTML: { __html: txt } });
+	                return _react2['default'].createElement(
+	                    'div',
+	                    { className: 'column' },
+	                    _react2['default'].createElement(
+	                        'div',
+	                        { className: 'col-md-9' },
+	                        _react2['default'].createElement('img', { alt: 'me', src: '/assets/img/avatar50.jpg', className: 'avatar' }),
+	                        _react2['default'].createElement(
+	                            'div',
+	                            { className: 'about' },
+	                            _react2['default'].createElement(
+	                                'p',
+	                                null,
+	                                _react2['default'].createElement(
+	                                    'b',
+	                                    null,
+	                                    'Hi, I’m Mehrdad, and I run the onlinejavaclass blog.'
+	                                )
+	                            ),
+	                            _react2['default'].createElement(
+	                                'p',
+	                                null,
+	                                'I’m a software developer, consultant, architect, coach … whatever the role, I’m focused on getting software ready for production.'
+	                            )
+	                        )
+	                    ),
+	                    _react2['default'].createElement(
+	                        'blockquote',
+	                        { className: 'center-box' },
+	                        _react2['default'].createElement(
+	                            'p',
+	                            null,
+	                            _react2['default'].createElement(
+	                                'strong',
+	                                null,
+	                                'The goal of this blog is to persist the things I learned so that you (and future me) don’t have to learn them the hard way (again)'
+	                            )
+	                        )
+	                    ),
+	                    _react2['default'].createElement(
+	                        'div',
+	                        { className: 'below' },
+	                        _react2['default'].createElement(
+	                            'p',
+	                            null,
+	                            'With this blog, I produce:'
+	                        ),
+	                        _react2['default'].createElement(
+	                            'ul',
+	                            null,
+	                            _react2['default'].createElement(
+	                                'li',
+	                                null,
+	                                'deep-dive tutorials about ',
+	                                _react2['default'].createElement(
+	                                    'a',
+	                                    { href: '/categories/spring-boot' },
+	                                    'Spring Boot'
+	                                )
+	                            ),
+	                            _react2['default'].createElement(
+	                                'li',
+	                                null,
+	                                'hands-on tutorials about ',
+	                                _react2['default'].createElement(
+	                                    'a',
+	                                    { href: '/categories/java' },
+	                                    'Java'
+	                                )
+	                            ),
+	                            _react2['default'].createElement(
+	                                'li',
+	                                null,
+	                                'opinion on practices of the ',
+	                                _react2['default'].createElement(
+	                                    'a',
+	                                    { href: '/categories/craft' },
+	                                    'Software Craft'
+	                                )
+	                            ),
+	                            _react2['default'].createElement(
+	                                'li',
+	                                null,
+	                                _react2['default'].createElement(
+	                                    'a',
+	                                    { href: '/categories/book-reviews' },
+	                                    'book reviews'
+	                                ),
+	                                ' of the (non-fiction) books I’ve read.'
+	                            )
+	                        )
+	                    ),
+	                    _react2['default'].createElement(
+	                        'div',
+	                        { className: 'below center-box' },
+	                        _react2['default'].createElement(
+	                            'p',
+	                            null,
+	                            'If you’re interested in working with me or have any feedback about my writing, don’t hesitate to contact me.'
+	                        ),
+	                        _react2['default'].createElement(
+	                            'ul',
+	                            { className: 'footer-social' },
+	                            _react2['default'].createElement(
+	                                'li',
+	                                null,
+	                                _react2['default'].createElement(
+	                                    'a',
+	                                    { target: '_blank', title: 'Follow me on LinkedIn',
+	                                        href: 'https://www.linkedin.com/in/allahkarami',
+	                                        className: 'follow-linkedin' },
+	                                    _react2['default'].createElement('i', { className: 'fap fap-linkedin' })
+	                                )
+	                            ),
+	                            _react2['default'].createElement(
+	                                'li',
+	                                null,
+	                                _react2['default'].createElement(
+	                                    'a',
+	                                    { target: '_blank', title: 'Follow me on GitHub',
+	                                        href: 'https://github.com/metao1', className: 'follow-github' },
+	                                    _react2['default'].createElement('i', {
+	                                        className: 'fap fap-github' })
+	                                )
+	                            ),
+	                            _react2['default'].createElement(
+	                                'li',
+	                                null,
+	                                _react2['default'].createElement(
+	                                    'a',
+	                                    { target: '_blank', title: 'Drop me an email',
+	                                        href: 'mailto:contact@onlinejavaclass.com',
+	                                        className: 'follow-email' },
+	                                    _react2['default'].createElement('i', { className: 'fap fap-mail' })
+	                                )
+	                            )
+	                        )
+	                    )
+	                );
 	            }
 	        }
 	    }]);

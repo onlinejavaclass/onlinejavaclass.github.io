@@ -1,5 +1,4 @@
 import React from 'react';
-import marked from '@onlinejavaclass/marked';
 
 export default class About extends React.Component {
 
@@ -41,11 +40,56 @@ export default class About extends React.Component {
         if (this.state.STORE_MISS) {
             return <div/>;
         } else {
-            let txt = marked(this.state.text);
-            return <div className="markdown" dangerouslySetInnerHTML={{__html: txt}}/>;
+            return <div className="column">
+                <div className="col-md-9">
+                    <img alt="me" src="/assets/img/avatar50.jpg" className="avatar"/>
+                    <div className="about">
+                        <p><b>Hi, I’m Mehrdad, and I run the onlinejavaclass blog.</b></p>
+
+                        <p>I’m a software developer, consultant, architect, coach … whatever the role, I’m
+                            focused on getting software ready for production.</p>
+                    </div>
+                </div>
+                <blockquote className="center-box">
+                    <p><strong>The goal of this blog is to persist the things I learned so that you (and
+                        future me)
+                        don’t have to learn them the hard way (again)</strong></p>
+                </blockquote>
+                <div className="below">
+                    <p>With this blog, I produce:</p>
+
+                    <ul>
+                        <li>deep-dive tutorials about <a href="/categories/spring-boot">Spring Boot</a></li>
+                        <li>hands-on tutorials about <a href="/categories/java">Java</a></li>
+                        <li>opinion on practices of the <a href="/categories/craft">Software Craft</a></li>
+                        <li><a href="/categories/book-reviews">book reviews</a> of the (non-fiction) books I’ve read.
+                        </li>
+                    </ul>
+                </div>
+                <div className="below center-box">
+
+                    <p>If you’re interested in working with me or have any feedback about my writing, don’t
+                        hesitate to contact me.</p>
+
+                    <ul className="footer-social">
+
+                        <li><a target="_blank" title="Follow me on LinkedIn"
+                               href="https://www.linkedin.com/in/allahkarami"
+                               className="follow-linkedin"><i className="fap fap-linkedin"/></a></li>
+
+                        <li><a target="_blank" title="Follow me on GitHub"
+                               href="https://github.com/metao1" className="follow-github"><i
+                            className="fap fap-github"/></a></li>
+
+                        <li><a target="_blank" title="Drop me an email"
+                               href="mailto:contact@onlinejavaclass.com"
+                               className="follow-email"><i className="fap fap-mail"/></a></li>
+
+                    </ul>
+                </div>
+            </div>;
         }
     }
-
 }
 
 About.contextTypes = {

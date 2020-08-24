@@ -2,6 +2,10 @@
   padding-top: 10px;
   margin: 0 auto;
   max-width: 1190px;
+
+  .markdown {
+    padding: 25px;
+  }
 }
 
 table {
@@ -277,6 +281,7 @@ blockquote {
   position: relative;
   background: #0afff614;
   @media screen and (max-width: 639px) {
+    padding: 0.8em 15px 0.8em 55px;
     font-size: 1em;
     width: 67%;
     margin: 15px auto;

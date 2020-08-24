@@ -780,7 +780,12 @@ html, body {
   }
 }
 
-.top-header .top-header-wrap-1 .top-header-wrap-2 .face .avatar {
+.top-header .top-header-wrap-1 .top-header-wrap-2 .face .name {
+  font-size: 28px;
+  line-height: 0;
+}
+
+.avatar {
   background: #fff;
   border: 5px solid #fff;
   border-radius: 12px;
@@ -790,15 +795,10 @@ html, body {
 }
 
 @media screen and (max-width: 639px) {
-  .top-header .top-header-wrap-1 .top-header-wrap-2 .face .avatar {
+  .avatar {
     width: 60px;
     height: 60px;
   }
-}
-
-.top-header .top-header-wrap-1 .top-header-wrap-2 .face .name {
-  font-size: 28px;
-  line-height: 0;
 }
 
 .top-menu {
@@ -884,6 +884,10 @@ html, body {
   padding-top: 10px;
   margin: 0 auto;
   max-width: 1190px;
+}
+
+.content .markdown {
+  padding: 25px;
 }
 
 table {
@@ -1177,6 +1181,7 @@ blockquote {
 
 @media screen and (max-width: 639px) {
   blockquote {
+    padding: 0.8em 15px 0.8em 55px;
     font-size: 1em;
     width: 67%;
     margin: 15px auto;
@@ -1588,4 +1593,88 @@ footer {
     line-height: normal;
     font-size: inherit;
   }
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.column blockquote {
+  width: 67%;
+}
+
+.col-md-9 {
+  flex-direction: column;
+  padding: 21px;
+}
+
+.col-md-9 img {
+  float: left;
+  background: #054804;
+}
+
+.col-md-9 .avatar {
+  background: #058559;
+  border: 5px solid #006e01;
+  border-radius: 50px;
+  box-shadow: 0 1px 1px rgba(136, 153, 166, 0.15);
+  width: 80px;
+  height: 80px;
+}
+
+@media screen and (max-width: 639px) {
+  .col-md-9 .avatar {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.about {
+  float: left;
+}
+
+.about p {
+  font-weight: 300;
+  margin: 30px;
+  margin-block-start: 0.2em;
+  width: 92%;
+  flex-direction: row;
+  justify-content: center;
+}
+
+@media screen and (max-width: 639px) {
+  .about p {
+    margin-left: 33px;
+    margin-block-start: 0.2em;
+  }
+}
+
+@media screen and (max-width: 639px) {
+  .about {
+    float: none;
+  }
+}
+
+.below {
+  margin: 0 auto;
+  padding-top: 48px;
+  padding-left: 48px;
+  font-weight: 300;
+  margin-block-start: 0.2em;
+  width: 77%;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.footer-social {
+  display: flex;
+  margin: 0;
+  font-size: 40px;
+  padding-left: 48px;
+  list-style: none !important;
+  justify-content: space-around;
+  flex-wrap: nowrap;
+  align-content: center;
 }
