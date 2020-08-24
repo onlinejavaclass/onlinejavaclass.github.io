@@ -24,13 +24,13 @@ export default class FooterHandler extends React.Component {
                 </div>
                 <div>
                     <Link to="privacy" activeClassName="active">
-                        <i className="fap fap-phone"/>
+                        <i className="fap fap-privacy"/>
                         <p>Privacy Policy</p>
                     </Link>
                 </div>
                 <div>
                     <Link to="terms" activeClassName="active">
-                        <i className="fap fap-phone"/>
+                        <i className="fap fap-terms"/>
                         <p>Terms of Use</p>
                     </Link>
                 </div>

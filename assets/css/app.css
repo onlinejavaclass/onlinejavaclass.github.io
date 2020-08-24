@@ -552,6 +552,14 @@ html, body {
   content: "\e105";
 }
 
+.fap-privacy:before {
+  content: "\e110";
+}
+
+.fap-terms:before {
+  content: "\e111";
+}
+
 .fap-search4:before {
   content: "\e110";
 }
@@ -1510,6 +1518,8 @@ footer {
   line-height: 42px;
   margin: 10px 15px;
   vertical-align: middle;
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 .footer-center i.fa-envelope {

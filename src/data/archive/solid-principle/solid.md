@@ -248,19 +248,27 @@ Unfortunately, our interface is rather large, and we have no choice than to impl
 
 Let's fix this by splitting our large interface into 3 separate ones:
 
+~
 public interface BearCleaner {
     void washTheBear();
 }
- 
+~
+
+~
 public interface BearFeeder {
     void feedTheBear();
 }
- 
+~
+
+~ 
 public interface BearPetter {
     void petTheBear();
 }
+~
+
 Now, thanks to interface segregation, we're free to implement only the methods that matter to us:
 
+~
 public class BearCarer implements BearCleaner, BearFeeder {
  
     public void washTheBear() {
@@ -271,14 +279,18 @@ public class BearCarer implements BearCleaner, BearFeeder {
         //Tuna Tuesdays...
     }
 }
+~
+
 And finally, we can leave the dangerous stuff to the crazy people:
 
+~
 public class CrazyPerson implements BearPetter {
  
     public void petTheBear() {
         //Good luck with that!
     }
 }
+~
 
 #### 7. Dependency Inversion
 
@@ -314,13 +326,13 @@ Problem solved? ***Not quite***. By declaring the ***StandardKeyboard*** and ***
 Not only does this make our Windows98Computer hard to test, but we've also lost the ability to switch out our ***StandardKeyboard***
 class with a different one should the need arise. And we're stuck with our ***Monitor*** class, too.
 
-
 Let's decouple our machine from the ***StandardKeyboard*** by adding a more general ***Keyboard*** interface and using this in our class:
-
 
 ~
 public interface Keyboard { }
 ~
+
+And now by using **Keyboard** we can would allow **Windows98Machine** substitute any type of **Keyboard**  
 
 ~
 public class Windows98Machine{

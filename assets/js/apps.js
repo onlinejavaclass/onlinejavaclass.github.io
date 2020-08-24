@@ -5636,7 +5636,7 @@ webpackJsonp([0],[
 	                        React.createElement(
 	                            _reactRouter.Link,
 	                            { to: "privacy", activeClassName: "active" },
-	                            React.createElement("i", { className: "fap fap-phone" }),
+	                            React.createElement("i", { className: "fap fap-privacy" }),
 	                            React.createElement(
 	                                "p",
 	                                null,
@@ -5650,7 +5650,7 @@ webpackJsonp([0],[
 	                        React.createElement(
 	                            _reactRouter.Link,
 	                            { to: "terms", activeClassName: "active" },
-	                            React.createElement("i", { className: "fap fap-phone" }),
+	                            React.createElement("i", { className: "fap fap-terms" }),
 	                            React.createElement(
 	                                "p",
 	                                null,

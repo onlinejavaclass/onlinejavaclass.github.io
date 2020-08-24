@@ -248,19 +248,27 @@ Unfortunately, our interface is rather large, and we have no choice than to impl
 
 Let's fix this by splitting our large interface into 3 separate ones:
 
+~
 public interface BearCleaner {
     void washTheBear();
 }
- 
+~
+
+~
 public interface BearFeeder {
     void feedTheBear();
 }
- 
+~
+
+~ 
 public interface BearPetter {
     void petTheBear();
 }
+~
+
 Now, thanks to interface segregation, we're free to implement only the methods that matter to us:
 
+~
 public class BearCarer implements BearCleaner, BearFeeder {
  
     public void washTheBear() {
@@ -271,6 +279,8 @@ public class BearCarer implements BearCleaner, BearFeeder {
         //Tuna Tuesdays...
     }
 }
+~
+
 And finally, we can leave the dangerous stuff to the crazy people:
 
 public class CrazyPerson implements BearPetter {
