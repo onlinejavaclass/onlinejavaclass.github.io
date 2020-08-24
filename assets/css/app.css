@@ -500,12 +500,14 @@ a {
   cursor: pointer;
 }
 
-body {
+html, body {
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
   font-size: 1.015em;
   line-height: 1.6;
   background-color: #fff;
   color: #212121;
+  height: 100%;
+  margin: 0;
 }
 
 @font-face {
@@ -1160,6 +1162,49 @@ pre.prettyprint {
   border: 0 solid #888 !important;
 }
 
+blockquote {
+  font-size: 1.4em;
+  width: 60%;
+  margin: 50px auto;
+  font-style: italic;
+  color: #555555;
+  padding: 1.2em 30px 1.2em 75px;
+  border-left: 8px solid #78C0A8;
+  line-height: 1.6;
+  position: relative;
+  background: #0afff614;
+}
+
+@media screen and (max-width: 639px) {
+  blockquote {
+    font-size: 1em;
+    width: 67%;
+    margin: 15px auto;
+  }
+}
+
+blockquote::before {
+  font-family: Arial;
+  content: "\201C";
+  color: #78C0A8;
+  font-size: 4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: '';
+}
+
+blockquote span {
+  display: block;
+  color: #333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 1em;
+}
+
 .search {
   width: 527px;
   margin: 0 auto;
@@ -1193,6 +1238,11 @@ pre.prettyprint {
 
 .search .search-wrap-1 input:focus {
   background-color: #fff;
+}
+
+section {
+  min-height: 100%;
+  height: 100%;
 }
 
 section ul.menu {
@@ -1367,56 +1417,175 @@ section ul.menu li.item .fap {
   font-weight: bold;
 }
 
-.fb_iframe_widget,
-.fb_iframe_widget span,
-.fb_iframe_widget span iframe[style] {
-  min-width: 100% !important;
-  width: 100% !important;
-}
-
-.instagram img {
-  display: block;
-  margin: 0 auto;
-}
-
-.instagram .date-wrap::after {
-  clear: both;
-  content: "";
-  display: table;
-}
-
-.instagram .date-wrap .date {
-  float: right;
-}
-
-.instagram .notes {
+.main {
+  max-height: 550px;
+  background-color: #106943;
+  color: white;
+  font-size: 38pt;
   text-align: center;
+  line-height: 550px;
 }
 
-.instagram .caption {
-  font-size: 30px;
+footer {
+  bottom: 0;
 }
 
-.instagram .likes, .instagram .comments {
-  padding-right: 10px;
-  color: #66757f;
-  font-size: 24px;
+.footer-distributed {
+  background-color: #106943;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: bold 16px sans-serif;
+  padding: 34px 50px;
+  margin-top: 80px;
 }
 
-.pinterest_pin {
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.22);
-  border-radius: 6px;
-  width: 236px;
-  margin: 14px 7px 0 7px;
-  background-color: #0093D8;
+.footer-left,
+.footer-center,
+.footer-right {
+  display: inline-block;
+  vertical-align: top;
 }
 
-.pinterest_pin_description {
-  word-wrap: break-word;
+.footer-left {
+  width: 40%;
+}
+
+.footer-distributed h3 {
+  color: #ffffff;
+  font: normal 36px 'Cookie', cursive;
+  margin: 0;
+}
+
+.footer-distributed h3 span {
+  color: #ffffff;
+}
+
+.footer-links {
+  color: #ffffff;
+  margin: 20px 0 12px;
+  padding: 0;
+}
+
+.footer-links a {
+  display: inline-block;
+  line-height: 1.8;
+  text-decoration: none;
+  color: inherit;
+}
+
+.footer-company-name {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer-center {
+  width: 35%;
+}
+
+.footer-center a {
   color: #fff;
-  padding: 10px;
 }
 
-.audio {
+.fap-avatar {
+  background: url("/assets/img/avatar-small.jpg");
+}
+
+.footer-center i {
+  background-color: #33383b;
+  color: #ffffff;
+  font-size: 25px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  text-align: center;
+  line-height: 42px;
+  margin: 10px 15px;
+  vertical-align: middle;
+}
+
+.footer-center i.fa-envelope {
+  font-size: 17px;
+  line-height: 38px;
+}
+
+.footer-center p {
+  display: inline-block;
+  color: #ffffff;
+  vertical-align: middle;
+  margin: 0;
+}
+
+.footer-center p span {
+  display: block;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 2;
+}
+
+.footer-center p a {
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.footer-right {
+  width: 20%;
+}
+
+.footer-company-about {
+  line-height: 20px;
+  color: #92999f;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
+}
+
+.footer-company-about span {
+  display: block;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.footer-icons {
+  margin-top: 25px;
+}
+
+.footer-icons a {
+  display: inline-block;
+  width: 35px;
+  height: 35px;
   cursor: pointer;
+  background-color: #33383b;
+  border-radius: 2px;
+  font-size: 20px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 3px;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 880px) {
+  .footer-distributed {
+    font: bold 14px sans-serif;
+  }
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-center,
+  .footer-distributed .footer-right {
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+  }
+  .footer-distributed .footer-center i {
+    margin-left: 0;
+  }
+  .main {
+    line-height: normal;
+    font-size: inherit;
+  }
 }

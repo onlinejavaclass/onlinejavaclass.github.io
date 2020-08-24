@@ -363,8 +363,6 @@ Lexer.prototype.token = function(src, top) {
       };
 
       let arr = cap[2].split('/([a-z]+)/');
-      //console.log(arr);
-      debugger
 
       this.tokens.push(item);
       continue;

@@ -31,6 +31,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/lsp",
     "next": "/design-patterns",
+    "pre": "/solid-principles",
     "src": "/data/archive/solid-principle/lsp.md"
   },
   "/design-patterns": {
@@ -45,6 +46,7 @@
       "java"
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp",
+    "pre": "/lsp",
     "next": "/design-patterns-creational-abstract-factory",
     "src": "/data/archive/design-patterns/2020-07-17.md"
   },
@@ -60,7 +62,7 @@
       "java"
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/abstractfactory",
-    "pre": "/design-patterns",
+    "pre": "/lsp",
     "next": "/design-patterns-creational-builder",
     "src": "/data/archive/design-patterns/creational/abstract-factory.md"
   },

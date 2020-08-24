@@ -16,7 +16,7 @@ export default class ItemList extends React.Component {
                     let title = it.title ? it.title : '';
                     let tags = it.tags ? it.tags : '';
                     let link = it.link.split('/').pop();
-                    return <Link to="experiment" params={{link: link}}>
+                    return <div>
                         <div key={i} className="post itemlist">
                             <div className="date">{date}</div>
                             <Link className="post-title" to="experiment" params={{link: link}}>
@@ -30,7 +30,7 @@ export default class ItemList extends React.Component {
                                 })}
                             </div>
                         </div>
-                    </Link>;
+                    </div>;
                 })}
 
             </div>;

@@ -18,7 +18,7 @@ export default class Instagram extends React.Component {
   componentDidMount () {
     this.AppStore.addListener('change', this.getFromStore);
     let appActions = this.context.flux.getActions('appActions');
-    appActions.getInstagrams({userid: this.props.userid, clientid: this.props.clientid});
+    appActions.getPins({userid: this.props.userid, clientid: this.props.clientid});
   }
 
   componentWillUnmount() {

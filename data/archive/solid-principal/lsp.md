@@ -55,4 +55,12 @@ It may not even be possible to identify all the places and change them - we may 
 
 Suppose we were building the payment module for our eCommerce website. Customers order products on the site and pay using payment instruments like a credit card or a debit card.
 
+When a customer provides their card details, we want to
+- validate it,
+- run it through a third-party fraud detection system,
+- and then send the details to a payment gateway for processing.
+
+
+
+While some basic validations are required on all cards, there are additional validations needed on credit cards. Once the payment is done, we record it in our database. Because of various security and regulatory reasons, we don’t store the actual card details in our database, but a fingerprint identifier for it that’s returned by the payment gateway.
 

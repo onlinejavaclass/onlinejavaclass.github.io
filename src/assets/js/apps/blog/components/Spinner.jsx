@@ -14,7 +14,6 @@ export default class Spinner extends React.Component {
         <div className="rect5 blue" data-reactid=".0.2.1.1.4"/>
         <div className="rect5 blue" data-reactid=".0.2.1.1.4"/>
         <div className="rect5 blue" data-reactid=".0.2.1.1.4"/>
-        <div className="rect5 blue" data-reactid=".0.2.1.1.4"/>
     </div>;
   }
 

@@ -1,6 +1,7 @@
 /*global ga:true */
 import React from 'react';
 import {Link, RouteHandler} from 'react-router';
+import FooterHandler from "./FooterHandler";
 
 export default class AppHandler extends React.Component {
 
@@ -67,6 +68,7 @@ export default class AppHandler extends React.Component {
           </div>
         </div>
         <RouteHandler />
+        <div><FooterHandler/></div>
       </div>
       );
   }

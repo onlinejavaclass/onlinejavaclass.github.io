@@ -209,6 +209,7 @@ code, kbd, samp {
 .copy-button {
   float: right;
   height: 30px;
+
   &:before {
     content: '';
     display: none;
@@ -221,7 +222,7 @@ code, kbd, samp {
 
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-bottom: 5px solid rgba(0,0,0,.72);
+    border-bottom: 5px solid rgba(0, 0, 0, .72);
   }
 
   &:after {
@@ -239,7 +240,7 @@ code, kbd, samp {
     line-height: 36px;
     text-align: center;
 
-    background: rgba(0,0,0,.72);
+    background: rgba(0, 0, 0, .72);
     border-radius: 3px;
   }
 
@@ -260,6 +261,46 @@ code, kbd, samp {
   }
 }
 
-pre.prettyprint{
+pre.prettyprint {
   border: 0 solid #888 !important;
+}
+
+blockquote {
+  font-size: 1.4em;
+  width: 60%;
+  margin: 50px auto;
+  font-style: italic;
+  color: #555555;
+  padding: 1.2em 30px 1.2em 75px;
+  border-left: 8px solid #78C0A8;
+  line-height: 1.6;
+  position: relative;
+  background: #0afff614;
+  @media screen and (max-width: 639px) {
+    font-size: 1em;
+    width: 67%;
+    margin: 15px auto;
+  }
+}
+
+blockquote::before {
+  font-family: Arial;
+  content: "\201C";
+  color: #78C0A8;
+  font-size: 4em;
+  position: absolute;
+  left: 10px;
+  top: -10px;
+}
+
+blockquote::after {
+  content: '';
+}
+
+blockquote span {
+  display: block;
+  color: #333333;
+  font-style: normal;
+  font-weight: bold;
+  margin-top: 1em;
 }
