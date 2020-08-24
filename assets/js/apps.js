@@ -5661,7 +5661,7 @@ webpackJsonp([0],[
 	                    React.createElement(
 	                        "div",
 	                        null,
-	                        React.createElement("i", { className: "fap fap-envelope" }),
+	                        React.createElement("i", { className: "fap fap-mail" }),
 	                        React.createElement(
 	                            "p",
 	                            null,

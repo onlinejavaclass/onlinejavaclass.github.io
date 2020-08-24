@@ -35,7 +35,7 @@ export default class FooterHandler extends React.Component {
                     </Link>
                 </div>
                 <div>
-                    <i className="fap fap-envelope"/>
+                    <i className="fap fap-mail"/>
                     <p><a href="mailto:support@company.com">contact@onlinejavaclass.com</a></p>
                 </div>
 
