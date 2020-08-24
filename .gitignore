@@ -2,7 +2,6 @@
 /node_modules/
 npm-debug.log
 /gulp-plugins
-/src
 /test
 /tmp/
 /.publish/
