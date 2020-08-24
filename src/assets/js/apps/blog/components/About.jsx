@@ -42,7 +42,7 @@ export default class About extends React.Component {
         } else {
             return <div className="column">
                 <div className="col-md-9">
-                    <img alt="me" src="/assets/img/avatar50.jpg" className="avatar"/>
+                    <img alt="me" src="/assets/img/me.png" className="avatar"/>
                     <div className="about">
                         <p><b>Hi, I’m Mehrdad, and I run the onlinejavaclass blog.</b></p>
 
@@ -59,11 +59,10 @@ export default class About extends React.Component {
                     <p>With this blog, I produce:</p>
 
                     <ul>
-                        <li>deep-dive tutorials about <a href="/categories/spring-boot">Spring Boot</a></li>
-                        <li>hands-on tutorials about <a href="/categories/java">Java</a></li>
-                        <li>opinion on practices of the <a href="/categories/craft">Software Craft</a></li>
-                        <li><a href="/categories/book-reviews">book reviews</a> of the (non-fiction) books I’ve read.
-                        </li>
+                        <li>deep-dive tutorials about Spring Boot</li>
+                        <li>hands-on tutorials about Java</li>
+                        <li>best practices on complex algorithms and data structure implementations with Java</li>
+                        <li>opinion on practices of the Software Craft</li>
                     </ul>
                 </div>
                 <div className="below center-box">

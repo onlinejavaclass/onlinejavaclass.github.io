@@ -235,3 +235,13 @@ public class Demo {
     }
 }
 ~
+
+
+#### And the output would be like this
+
+```
+Enter email: contact@onlinejavaclass.com
+Input password: mehrdad
+Hello, user!
+Authorization have been successful!
+```

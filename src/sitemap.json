@@ -36,7 +36,23 @@
   },
   "/design-patterns": {
     "type": "archive",
-    "date": "2020-08-15T15:49:26.733Z",
+    "date": "2020-07-10T15:49:26.733Z",
+    "title": "Design Pattern Guide",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp",
+    "pre": "/lsp",
+    "next": "/design-patterns-creational-abstract-factory",
+    "src": "/data/archive/design-patterns/2020-07-17.md"
+  },
+  "/design-patterns-": {
+    "type": "archive",
+    "date": "2020-07-10T15:49:26.733Z",
     "title": "Design Pattern Guide",
     "tags": [
       "design",
@@ -130,6 +146,23 @@
     "next": "/design-patterns-behavioral-chain-of-responsibilities",
     "src": "/data/archive/design-patterns/creational/singleton.md"
   },
+  "/design-patterns-behavioral-command": {
+    "type": "archive",
+    "date": "2020-08-02T21:49:26.733Z",
+    "title": "Design Pattern Guide: Command",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "command",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/command",
+    "pre": "/design-patterns-creational-singleton",
+    "next": "/design-patterns-behavioral-chain-of-responsibilities",
+    "src": "/data/archive/design-patterns/behavioral/command.md"
+  },
   "/design-patterns-behavioral-chain-of-responsibilities": {
     "type": "archive",
     "date": "2020-07-18T15:49:26.733Z",
@@ -145,8 +178,44 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/cor",
     "pre": "/design-patterns-creational-singleton",
-    "next": "/design-patterns-structural-adapter",
+    "next": "/design-patterns-structural-iterator",
     "src": "/data/archive/design-patterns/behavioral/cor.md"
+  },
+  "/design-patterns-behavioral-iterator": {
+    "type": "archive",
+    "date": "2020-07-18T15:49:26.733Z",
+    "title": "Design Pattern Guide: Iterator Pattern",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "structural",
+      "iterator",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/iterator",
+    "pre": "/design-patterns-behavioral-chain-of-responsibilities",
+    "next": "/design-patterns-structural-mediator",
+    "src": "/data/archive/design-patterns/behavioral/iterator.md"
+  },
+  "/design-patterns-behavioral-mediator": {
+    "type": "archive",
+    "date": "2020-07-18T15:49:26.733Z",
+    "title": "Design Pattern Guide: Mediator Pattern",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "structural",
+      "mediator",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/mediator",
+    "pre": "/design-patterns-behavioral-iterator",
+    "next": "/design-patterns-structural-adapter",
+    "src": "/data/archive/design-patterns/behavioral/mediator.md"
   },
   "/design-patterns-structural-adapter": {
     "type": "archive",

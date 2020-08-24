@@ -5424,7 +5424,7 @@ webpackJsonp([0],[
 	              _react2['default'].createElement(
 	                'a',
 	                { className: 'face', href: '/' },
-	                _react2['default'].createElement('img', { className: 'avatar', src: 'assets/img/avatar.jpg' })
+	                _react2['default'].createElement('img', { className: 'avatar', src: 'assets/img/me.png' })
 	              )
 	            )
 	          )
@@ -27471,7 +27471,7 @@ webpackJsonp([0],[
 	                    _react2['default'].createElement(
 	                        'div',
 	                        { className: 'col-md-9' },
-	                        _react2['default'].createElement('img', { alt: 'me', src: '/assets/img/avatar50.jpg', className: 'avatar' }),
+	                        _react2['default'].createElement('img', { alt: 'me', src: '/assets/img/me.png', className: 'avatar' }),
 	                        _react2['default'].createElement(
 	                            'div',
 	                            { className: 'about' },
@@ -27518,42 +27518,22 @@ webpackJsonp([0],[
 	                            _react2['default'].createElement(
 	                                'li',
 	                                null,
-	                                'deep-dive tutorials about ',
-	                                _react2['default'].createElement(
-	                                    'a',
-	                                    { href: '/categories/spring-boot' },
-	                                    'Spring Boot'
-	                                )
+	                                'deep-dive tutorials about Spring Boot'
 	                            ),
 	                            _react2['default'].createElement(
 	                                'li',
 	                                null,
-	                                'hands-on tutorials about ',
-	                                _react2['default'].createElement(
-	                                    'a',
-	                                    { href: '/categories/java' },
-	                                    'Java'
-	                                )
+	                                'hands-on tutorials about Java'
 	                            ),
 	                            _react2['default'].createElement(
 	                                'li',
 	                                null,
-	                                'opinion on practices of the ',
-	                                _react2['default'].createElement(
-	                                    'a',
-	                                    { href: '/categories/craft' },
-	                                    'Software Craft'
-	                                )
+	                                'best practices on complex algorithms and data structure implementations with Java'
 	                            ),
 	                            _react2['default'].createElement(
 	                                'li',
 	                                null,
-	                                _react2['default'].createElement(
-	                                    'a',
-	                                    { href: '/categories/book-reviews' },
-	                                    'book reviews'
-	                                ),
-	                                ' of the (non-fiction) books I’ve read.'
+	                                'opinion on practices of the Software Craft'
 	                            )
 	                        )
 	                    ),
