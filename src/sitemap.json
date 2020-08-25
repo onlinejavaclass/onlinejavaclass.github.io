@@ -216,8 +216,134 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/memento",
     "pre": "/design-patterns-behavioral-mediator",
-    "next": "/design-patterns-structural-adapter",
+    "next": "/design-patterns-structural-observer",
     "src": "/data/archive/design-patterns/behavioral/memento.md"
+  },
+  "/design-patterns-behavioral-observer": {
+    "type": "archive",
+    "date": "2020-07-18T15:49:26.733Z",
+    "title": "Design Pattern Guide: Observer Pattern",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "structural",
+      "observer",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/memento",
+    "pre": "/design-patterns-behavioral-memento",
+    "next": "/design-patterns-structural-state",
+    "src": "/data/archive/design-patterns/behavioral/observer.md"
+  },
+  "/design-patterns-behavioral-state": {
+    "type": "archive",
+    "date": "2020-07-18T15:49:26.733Z",
+    "title": "Design Pattern Guide: State Pattern",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "structural",
+      "state",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/state",
+    "pre": "/design-patterns-behavioral-observer",
+    "next": "/design-patterns-structural-strategy",
+    "src": "/data/archive/design-patterns/behavioral/state.md"
+  },
+  "/design-patterns-behavioral-strategy": {
+    "type": "archive",
+    "date": "2020-07-18T15:49:26.733Z",
+    "title": "Design Pattern Guide: Strategy Pattern",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "structural",
+      "strategy",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/strategy",
+    "pre": "/design-patterns-behavioral-state",
+    "next": "/design-patterns-structural-throttling",
+    "src": "/data/archive/design-patterns/behavioral/strategy.md"
+  },
+  "/design-patterns-behavioral-throttling": {
+    "type": "archive",
+    "date": "2020-07-18T15:49:26.733Z",
+    "title": "Design Pattern Guide: Throttling Pattern",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "structural",
+      "throttling",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/throttling",
+    "pre": "/design-patterns-behavioral-strategy",
+    "next": "/design-patterns-structural-invocation",
+    "src": "/data/archive/design-patterns/behavioral/throttling.md"
+  },
+  "/design-patterns-concurrency-async-method-invocation": {
+    "type": "archive",
+    "date": "2020-07-18T15:49:26.733Z",
+    "title": "Design Pattern Guide: Async Method Invocation Pattern",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "structural",
+      "Async Method Invocation",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/ami",
+    "pre": "/design-patterns-behavioral-throttling",
+    "next": "/design-patterns-structural-saga",
+    "src": "/data/archive/design-patterns/concurrency/async-method-invocation.md"
+  },
+  "/design-patterns-concurrency-saga": {
+    "type": "archive",
+    "date": "2020-07-18T15:49:26.733Z",
+    "title": "Design Pattern Guide: Async Saga Pattern",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "structural",
+      "saga",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/saga",
+    "pre": "/design-patterns-behavioral-throttling",
+    "next": "/design-patterns-structural-adapter",
+    "src": "/data/archive/design-patterns/concurrency/saga.md"
+  },
+  "/design-patterns-idiom-lazy-loading": {
+    "type": "archive",
+    "date": "2020-07-18T15:49:26.733Z",
+    "title": "Design Pattern Guide: Lazy Loading Idiom",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "structural",
+      "lazy loading",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/lazyloading",
+    "pre": "/design-patterns-behavioral-saga",
+    "next": "/design-patterns-structural-adapter",
+    "src": "/data/archive/design-patterns/idiom/lazy-loading.md"
   },
   "/design-patterns-structural-adapter": {
     "type": "archive",
@@ -233,7 +359,7 @@
       "java"
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/adapter",
-    "pre": "/design-patterns",
+    "pre": "/design-patterns-concurrency-async-method-invocation",
     "next": "/design-patterns-structural-bridge",
     "src": "/data/archive/design-patterns/structural/adapter.md"
   },

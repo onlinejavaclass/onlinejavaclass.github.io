@@ -34,11 +34,28 @@ Behavioral design patterns are design patterns that identify common communicatio
 | Type   |      Description |
 |----------|:-------------:|
 |<a href="/#/design-patterns-behavioral-command" target="_blank">Command</a>| Is an object which is used to encapsulate all information needed to perform an action or trigger an event at a later time. This information includes the method name, the object that owns the method and values for the method parameters.
-|<a href="/#/design-patterns-behavioral-chain-of-responsibilities" target="_blank">Chain of Responsibilities</a> | Lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.                                                                                                                  
+|<a href="/#/design-patterns-behavioral-chain-of-responsibilities" target="_blank">Chain of Responsibilities</a> | lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.                                                                                                                  
 |<a href="/#/design-patterns-behavioral-iterator" target="_blank">Iterator</a>| is used to sequentially access the elements of the collection object without knowing the underlying representation of the collection object..
 |<a href="/#/design-patterns-behavioral-mediator" target="_blank">Mediator</a> | is used to reduce the complexity of communication between multiple objects and classes. This mode provides an intermediary class that usually handles communication between different classes and supports loose coupling, making the code easy to maintain. The intermediary model is a behavioral model.
-|<a href="/#/design-patterns-behavioral-memento" target="_blank">Memento</a> | The memento pattern is used to store an object's state so that this state can be restored at a later point. The saved state data in the memento object is not accessible outside of the object to be saved and restored. This protects the integrity of the saved state data.
-|<a href="/#/design-patterns-behavioral-observer" target="_blank">Observer |    
-|<a href="/#/design-patterns-behavioral-state" target="_blank">State |	
-|<a href="/#/design-patterns-behavioral-strategy" target="_blank">Strategy | 
-|<a href="/#/design-patterns-behavioral-throuttling" target="_blank">Throttling | 
+|<a href="/#/design-patterns-behavioral-memento" target="_blank">Memento</a> | is used to store an object's state so that this state can be restored at a later point. The saved state data in the memento object is not accessible outside of the object to be saved and restored. This protects the integrity of the saved state data.
+|<a href="/#/design-patterns-behavioral-observer" target="_blank">Observer |  lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.  
+|<a href="/#/design-patterns-behavioral-state" target="_blank">State |	is used to alter the behaviour of an object as its internal state changes. The pattern allows the class for an object to apparently change at run-time.
+|<a href="/#/design-patterns-behavioral-strategy" target="_blank">Strategy |  is used to create an interchangeable family of algorithms from which the required process is chosen at run-time.
+|<a href="/#/design-patterns-behavioral-throttling" target="_blank">Throttling | ensures that a given client is not able to access service resources more than the assigned limit.                                                                                      
+
+
+### 4. Concurrency Design Patterns
+Concurrency design patterns are those types of design patterns that deal with the multi-threaded programming paradigm.    
+
+| Type   |      Description |
+|----------|:-------------:|
+|<a href="/#/design-patterns-concurrency-async-method-invocation" target="_blank">Async Method Invocation |  provides parallel processing of multiple independent tasks and retrieving the results via callbacks or waiting until everything is done.
+|<a href="/#/design-patterns-concurrency-saga" target="_blank">Saga  | is used in distributed services to perform a group of operations atomically, specially in microservice architecture.
+
+
+### 5. Idioms
+An idiom is something small, like "use an interface for the type of a variable that holds a collection"    
+
+| Type   |      Description |
+|----------|:-------------:|
+|<a href="/#/design-patterns-idiom-lazy-loading" target="_blank">Lazy Loading| is used to used to defer initialization of an object until the point at which it is needed. It can contribute to efficiency in the program's operation if properly and appropriately used.

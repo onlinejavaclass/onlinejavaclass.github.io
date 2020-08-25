@@ -13,7 +13,6 @@ This class contains a private inner class called Memento. This is our **Memento*
 
 Notice the **save()** method of **DietInfo**. This creates and returns a **Memento** object. This returned **Memento** object gets stored by the caretaker. Note that **DietInfo.Memento** is not visible, so the **caretaker** can't reference **DietInfo.Memento**. Instead, it stores the reference as an Object.
 
-
 The **restore()** method of **DietInfo** is used to restore the state of the **DietInfo**. The caretaker passes in the **Memento** (as an Object). The memento is cast to a **Memento** object and then the **DietInfo** object's state is restored by copying over the values from the memento.
 
 ~
