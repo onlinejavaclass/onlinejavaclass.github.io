@@ -48,23 +48,7 @@
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp",
     "pre": "/lsp",
     "next": "/design-patterns-creational-abstract-factory",
-    "src": "/data/archive/design-patterns/2020-07-17.md"
-  },
-  "/design-patterns-": {
-    "type": "archive",
-    "date": "2020-07-10T15:49:26.733Z",
-    "title": "Design Pattern Guide",
-    "tags": [
-      "design",
-      "software",
-      "patterns",
-      "architecture",
-      "java"
-    ],
-    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp",
-    "pre": "/lsp",
-    "next": "/design-patterns-creational-abstract-factory",
-    "src": "/data/archive/design-patterns/2020-07-17.md"
+    "src": "/data/archive/design-patterns/design-patterns.md"
   },
   "/design-patterns-creational-abstract-factory": {
     "type": "archive",
@@ -214,8 +198,26 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/mediator",
     "pre": "/design-patterns-behavioral-iterator",
-    "next": "/design-patterns-structural-adapter",
+    "next": "/design-patterns-structural-momento",
     "src": "/data/archive/design-patterns/behavioral/mediator.md"
+  },
+  "/design-patterns-behavioral-memento": {
+    "type": "archive",
+    "date": "2020-07-18T15:49:26.733Z",
+    "title": "Design Pattern Guide: Memento Pattern",
+    "tags": [
+      "design",
+      "software",
+      "patterns",
+      "structural",
+      "memento",
+      "architecture",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/memento",
+    "pre": "/design-patterns-behavioral-mediator",
+    "next": "/design-patterns-structural-adapter",
+    "src": "/data/archive/design-patterns/behavioral/memento.md"
   },
   "/design-patterns-structural-adapter": {
     "type": "archive",
