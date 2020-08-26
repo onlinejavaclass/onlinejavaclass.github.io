@@ -162,7 +162,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/cor",
     "pre": "/design-patterns-creational-singleton",
-    "next": "/design-patterns-structural-iterator",
+    "next": "/design-patterns-behavioral-iterator",
     "src": "/data/archive/design-patterns/behavioral/cor.md"
   },
   "/design-patterns-behavioral-iterator": {
@@ -180,7 +180,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/iterator",
     "pre": "/design-patterns-behavioral-chain-of-responsibilities",
-    "next": "/design-patterns-structural-mediator",
+    "next": "/design-patterns-behavioral-mediator",
     "src": "/data/archive/design-patterns/behavioral/iterator.md"
   },
   "/design-patterns-behavioral-mediator": {
@@ -198,7 +198,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/mediator",
     "pre": "/design-patterns-behavioral-iterator",
-    "next": "/design-patterns-structural-momento",
+    "next": "/design-patterns-behavioral-memento",
     "src": "/data/archive/design-patterns/behavioral/mediator.md"
   },
   "/design-patterns-behavioral-memento": {
@@ -216,7 +216,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/memento",
     "pre": "/design-patterns-behavioral-mediator",
-    "next": "/design-patterns-structural-observer",
+    "next": "/design-patterns-behavioral-observer",
     "src": "/data/archive/design-patterns/behavioral/memento.md"
   },
   "/design-patterns-behavioral-observer": {
@@ -234,7 +234,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/memento",
     "pre": "/design-patterns-behavioral-memento",
-    "next": "/design-patterns-structural-state",
+    "next": "/design-patterns-behavioral-state",
     "src": "/data/archive/design-patterns/behavioral/observer.md"
   },
   "/design-patterns-behavioral-state": {
@@ -252,7 +252,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/state",
     "pre": "/design-patterns-behavioral-observer",
-    "next": "/design-patterns-structural-strategy",
+    "next": "/design-patterns-behavioral-strategy",
     "src": "/data/archive/design-patterns/behavioral/state.md"
   },
   "/design-patterns-behavioral-strategy": {
@@ -270,7 +270,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/strategy",
     "pre": "/design-patterns-behavioral-state",
-    "next": "/design-patterns-structural-throttling",
+    "next": "/design-patterns-behavioral-throttling",
     "src": "/data/archive/design-patterns/behavioral/strategy.md"
   },
   "/design-patterns-behavioral-throttling": {
@@ -288,7 +288,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/throttling",
     "pre": "/design-patterns-behavioral-strategy",
-    "next": "/design-patterns-structural-invocation",
+    "next": "/design-patterns-concurrency-async-method-invocation",
     "src": "/data/archive/design-patterns/behavioral/throttling.md"
   },
   "/design-patterns-concurrency-async-method-invocation": {
@@ -306,13 +306,13 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/ami",
     "pre": "/design-patterns-behavioral-throttling",
-    "next": "/design-patterns-structural-saga",
+    "next": "/design-patterns-concurrency-saga",
     "src": "/data/archive/design-patterns/concurrency/async-method-invocation.md"
   },
   "/design-patterns-concurrency-saga": {
     "type": "archive",
     "date": "2020-07-18T15:49:26.733Z",
-    "title": "Design Pattern Guide: Async Saga Pattern",
+    "title": "Design Pattern Guide: Saga Pattern",
     "tags": [
       "design",
       "software",
@@ -324,7 +324,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/saga",
     "pre": "/design-patterns-behavioral-throttling",
-    "next": "/design-patterns-structural-adapter",
+    "next": "/design-patterns-idiom-lazy-loading",
     "src": "/data/archive/design-patterns/concurrency/saga.md"
   },
   "/design-patterns-idiom-lazy-loading": {
