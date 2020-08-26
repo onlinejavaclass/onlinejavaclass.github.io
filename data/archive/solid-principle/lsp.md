@@ -184,7 +184,7 @@ It could be something else for a different payment instrument in the future. The
 class PaymentProcessor {
   void process(
       OrderDetails orderDetails, 
-      IPaymentInstrument paymentInstrument) {
+      PaymentInstrument paymentInstrument) {
     try {
       paymentInstrument.validate();
       PaymentResponse response = paymentInstrument.collectPayment();
@@ -221,6 +221,7 @@ interface PaymentGatewayHandler {
 interface PaymentInstrumentValidator {
   void validate() throws PaymentInstrumentInvalidException;
 }
+~
 
 ~
 class PaymentGatewayResponse {
@@ -350,7 +351,7 @@ Our design is now **flexible enough** to let us add a **RewardsCard** - no force
 We just add the new class and it works as expected.
 
 ~
-class RewardsCard implements IPaymentInstrument {
+class RewardsCard implements PaymentInstrument {
   String name;
   String cardNumber;
 
@@ -402,6 +403,17 @@ Consider **java.util.List<E>** interface’s **add(E e)** method. Since **java.u
 Is this an LSP violation? No - the **List.add(E e)** method’s contract says implementations may throw an **UnsupportedOperationException**. Clients are expected to handle this when using the method.
 
 
+#### Example output
+
+
+    Starting payment processing for customer Mehrdad with creadit card number 1234-1234-1234-1234-1234
+    Running fraud checks against third-party system
+    Fraud checks passed
+    Sending details to payment gateway
+    Credit card payment successful!
+    Starting payment processing for customer Mehrdad with rewards card number 1234-1234-1234-1234-1234
+    Updating rewards balance
+    Rewards card payment successful!
 
     
 
