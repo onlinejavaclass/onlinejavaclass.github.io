@@ -29,7 +29,7 @@
       "Liskov Substitution Principle",
       "solid"
     ],
-    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/lsp",
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/lsp",
     "next": "/design-patterns",
     "pre": "/solid-principles",
     "src": "/data/archive/solid-principle/lsp.md"
