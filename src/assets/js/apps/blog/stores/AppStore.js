@@ -33,8 +33,10 @@ export default class AppStore extends Store {
             }
 
         }
-        arr.sort((a, b) => (a.date < b.date));
+
+        arr.sort((a, b) => new Date(b.date) - new Date(a.date));
         this._experimentsSortedArray = arr;
+
         this.emit('change');
     }
 

@@ -1,6 +1,7 @@
 /*global ga:true */
 import React from 'react';
 import {Link, RouteHandler} from 'react-router';
+import FooterHandler from "./FooterHandler";
 
 export default class AppHandler extends React.Component {
 
@@ -24,7 +25,7 @@ export default class AppHandler extends React.Component {
                   <span className="top-header-title">bash-3.2$ echo "Online Java Class" | tee $1</span>
               </div>
               <a className="face" href="/">
-                <img className="avatar" src="assets/img/avatar.jpg"/>
+                <img className="avatar" src="assets/img/me.png"/>
               </a>
             </div>
           </div>
@@ -67,6 +68,7 @@ export default class AppHandler extends React.Component {
           </div>
         </div>
         <RouteHandler />
+        <div><FooterHandler/></div>
       </div>
       );
   }

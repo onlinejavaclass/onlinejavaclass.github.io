@@ -24,7 +24,7 @@ Structural design patterns show us how to glue different pieces of a system toge
 |<a href="/#/design-patterns-structural-bridge" target="_blank">Bridge</a> |	Bridge design pattern is used to decouple a class into two parts – abstraction and it’s implementation – so that both can evolve in future without affecting each other. It increases the loose coupling between class abstraction and it’s implementation.
 |<a href="/#/design-patterns-structural-composite" target="_blank">Composite</a>	| Composite design pattern helps to compose the objects into tree structures to represent whole-part hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
 |<a href="/#/design-patterns-structural-decorator" target="_blank">Decorator</a> |	Decorator design pattern is used to add additional features or behaviors to a particular instance of a class, while not modifying the other instances of same class.
-|<a href="/#/design-patterns-structural-facade" target="_blank">Facade</a> |	Facade design pattern provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
+|<a href="/#/design-patterns-structural-facade" target="_blank">Facade</a> |    Facade design pattern provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
 |<a href="/#/design-patterns-structural-flyweight" target="_blank">Flyweight</a> |	Flyweight design pattern enables use sharing of objects to support large numbers of fine-grained objects efficiently. A flyweight is a shared object that can be used in multiple contexts simultaneously. The flyweight acts as an independent object in each context.
 |<a href="/#/design-patterns-structural-proxy" target="_blank">Proxy</a> |	In proxy design pattern, a proxy object provide a surrogate or placeholder for another object to control access to it. Proxy is heavily used to implement lazy loading related usecases where we do not want to create full object until it is actually needed.
 
@@ -33,12 +33,29 @@ Behavioral design patterns are design patterns that identify common communicatio
 
 | Type   |      Description |
 |----------|:-------------:|
-|<a href="/#/design-patterns-behavioral-bridge" target="_blank">Command</a>| An adapter convert the interface of a class into another interface clients expect. It lets classes work together that couldn’t otherwise because of incompatible interfaces.
-|<a href="/#/design-patterns-behavioral-cor" target="_blank">Chain of Responsibilities</a> | Bridge design pattern is used to decouple a class into two parts – abstraction and it’s implementation – so that both can evolve in future without affecting each other. It increases the loose coupling between class abstraction and it’s implementation.
-|<a href="/#/design-patterns-behavioral-iterator" target="_blank">Iterator</a>| Composite design pattern helps to compose the objects into tree structures to represent whole-part hierarchies. Composite lets clients treat individual objects and compositions of objects uniformly.
-|<a href="/#/design-patterns-behavioral-mediator" target="_blank">Mediator</a> | Decorator design pattern is used to add additional features or behaviors to a particular instance of a class, while not modifying the other instances of same class.
-|<a href="/#/design-patterns-behavioral-momento" target="_blank">Momento</a> | Facade design pattern provide a unified interface to a set of interfaces in a subsystem. Facade defines a higher-level interface that makes the subsystem easier to use.
-|<a href="/#/design-patterns-behavioral-observer" target="_blank">Observer | In proxy design pattern, a proxy object provide a surrogate or placeholder for another object to control access to it. Proxy is heavily used to implement lazy loading related usecases where we do not want to create full object until it is actually needed.
-|<a href="/#/design-patterns-behavioral-state" target="_blank">State |	In proxy design pattern, a proxy object provide a surrogate or placeholder for another object to control access to it. Proxy is heavily used to implement lazy loading related usecases where we do not want to create full object until it is actually needed.
-|<a href="/#/design-patterns-behavioral-strategy" target="_blank">Strategy | In proxy design pattern, a proxy object provide a surrogate or placeholder for another object to control access to it. Proxy is heavily used to implement lazy loading related usecases where we do not want to create full object until it is actually needed.
-|<a href="/#/design-patterns-behavioral-throuttling" target="_blank">Throttling | In proxy design pattern, a proxy object provide a surrogate or placeholder for another object to control access to it. Proxy is heavily used to implement lazy loading related usecases where we do not want to create full object until it is actually needed.
+|<a href="/#/design-patterns-behavioral-command" target="_blank">Command</a>| Is an object which is used to encapsulate all information needed to perform an action or trigger an event at a later time. This information includes the method name, the object that owns the method and values for the method parameters.
+|<a href="/#/design-patterns-behavioral-chain-of-responsibilities" target="_blank">Chain of Responsibilities</a> | lets you pass requests along a chain of handlers. Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.                                                                                                                  
+|<a href="/#/design-patterns-behavioral-iterator" target="_blank">Iterator</a>| is used to sequentially access the elements of the collection object without knowing the underlying representation of the collection object..
+|<a href="/#/design-patterns-behavioral-mediator" target="_blank">Mediator</a> | is used to reduce the complexity of communication between multiple objects and classes. This mode provides an intermediary class that usually handles communication between different classes and supports loose coupling, making the code easy to maintain. The intermediary model is a behavioral model.
+|<a href="/#/design-patterns-behavioral-memento" target="_blank">Memento</a> | is used to store an object's state so that this state can be restored at a later point. The saved state data in the memento object is not accessible outside of the object to be saved and restored. This protects the integrity of the saved state data.
+|<a href="/#/design-patterns-behavioral-observer" target="_blank">Observer |  lets you define a subscription mechanism to notify multiple objects about any events that happen to the object they’re observing.  
+|<a href="/#/design-patterns-behavioral-state" target="_blank">State |	is used to alter the behaviour of an object as its internal state changes. The pattern allows the class for an object to apparently change at run-time.
+|<a href="/#/design-patterns-behavioral-strategy" target="_blank">Strategy |  is used to create an interchangeable family of algorithms from which the required process is chosen at run-time.
+|<a href="/#/design-patterns-behavioral-throttling" target="_blank">Throttling | ensures that a given client is not able to access service resources more than the assigned limit.                                                                                      
+
+
+### 4. Concurrency Design Patterns
+Concurrency design patterns are those types of design patterns that deal with the multi-threaded programming paradigm.    
+
+| Type   |      Description |
+|----------|:-------------:|
+|<a href="/#/design-patterns-concurrency-async-method-invocation" target="_blank">Async Method Invocation |  provides parallel processing of multiple independent tasks and retrieving the results via callbacks or waiting until everything is done.
+|<a href="/#/design-patterns-concurrency-saga" target="_blank">Saga  | is used in distributed services to perform a group of operations atomically, specially in microservice architecture.
+
+
+### 5. Idioms
+An idiom is something small, like "use an interface for the type of a variable that holds a collection"    
+
+| Type   |      Description |
+|----------|:-------------:|
+|<a href="/#/design-patterns-idiom-lazy-loading" target="_blank">Lazy Loading| is used to used to defer initialization of an object until the point at which it is needed. It can contribute to efficiency in the program's operation if properly and appropriately used.

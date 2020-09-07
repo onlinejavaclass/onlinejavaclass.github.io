@@ -31,6 +31,8 @@ $app-font-path: "../fonts";
 .fap-mail                            { &:before { content: "\e103"; } }
 .fap-instagram                       { &:before { content: "\e104"; } }
 .fap-pinterest                       { &:before { content: "\e105"; } }
+.fap-privacy                         { &:before {content: "\e110"; } }
+.fap-terms                         { &:before {content: "\e111"; } }
 
 .fap-search4                         { &:before { content: "\e110"; } }
 .fap-play                            { &:before { content: "\e111"; } }

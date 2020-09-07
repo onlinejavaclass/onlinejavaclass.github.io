@@ -16,18 +16,19 @@ export default class ItemList extends React.Component {
                     let title = it.title ? it.title : '';
                     let tags = it.tags ? it.tags : '';
                     let link = it.link.split('/').pop();
-                    return <div key={i} className="post itemlist">
-                        <div className="date">{date}</div>
-
-                        <Link className="post-title" to="experiment" params={{link: link}}>
-                            <span>{title}</span>
-                        </Link>
-                        <div className="tags center-box">
-                            {tags.map((tag, i) => {
-                                return <Link key={tag + i} className="tag" to="search" params={{query: tag}}>
-                                    {tag}
-                                </Link>;
-                            })}
+                    return <div>
+                        <div key={i} className="post itemlist">
+                            <div className="date">{date}</div>
+                            <Link className="post-title" to="experiment" params={{link: link}}>
+                                <span>{title}</span>
+                            </Link>
+                            <div className="tags center-box">
+                                {tags.map((tag, i) => {
+                                    return <Link key={tag + i} className="tag" to="search" params={{query: tag}}>
+                                        {tag}
+                                    </Link>;
+                                })}
+                            </div>
                         </div>
                     </div>;
                 })}
