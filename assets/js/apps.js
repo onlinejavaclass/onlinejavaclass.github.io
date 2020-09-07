@@ -7994,7 +7994,7 @@ webpackJsonp([0],[
 	                // }
 	                item = {
 	                    type: 'codeBlock',
-	                    body: PR.prettyPrintOne(cap[2], 'java', false)
+	                    body: cap[2],
 	                };
 	                this.tokens.push(item);
 	                continue;

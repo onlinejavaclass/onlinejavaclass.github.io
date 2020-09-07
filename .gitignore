@@ -9,3 +9,8 @@ npm-debug.log
 /marked
 /.idea
 /.publish
+publish.sh
+src
+marked
+test
+gulp-plugins
