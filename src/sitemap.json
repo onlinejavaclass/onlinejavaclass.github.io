@@ -1,4 +1,18 @@
 {
+  "/dfs": {
+    "type": "archive",
+    "date": "2020-09-07T12:16:26.733Z",
+    "title": "Deep First Search (DFS)",
+    "tags": [
+      "design",
+      "software",
+      "structure",
+      "dfs"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dfs",
+    "next": "/solid-principles",
+    "src": "/data/archive/structures/dfs.md"
+  },
   "/solid-principles": {
     "type": "archive",
     "date": "2020-08-23T15:16:26.733Z",
@@ -13,6 +27,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/solid",
     "next": "/lsp",
+    "pre": "/dfs",
     "src": "/data/archive/solid-principle/solid.md"
   },
   "/lsp": {
