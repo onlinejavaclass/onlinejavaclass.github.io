@@ -5753,16 +5753,33 @@ webpackJsonp([0],[
 	
 	        _get(Object.getPrototypeOf(ExperimentsHandler.prototype), 'constructor', this).call(this, props);
 	
-	        this.submitEmail = function (event) {
-	            event.preventDefault();
-	            var URL = 'https://o91o15qwvf.execute-api.eu-central-1.amazonaws.com/Prod/newsletter?email=' + _this.state.email;
-	            console.log(URL);
-	            _utilsHttpRequest2['default'].get(URL).exec().then(function (val) {
-	                return val.body;
-	            });
+	        this.submitEmail = function callee$2$0(event) {
+	            var URL;
+	            return regeneratorRuntime.async(function callee$2$0$(context$3$0) {
+	                while (1) switch (context$3$0.prev = context$3$0.next) {
+	                    case 0:
+	                        event.preventDefault();
+	                        URL = 'https://o91o15qwvf.execute-api.eu-central-1.amazonaws.com/Prod/newsletter?email=' + this.state.email;
+	
+	                        this.setState({ email: '' });
+	                        this.setState({ subscribed: true });
+	                        context$3$0.next = 6;
+	                        return regeneratorRuntime.awrap(_utilsHttpRequest2['default'].get(URL).exec().then(function (val) {
+	                            return val.body;
+	                        }));
+	
+	                    case 6:
+	                        return context$3$0.abrupt('return', context$3$0.sent);
+	
+	                    case 7:
+	                    case 'end':
+	                        return context$3$0.stop();
+	                }
+	            }, null, _this);
 	        };
 	
 	        this.state = {
+	            subscribed: false,
 	            query: '',
 	            email: ''
 	        };
@@ -5870,19 +5887,25 @@ webpackJsonp([0],[
 	                            _react2['default'].createElement(
 	                                'small',
 	                                null,
-	                                'I WON\'T SPAM YOU! You will be updated with newest Java classes!'
+	                                'I WON\'T SPAM YOU! You will be updated with newest Java classes if you insert your email here and press subscribe!'
 	                            )
 	                        ),
 	                        _react2['default'].createElement(
 	                            'form',
 	                            { method: 'GET', onSubmit: this.submitEmail },
 	                            _react2['default'].createElement(
+	                                'div',
+	                                { hidden: !this.state.subscribed },
+	                                'Thank you!'
+	                            ),
+	                            _react2['default'].createElement(
 	                                'input',
-	                                { type: 'email', name: 'email', placeholder: 'Your Email Please', className: 'email-form',
-	                                    value: this.state.email, onChange: this.handleEmailChange, required: true },
+	                                { type: 'email', name: 'email', placeholder: 'Your Email Please',
+	                                    value: this.state.email, onChange: this.handleEmailChange,
+	                                    hidden: this.state.subscribed, required: true },
 	                                _react2['default'].createElement(
 	                                    'button',
-	                                    { className: 'button button1', type: 'submit' },
+	                                    { className: 'button button1', type: 'submit', disabled: this.state.subscribed },
 	                                    'Subscribe'
 	                                )
 	                            )
