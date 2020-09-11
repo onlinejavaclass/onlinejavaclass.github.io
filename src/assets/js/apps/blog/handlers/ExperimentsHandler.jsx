@@ -4,17 +4,20 @@ import {debounce} from './../utils/Timer.js';
 import Popup from "../components/Popup";
 import Newsletter from "../components/Newsletter";
 import cookie from 'react-cookies'
+import Datenschutz from "../components/Datenschutz";
 
 export default class ExperimentsHandler extends React.Component {
 
     constructor(props) {
         super(props);
         this.state = {
+            showDataSchutzen: cookie.load('showDataSchutzen'),
             showPopup: cookie.load('showPopup'),
             query: '',
         };
 
         this.closePopup = this.closePopup.bind(this);
+        this.closeDataschutzen = this.closeDataschutzen.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.setSearchQuery = this.setSearchQuery.bind(this);
@@ -50,6 +53,13 @@ export default class ExperimentsHandler extends React.Component {
         cookie.save('showPopup', true);
     }
 
+    closeDataschutzen() {
+        this.setState({
+            showDataSchutzen: true
+        });
+        cookie.save('showDataSchutzen', true);
+    }
+
     render() {
         return <div className="content">
             <div className="search">
@@ -83,6 +93,10 @@ export default class ExperimentsHandler extends React.Component {
                 show={this.state.showPopup}
                 text='Newsletter'
                 closePopup={this.closePopup}
+            />
+            <Datenschutz
+                show={this.state.showDataSchutzen}
+                closePopup={this.closeDataschutzen}
             />
         </div>;
     }
