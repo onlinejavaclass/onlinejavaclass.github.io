@@ -956,6 +956,7 @@ td:first-child {
 @media screen and (max-width: 638px) {
   .button {
     font-size: 0.8em;
+    padding: 10px;
   }
 }
 
@@ -1221,6 +1222,7 @@ blockquote span {
 .search {
   width: 527px;
   margin: 0 auto;
+  padding: 22px;
 }
 
 @media screen and (max-width: 638px) {
@@ -1232,6 +1234,7 @@ blockquote span {
 .search .search-wrap-1 input {
   text-align: center;
   width: 99%;
+  height: 33px;
   display: block;
   background-color: #f5f8fa;
   color: #66757f;
@@ -1251,6 +1254,50 @@ blockquote span {
 
 .search .search-wrap-1 input:focus {
   background-color: #fff;
+}
+
+.newsletter {
+  width: 923px;
+  margin: 8px auto;
+  box-sizing: border-box;
+}
+
+@media screen and (max-width: 638px) {
+  .newsletter {
+    width: 100%;
+  }
+}
+
+.newsletter input {
+  text-align: center;
+  margin: 4px;
+  width: 66%;
+  height: 40px;
+  background-color: #f5f8fa;
+  color: #66757f;
+  outline: 0;
+  border: none;
+  font-size: 18px;
+  border: 0;
+  border-bottom: 1px solid #e1e8ed;
+  padding: 4px;
+}
+
+@media screen and (max-width: 638px) {
+  .newsletter input {
+    margin: 4px;
+    height: 30px;
+  }
+}
+
+.newsletter input:focus {
+  background-color: #fff;
+}
+
+.popup {
+  background: #106943;
+  color: #ffffff;
+  padding: 16px;
 }
 
 section {
@@ -1451,7 +1498,7 @@ footer {
   text-align: left;
   font: bold 16px sans-serif;
   padding: 34px 50px;
-  margin-top: 80px;
+  margin-top: 60px;
 }
 
 .footer-left,

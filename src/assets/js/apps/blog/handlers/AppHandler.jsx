@@ -45,7 +45,7 @@ export default class AppHandler extends React.Component {
                 </ul>
                 <ul className="menu pull-right">
                   <li className="item">
-                   <a href="mailto:mehrdadallahkarami@gmail.com">
+                   <a href="mailto:contact@onlinejavaclass.com">
                     <i className="fap fap-mail"/>
                     <div className="text">Mail</div>
                    </a>

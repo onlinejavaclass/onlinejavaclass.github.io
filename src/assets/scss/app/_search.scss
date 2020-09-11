@@ -1,6 +1,7 @@
 .search {
     width: 527px;
     margin: 0 auto;
+    padding: 22px;
     @media screen and (max-width: 638px) {
         width: 280px;
     }
@@ -8,6 +9,7 @@
         input {
             text-align: center;
             width: 99%;
+            height: 33px;
             display: block;
             background-color: #f5f8fa;
             color: #66757f;

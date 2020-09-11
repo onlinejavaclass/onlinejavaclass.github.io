@@ -1,7 +1,7 @@
 import React from 'react';
 import {RouteHandler, Link} from 'react-router';
 import {debounce} from './../utils/Timer.js';
-import Spinner from './../components/Spinner.jsx';
+import httpRequest from "../utils/HttpRequest";
 
 export default class ExperimentsHandler extends React.Component {
 
@@ -9,6 +9,7 @@ export default class ExperimentsHandler extends React.Component {
         super(props);
         this.state = {
             query: '',
+            email: ''
         };
 
         this.handleChange = this.handleChange.bind(this);
@@ -39,6 +40,19 @@ export default class ExperimentsHandler extends React.Component {
         this.setState({query: query});
     }
 
+    submitEmail = (event) => {
+        event.preventDefault();
+        const URL = 'https://o91o15qwvf.execute-api.eu-central-1.amazonaws.com/Prod/newsletter?' + this.state.email;
+        httpRequest
+            .get(URL)
+            .exec()
+            .then(val => val.body);
+    }
+
+    handleEmailChange(event) {
+        this.setState({email: event.target.value});
+    }
+
     render() {
         return <div className="content">
             <div className="search">
@@ -47,6 +61,7 @@ export default class ExperimentsHandler extends React.Component {
                            placeholder="Search in experiments"/>
                 </div>
             </div>
+
             <section>
                 <ul className="menu with-search">
                     <li className="item">
@@ -66,6 +81,20 @@ export default class ExperimentsHandler extends React.Component {
                 <RouteHandler setSearchQuery={this.setSearchQuery}/>
 
             </section>
+            <div className="newsletter">
+                <div className="popup">
+                        <span>
+                            <small>I WON'T SPAM YOU! You will be updated with newest Java classes!</small>
+                        </span>
+                    <form method="GET" onSubmit={this.submitEmail}>
+                        <input type="email" name="email" placeholder="Your Email Please" className="email-form"
+                               onChange={this.handleEmailChange} required>
+                            <button className="button button1" type="submit">Subscribe
+                            </button>
+                        </input>
+                    </form>
+                </div>
+            </div>
         </div>;
     }
 }
