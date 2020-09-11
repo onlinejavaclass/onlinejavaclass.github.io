@@ -3,7 +3,7 @@ import request from 'superagent';
 
 Request.prototype.jsonp = function () {
 
-  var sel;
+  let sel;
 
   this.jsonpCallbackName = 'superagentCallback' + new Date().valueOf() + parseInt(Math.random() * 1000);
 

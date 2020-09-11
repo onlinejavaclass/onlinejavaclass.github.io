@@ -606,7 +606,7 @@ webpackJsonp([0],[
 	
 	_superagent.Request.prototype.jsonp = function () {
 	
-	  var sel;
+	  var sel = undefined;
 	
 	  this.jsonpCallbackName = 'superagentCallback' + new Date().valueOf() + parseInt(Math.random() * 1000);
 	
@@ -5755,7 +5755,8 @@ webpackJsonp([0],[
 	
 	        this.submitEmail = function (event) {
 	            event.preventDefault();
-	            var URL = 'https://o91o15qwvf.execute-api.eu-central-1.amazonaws.com/Prod/newsletter?' + _this.state.email;
+	            var URL = 'https://o91o15qwvf.execute-api.eu-central-1.amazonaws.com/Prod/newsletter?email=' + _this.state.email;
+	            console.log(URL);
 	            _utilsHttpRequest2['default'].get(URL).exec().then(function (val) {
 	                return val.body;
 	            });
@@ -5769,6 +5770,7 @@ webpackJsonp([0],[
 	        this.handleChange = this.handleChange.bind(this);
 	        this.handleSearch = this.handleSearch.bind(this);
 	        this.setSearchQuery = this.setSearchQuery.bind(this);
+	        this.handleEmailChange = this.handleEmailChange.bind(this);
 	    }
 	
 	    _createClass(ExperimentsHandler, [{
@@ -5877,7 +5879,7 @@ webpackJsonp([0],[
 	                            _react2['default'].createElement(
 	                                'input',
 	                                { type: 'email', name: 'email', placeholder: 'Your Email Please', className: 'email-form',
-	                                    onChange: this.handleEmailChange, required: true },
+	                                    value: this.state.email, onChange: this.handleEmailChange, required: true },
 	                                _react2['default'].createElement(
 	                                    'button',
 	                                    { className: 'button button1', type: 'submit' },

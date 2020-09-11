@@ -15,6 +15,7 @@ export default class ExperimentsHandler extends React.Component {
         this.handleChange = this.handleChange.bind(this);
         this.handleSearch = this.handleSearch.bind(this);
         this.setSearchQuery = this.setSearchQuery.bind(this);
+        this.handleEmailChange = this.handleEmailChange.bind(this);
     }
 
     componentWillMount() {
@@ -42,7 +43,8 @@ export default class ExperimentsHandler extends React.Component {
 
     submitEmail = (event) => {
         event.preventDefault();
-        const URL = 'https://o91o15qwvf.execute-api.eu-central-1.amazonaws.com/Prod/newsletter?' + this.state.email;
+        const URL = 'https://o91o15qwvf.execute-api.eu-central-1.amazonaws.com/Prod/newsletter?email=' + this.state.email;
+        console.log(URL)
         httpRequest
             .get(URL)
             .exec()
@@ -88,7 +90,7 @@ export default class ExperimentsHandler extends React.Component {
                         </span>
                     <form method="GET" onSubmit={this.submitEmail}>
                         <input type="email" name="email" placeholder="Your Email Please" className="email-form"
-                               onChange={this.handleEmailChange} required>
+                               value={this.state.email}  onChange={this.handleEmailChange} required>
                             <button className="button button1" type="submit">Subscribe
                             </button>
                         </input>
