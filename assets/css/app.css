@@ -1299,6 +1299,7 @@ blockquote span {
   .newsletter input {
     margin: 4px;
     height: 30px;
+    width: 62%;
   }
 }
 
