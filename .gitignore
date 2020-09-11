@@ -1,7 +1,6 @@
 .DS_Store
 /node_modules/
 npm-debug.log
-/gulp-plugins
 /test
 /tmp/
 /.publish/
@@ -9,7 +8,5 @@ npm-debug.log
 /.idea
 /.publish
 publish.sh
-src
 marked
 test
-gulp-plugins
