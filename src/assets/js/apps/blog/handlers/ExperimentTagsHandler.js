@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router';
 import Spinner from '../components/Spinner.js';
 import './../utils/Array.js';
+import {Link} from "react-router-dom";
 
-export default class ExperimentTagsHandler extends Component {
+class ExperimentTagsHandler extends Component {
 
   constructor(props) {
     super(props);
@@ -46,3 +46,4 @@ export default class ExperimentTagsHandler extends Component {
     return jsx;
   }
 }
+export default ExperimentTagsHandler;

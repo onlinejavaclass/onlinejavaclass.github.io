@@ -1,5 +1,3 @@
-/*global FB:true*/
-
 import React from 'react';
 import marked from '@onlinejavaclass/marked';
 import moment from 'moment';
@@ -10,6 +8,7 @@ import {
     isBrowser,
     isMobile
 } from "react-device-detect";
+import ClipboardJS from "clipboard/dist/clipboard";
 
 export default class Item extends React.Component {
 

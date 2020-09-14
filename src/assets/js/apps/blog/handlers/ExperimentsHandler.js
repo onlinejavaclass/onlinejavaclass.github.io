@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {RouteHandler, Link} from 'react-router';
-import {debounce} from './../utils/Timer.js';
+import {debounce} from '../utils/Timer';
 import Popup from "../components/Popup.js";
 import Newsletter from "../components/Newsletter.js";
 import cookie from 'react-cookies'
 import Datenschutz from "../components/Datenschutz.js";
+import {Link} from "react-router-dom";
 
-export default class ExperimentsHandler extends Component {
+class ExperimentsHandler extends Component {
 
     constructor(props) {
         super(props);
@@ -85,8 +85,6 @@ export default class ExperimentsHandler extends Component {
                     </li>
                 </ul>
 
-                <RouteHandler setSearchQuery={this.setSearchQuery}/>
-
             </section>
             <Newsletter/>
             <Popup
@@ -101,3 +99,4 @@ export default class ExperimentsHandler extends Component {
         </div>;
     }
 }
+export default ExperimentsHandler;

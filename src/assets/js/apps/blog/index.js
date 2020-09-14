@@ -18,7 +18,7 @@ const routing = (
         <div>
             <ul>
                 <li>
-                    <NavLink exact activeClassName="active" to="/">
+                    <NavLink activeClassName="active" to="/">
                         Home
                     </NavLink>
                 </li>
@@ -36,7 +36,6 @@ const routing = (
         </div>
     </Router>
 );
-console.log(document.getElementById('app'));
 ReactDOM.render(routing, document.getElementById('app'));
 FastClick.attach(document.body);
 registerServiceWorker();
