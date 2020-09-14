@@ -1,41 +1,44 @@
 {
-  "name": "mehrdad-a.karami",
-  "version": "0.0.1",
+  "name": "onlinejavaclass",
+  "version": "0.0.2",
+  "author": "mehrdad karami",
   "description": "http://onlinejavaclass.com",
   "scripts": {
     "deploy": "gulp"
   },
   "dependencies": {
     "@onlinejavaclass/marked": "0.0.4",
+    "@reduxjs/toolkit": "^1.4.0",
     "body-parser": "latest",
     "cheerio": "latest",
-    "d3": "latest",
-    "express": "latest",
+    "d3": "^6.1.1",
     "fastclick": "latest",
-    "flummox": "~3.1.0",
     "gulp-clean": "^0.4.0",
     "jquery": "latest",
     "lru-cache": "^2.5.0",
     "lunr": "^0.5.7",
     "masonry-layout": "^3.2.2",
-    "moment": "^2.9.0",
-    "react": "~0.13.1",
+    "moment": "^2.27.0",
+    "react": "^16.13.1",
     "react-cookies": "^0.1.1",
     "react-device-detect": "^1.13.1",
     "react-document-title": "~1.0.2",
-    "react-router": "~0.13.1",
-    "superagent": "latest"
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.3",
+    "superagent": "^6.1.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/metao1/onlinejavaclass.com.git"
+    "url": "https://github.com/onlinejavaclass/onlinejavaclass.github.io"
   },
   "devDependencies": {
     "babel": "^5.1.10",
     "babel-core": "^5.1.10",
     "babel-eslint": "^2.0.2",
     "babel-loader": "^5.0.0",
-    "eslint": ">=4.18.2",
+    "eslint": "^7.8.1",
     "gulp": "latest",
     "gulp-babel": "^5.1.0",
     "gulp-eslint": "^0.7.0",
@@ -61,7 +64,7 @@
     "should-promised": "^0.1.0",
     "through2": "^0.6.5",
     "uglifyify": "latest",
-    "uglifyjs-webpack-plugin": "^2.0.1",
+    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^1.7.2"
   },
   "engines": {

@@ -12,7 +12,7 @@ const gulp = require('gulp'),
     sitemap = require('./gulp-plugins/gulp-sitemap.js'),
     clean = require('gulp-clean');
 
-const dest = './',
+const dest = './dest',
     fontName = 'appfont';
 
 gulp.task('clean', function () {
@@ -103,6 +103,11 @@ gulp.task('img', function () {
         .pipe(gulp.dest(dest + '/assets/img'));
 });
 
+gulp.task('cname', function () {
+    return gulp.src(['./src/CNAME'])
+        .pipe(gulp.dest(dest));
+});
+
 gulp.task('deploypages', function () {
     return gulp.src('./dest/**/*')
         .pipe(deploypages());
@@ -119,5 +124,5 @@ gulp.task('watch', function () {
 
 gulp.task('serve', serve('dest'));
 
-gulp.task('default', gulp.series('styles', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'webpack'));
-gulp.task('dev', gulp.series('styles', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'webpack', 'watch', 'webpack-watch', 'serve'));
+gulp.task('default', gulp.series('styles', 'cname', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'webpack'));
+gulp.task('dev', gulp.series('styles', 'cname', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'webpack', 'watch', 'webpack-watch', 'serve'));

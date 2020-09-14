@@ -1,5 +1,4 @@
 import React from 'react';
-import Router from 'react-router';
 import {Route, RouteHandler} from 'react-router';
 import should from 'should';
 

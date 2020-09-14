@@ -1,7 +1,7 @@
-import * as React from "react";
-import About from "../components/About";
+import About from "../components/About.js";
+import React, {Component} from "react";
 
-export default class AboutHandler extends React.Component {
+class AboutHandler extends Component {
 
     render() {
         return <div className="content">
@@ -11,3 +11,4 @@ export default class AboutHandler extends React.Component {
         </div>;
     }
 }
+export default AboutHandler;

@@ -1,4 +1,3 @@
-import {Store} from 'flummox';
 import lru from 'lru-cache';
 import lunr from 'lunr';
 

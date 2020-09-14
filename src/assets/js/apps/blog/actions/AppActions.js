@@ -1,7 +1,6 @@
-import { Actions} from 'flummox';
 import httpRequest from './../utils/HttpRequest.js';
 
-export default class AppActions extends Actions {
+export default class AppActions {
 
   async getSiteMap() {
       return await httpRequest
