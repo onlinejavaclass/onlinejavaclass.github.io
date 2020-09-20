@@ -4,7 +4,11 @@
         margin: 0 auto;
     }
     .date-wrap {
-        @include clearfix;
+        &::after {
+            display: block;
+            clear: both;
+            content: "";
+        }
         .date {
             float: right;
         }

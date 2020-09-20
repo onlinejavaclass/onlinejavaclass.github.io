@@ -1,7 +1,7 @@
 'use strict';
-var gutil = require('gulp-util');
-var through = require('through2');
-var lunr = require('lunr');
+const gutil = require('gulp-util');
+const through = require('through2');
+const lunr = require('lunr');
 
 module.exports = function (opts) {
 
@@ -30,12 +30,12 @@ module.exports = function (opts) {
             for (const resourcePath in sitemap) {
                 const resource = sitemap[resourcePath];
 
-                index.add({
+               /* index.add({
                     id: resourcePath,
                     title: resource.title,
                     tags: resource.tags.join(' '),
 //                    body: text
-                })
+                })*/
             }
             file.path = file.base + '/' + (opts.filename || 'searchindex.json');
             console.log(file.path);

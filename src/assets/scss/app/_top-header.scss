@@ -1,5 +1,5 @@
 .top-header {
-  background: url("/assets/img/matrix.svg");
+  //background: url("src/assets/img/matrix.svg");
   display: block;
   font-size: 50px;
   font-weight: 600;
@@ -13,7 +13,11 @@
     display: block;
 
     .top-header-wrap-2 {
-      @include clearfix;
+      &::after {
+        display: block;
+        clear: both;
+        content: "";
+      }
       display: block;
       position: relative;
       background-color: rgba(0, 233, 148, 0.45);

@@ -12,7 +12,7 @@ export default class Newsletter extends React.Component {
         this.handleEmailChange = this.handleEmailChange.bind(this);
     }
 
-    submitEmail = async (event) => {
+    async submitEmail(event) {
         event.preventDefault();
         const URL = 'https://o91o15qwvf.execute-api.eu-central-1.amazonaws.com/Prod/newsletter?email=' + this.state.email;
         this.setState({email: ''});

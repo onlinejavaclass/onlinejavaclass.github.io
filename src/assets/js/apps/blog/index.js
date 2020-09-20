@@ -11,7 +11,7 @@ import {
 import React from 'react';
 import ReactDOM from 'react-dom';
 import AppHandler from "./handlers/AppHandler.js";
-import AboutHandler from "./handlers/AboutHandler";
+import AboutHandler from "./handlers/AboutHandler.js";
 
 const routing = (
     <Router>

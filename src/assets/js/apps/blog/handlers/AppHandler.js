@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import FooterHandler from "./FooterHandler.js";
 import Route, {Link} from 'react-router-dom';
-import AboutHandler from "./AboutHandler";
+import AboutHandler from "./AboutHandler.js";
 import TermsHandler from "./TermsHandler.js";
 import PrivacyHandler from "./PrivacyHandler.js";
 import ExperimentsHandler from "./ExperimentsHandler.js";
