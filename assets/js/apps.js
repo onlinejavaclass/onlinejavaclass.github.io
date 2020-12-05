@@ -5429,7 +5429,7 @@ webpackJsonp([0],[
 	              _react2['default'].createElement(
 	                'a',
 	                { className: 'face', href: '/' },
-	                _react2['default'].createElement('img', { className: 'avatar', src: 'assets/img/avatar.png' })
+	                _react2['default'].createElement('img', { className: 'avatar', src: 'assets/img/avatar.jpg' })
 	              )
 	            )
 	          )
