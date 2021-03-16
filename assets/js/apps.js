@@ -28275,7 +28275,7 @@ webpackJsonp([0],[
 	                    _react2['default'].createElement(
 	                        'div',
 	                        { className: 'col-md-9' },
-	                        _react2['default'].createElement('img', { alt: 'me', src: '/assets/img/me.png', className: 'avatar' }),
+	                        _react2['default'].createElement('img', { alt: 'me', src: '/assets/img/me.jpg', className: 'avatar' }),
 	                        _react2['default'].createElement(
 	                            'div',
 	                            { className: 'about' },
@@ -28285,13 +28285,13 @@ webpackJsonp([0],[
 	                                _react2['default'].createElement(
 	                                    'b',
 	                                    null,
-	                                    'Hi, I’m Mehrdad, and I run the onlinejavaclass blog.'
+	                                    'Hi, I’m Mehrdad, and I run this website.'
 	                                )
 	                            ),
 	                            _react2['default'].createElement(
 	                                'p',
 	                                null,
-	                                'I’m a software developer, consultant, architect, coach … whatever the role, I’m focused on getting software ready for production.'
+	                                'I’m a software developer, Java expertise and Cloud architect.'
 	                            )
 	                        )
 	                    ),
@@ -28304,7 +28304,7 @@ webpackJsonp([0],[
 	                            _react2['default'].createElement(
 	                                'strong',
 	                                null,
-	                                'The goal of this blog is to persist the things I learned so that you (and future me) don’t have to learn them the hard way (again)'
+	                                'The goal of this blog is to persist the things I learned so that you don’t have to learn them the hard way (again). I share very deep understanding of Java articles that I wish to help growing a better community.'
 	                            )
 	                        )
 	                    ),
@@ -28314,7 +28314,7 @@ webpackJsonp([0],[
 	                        _react2['default'].createElement(
 	                            'p',
 	                            null,
-	                            'With this blog, I produce:'
+	                            'With this website, I produce:'
 	                        ),
 	                        _react2['default'].createElement(
 	                            'ul',
@@ -28322,12 +28322,12 @@ webpackJsonp([0],[
 	                            _react2['default'].createElement(
 	                                'li',
 	                                null,
-	                                'deep-dive tutorials about Spring Boot'
+	                                'hands-on tutorials about Java'
 	                            ),
 	                            _react2['default'].createElement(
 	                                'li',
 	                                null,
-	                                'hands-on tutorials about Java'
+	                                'deep-dive tutorials about Spring Boot'
 	                            ),
 	                            _react2['default'].createElement(
 	                                'li',
@@ -28358,7 +28358,7 @@ webpackJsonp([0],[
 	                                _react2['default'].createElement(
 	                                    'a',
 	                                    { target: '_blank', title: 'Follow me on LinkedIn',
-	                                        href: 'https://www.linkedin.com/in/allahkarami',
+	                                        href: 'https://www.linkedin.com/in/mkarami',
 	                                        className: 'follow-linkedin' },
 	                                    _react2['default'].createElement('i', { className: 'fap fap-linkedin' })
 	                                )

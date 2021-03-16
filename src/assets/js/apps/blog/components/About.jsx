@@ -42,25 +42,24 @@ export default class About extends React.Component {
         } else {
             return <div className="column">
                 <div className="col-md-9">
-                    <img alt="me" src="/assets/img/me.png" className="avatar"/>
+                    <img alt="me" src="/assets/img/me.jpg" className="avatar"/>
                     <div className="about">
-                        <p><b>Hi, I’m Mehrdad, and I run the onlinejavaclass blog.</b></p>
+                        <p><b>Hi, I’m Mehrdad, and I run this website.</b></p>
 
-                        <p>I’m a software developer, consultant, architect, coach … whatever the role, I’m
-                            focused on getting software ready for production.</p>
+                        <p>I’m a software developer, Java expertise and Cloud architect.</p>
                     </div>
                 </div>
                 <blockquote className="center-box">
-                    <p><strong>The goal of this blog is to persist the things I learned so that you (and
-                        future me)
-                        don’t have to learn them the hard way (again)</strong></p>
+                    <p><strong>The goal of this blog is to persist the things I learned so that you
+                        don’t have to learn them the hard way (again). I share very deep understanding of Java
+                    articles that I wish to help growing a better community.</strong></p>
                 </blockquote>
                 <div className="below">
-                    <p>With this blog, I produce:</p>
+                    <p>With this website, I produce:</p>
 
                     <ul>
-                        <li>deep-dive tutorials about Spring Boot</li>
                         <li>hands-on tutorials about Java</li>
+                        <li>deep-dive tutorials about Spring Boot</li>
                         <li>best practices on complex algorithms and data structure implementations with Java</li>
                         <li>opinion on practices of the Software Craft</li>
                     </ul>
@@ -73,7 +72,7 @@ export default class About extends React.Component {
                     <ul className="footer-social">
 
                         <li><a target="_blank" title="Follow me on LinkedIn"
-                               href="https://www.linkedin.com/in/allahkarami"
+                               href="https://www.linkedin.com/in/mkarami"
                                className="follow-linkedin"><i className="fap fap-linkedin"/></a></li>
 
                         <li><a target="_blank" title="Follow me on GitHub"
