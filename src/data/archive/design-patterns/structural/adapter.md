@@ -93,8 +93,6 @@ public class MusicPlayer {
 This was a simple case of using adapter pattern to access. It is using one class 
 as mediator to access other classes. 
 
-Let me go further and make our adapter a little better.
-
 ~ 
 
 public class MusicAdapter implements MusicConverter {
@@ -123,7 +121,7 @@ All of this problem comes because string variable "musicType" can accept any cha
 one may have typos then he will get an nullException as returned value.
 To minimize the error I like the idea to pass an interface instead of a string type as an argument.
 
-#### how this helps?
+#### How this helps?
 
 Let me rewrite the  **MusicConverter** interface revisely.
     
