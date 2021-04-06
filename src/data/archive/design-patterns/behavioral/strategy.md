@@ -1,8 +1,10 @@
 # Behavioural design patterns
 ## Strategy pattern
 
+    A strategy to determine the best algorithm to use and avoid if-else and switches
+
 Strategy pattern defines family of algorithms which are encapsulated and are interchangeable at run time depending on a factor that requires a particular algorithm to be executed. Strategy pattern encourages open-close design principle where a class is open for extension but closed for modification.
-It is a suitable replacement for a if-else or switch-case statements or complex conditional logic within a method. It also leads to more testable code, especially when coupled with IOC.
+It is a suitable replacement for if-else or switch-case statements or complex conditional logic within a method. It also leads to more testable code, especially when coupled with IOC.
 
 #### When to use: 
 Let us assume that you are a Telecom service provider and you provide prepaid recharge facility to the customer. Depending on the recharge amount you would like to provide free SMS and free Talk time offer.
@@ -11,7 +13,7 @@ On each recharge this class has to determine different offer depending on the re
 
 ![without_strategy](data/archive/design-patterns/behavioral/assets/withoutStrategy.png)
 
-#### So This class ma look like this.
+#### So This class may look like this.
 
 ~
 public class TelecomOperator {
@@ -61,12 +63,13 @@ public class TelecomClient {
 
 #### Problem
 Without strategy pattern you would end up having multiple if-else or switch statements to determine the free SMS and free Talk time for different recharge amounts. If there is a new SMS or Talk time offer then you will have to modify the Operator class which violates open close design principle.
+It means you violated the open-close principal. You were only allowed to modify not to change the base classes.
 
 #### Solution
 
 Using Strategy pattern each of if statement can be encapsulated as an algorithm and can be selected at run time depending on the recharge amount.
 
-To apply the Strategy here we can introduce a **** interface and provide it's concrete implementation as **BasicPlan** and **SuperPlan** strategies as shown here
+To apply the Strategy here we can introduce a **interface** and provide it's concrete implementation as **BasicPlan** and **SuperPlan** strategies as shown here
 
 
 ![with_strategy](data/archive/design-patterns/behavioral/assets/withStrategy.png)
@@ -152,11 +155,15 @@ public class TelecomClient {
 }
 ~
 
+With this design we helped to expand our business easily. When required adding a new plan just requires a 
+new class to implement the baseclass. So we can actually switch between plans just by passing different plans 
+to activePlan() method. Since inside the TelecomOperator PlanStrategy interface is used, so it is adoptable with all the 
+implemented classes as well. 
+
 ```
 Output:
 You have 25  SMS and 20 Minute free talk time
 You have 50  SMS and 60 Minute free talk time
 ```
-
-If you observe the code here, that unlike the previous TelecomOperator where for a new offer the class had to be modified, the new TelecomOperator which applied the Strategy pattern need not be modified for any new offer, just we need to create a new Plan using PlanStrategy like SuperPlan and The TelecomClient will set the strategy or use this plan ( activate it) for new recharge amount. 
+ 
 
