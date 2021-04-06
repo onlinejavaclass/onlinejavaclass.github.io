@@ -34,7 +34,7 @@ export default class Newsletter extends React.Component {
             return <div className="newsletter">
                 <div className="popup">
                         <span>
-                            <small>I WON'T SPAM YOU! You will be updated with newest Java classes if you insert your email here and press subscribe!</small>
+                            <small>You will be updated with newest Java classes if you insert your email here and press subscribe!</small>
                         </span>
                     <form method="GET" onSubmit={this.submitEmail}>
                         <div hidden={!this.state.subscribed}>Thank you!</div>
