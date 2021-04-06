@@ -5429,7 +5429,7 @@ webpackJsonp([0],[
 	              _react2['default'].createElement(
 	                'a',
 	                { className: 'face', href: '/' },
-	                _react2['default'].createElement('img', { className: 'avatar', src: 'assets/img/avatar.jpg' })
+	                _react2['default'].createElement('img', { className: 'avatar', src: 'assets/img/avatar.jpg', loading: 'lazy' })
 	              )
 	            )
 	          )
@@ -9513,7 +9513,7 @@ webpackJsonp([0],[
 	        if (this.options.baseUrl && !originIndependentUrl.test(href)) {
 	            href = resolveUrl(this.options.baseUrl, href);
 	        }
-	        var out = '<img src="' + href + '" alt="' + text + '"' ;
+	        var out = '<img src="' + href + '" alt="' + text + '"';
 	        if (title) {
 	            out += ' title="' + title + '"';
 	        }
@@ -28275,7 +28275,7 @@ webpackJsonp([0],[
 	                    _react2['default'].createElement(
 	                        'div',
 	                        { className: 'col-md-9' },
-	                        _react2['default'].createElement('img', { alt: 'me', src: '/assets/img/me.jpg', className: 'avatar' }),
+	                        _react2['default'].createElement('img', { alt: 'me', src: '/assets/img/me.jpg', className: 'avatar', loading: 'lazy' }),
 	                        _react2['default'].createElement(
 	                            'div',
 	                            { className: 'about' },
