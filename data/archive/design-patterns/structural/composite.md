@@ -490,7 +490,6 @@ Execution result
 ![output](data/archive/design-patterns/structural/assets/OutputDemo.png)  
 
 That was all about the composite design pattern! As always thanks for reading this article.
-You can find the whole code of this article at [this address](https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/composite).
 
 To check another deign patterns's example on GitHub check [GitHub project](https://github.com/metao1/design-patterns)
 
