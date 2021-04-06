@@ -7,7 +7,7 @@ in a depth order fashion.
     DFS is helpful to traverse nodes of a graph only once and you want to go deep in a child from parent node as much as it is possible.
 ```
 
-### Usecase:
+### Usecases:
 
 Before jumping into discussion what DFS is, let's understand the usecase of DFS.
 
