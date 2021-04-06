@@ -42,7 +42,7 @@ export default class About extends React.Component {
         } else {
             return <div className="column">
                 <div className="col-md-9">
-                    <img alt="me" src="/assets/img/me.jpg" className="avatar"/>
+                    <img alt="me" src="/assets/img/me.jpg" className="avatar" loading="lazy"/>
                     <div className="about">
                         <p><b>Hi, I’m Mehrdad, and I run this website.</b></p>
 

@@ -9513,7 +9513,7 @@ webpackJsonp([0],[
 	        if (this.options.baseUrl && !originIndependentUrl.test(href)) {
 	            href = resolveUrl(this.options.baseUrl, href);
 	        }
-	        var out = '<img src="' + href + '" alt="' + text + '"';
+	        var out = '<img src="' + href + '" alt="' + text + '"' ;
 	        if (title) {
 	            out += ' title="' + title + '"';
 	        }
