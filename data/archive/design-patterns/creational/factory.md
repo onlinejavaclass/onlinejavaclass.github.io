@@ -3,11 +3,17 @@
 
 Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
 
+![factory_diagram](data/archive/design-patterns/creational/assets/factory-diagram.png)
+
+
+Here demo class uses HTMLDialog which is a subclass of Dialog class. As the result the instantiation deferred to the subclasses.
+So Imagine hierarchies of subclasses one can only see the end and don't care to the interfaces. We just deal with an
+abstract class that it uses the other interfaces internally but again it is not the matter of point and is transparent. 
+
 ```
 It provides a way to delegate the instantiation logic to child classes.
 ```
 
-Usage examples: Imagine a character generator for a role playing game. The easiest option is to let computer create the character for you. But if you want to select the character details like profession, gender, hair color etc. the character generation becomes a step-by-step process that completes when all the selections are ready.
 
 Wikipedia says
 
