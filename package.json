@@ -3,8 +3,7 @@
   "version": "1.0.0",
   "description": "http://onlinejavaclass.com",
   "scripts": {
-    "deploy": "gulp",
-    "install": "npm install"
+    "deploy": "gulp"
   },
   "dependencies": {
     "@onlinejavaclass/marked": "0.0.4",
@@ -66,7 +65,7 @@
     "webpack": "^1.7.2"
   },
   "engines": {
-    "node" : ">=8.0.0 <11.0.0"
+    "node": ">=8.0.0 <11.0.0"
   },
   "browser": {}
 }
