@@ -3,11 +3,13 @@
 
 Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
 
+![factory_diagram](data/archive/design-patterns/creational/assets/factory-diagram.png)
+
+
 ```
 It provides a way to delegate the instantiation logic to child classes.
 ```
 
-Usage examples: Imagine a character generator for a role playing game. The easiest option is to let computer create the character for you. But if you want to select the character details like profession, gender, hair color etc. the character generation becomes a step-by-step process that completes when all the selections are ready.
 
 Wikipedia says
 
