@@ -2,6 +2,12 @@
 
 # http://onlinejavaclass.com page
 
-gulp
+```
+npm install
 
-gulp deploypages
+npm deploy
+
+```
+
+
+
