@@ -33,7 +33,6 @@ module.exports = function (opts) {
                     id: resourcePath,
                     title: resource.title,
                     tags: resource.tags.join(' '),
-//                    body: text
                 })
             }
             file.path = file.base + '/' + (opts.filename || 'searchindex.json');
