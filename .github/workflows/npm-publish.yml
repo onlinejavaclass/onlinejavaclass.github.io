@@ -26,11 +26,8 @@ jobs:
 
       - name: Commit files
         run: |
-          cd deployment
-          git init
-          git remote add origin git@github.com:onlinejavaclass/onlinejavaclass.github.io.git
           git config --local user.name  ${{ github.actor }}
-          cp -r * ..
+          cp -r deployment/* .
           git add -A
           git commit -m "deployment done"
 
