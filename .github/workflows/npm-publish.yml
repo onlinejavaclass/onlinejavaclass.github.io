@@ -30,7 +30,6 @@ jobs:
            /node_modules/
            /src/
            /.eslintrc
-           /.gitignore
            /gulpfile.js
            /package.json
            /package-lock.json
