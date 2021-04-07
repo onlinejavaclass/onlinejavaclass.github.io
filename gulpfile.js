@@ -103,6 +103,11 @@ gulp.task('img', function () {
         .pipe(gulp.dest(dest + '/assets/img'));
 });
 
+gulp.task('CNAME', function () {
+    return gulp.src(['./CNAME'])
+        .pipe(gulp.dest(dest))
+})
+
 gulp.task('watch', function () {
     gulp.watch('./src/assets/scss/**', gulp.series('styles'));
     gulp.watch('./src/assets/icons/**', gulp.series('iconfont'));
@@ -114,5 +119,5 @@ gulp.task('watch', function () {
 
 gulp.task('serve', serve(dest));
 
-gulp.task('default', gulp.series('styles', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'webpack'));
+gulp.task('default', gulp.series('styles', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'webpack', 'CNAME'));
 gulp.task('dev', gulp.series('styles', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'webpack', 'watch', 'webpack-watch', 'serve'));

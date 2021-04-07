@@ -30,7 +30,6 @@ jobs:
         run: |
           cd deployment
           git init
-          git checkout master
           git config --local user.name  ${{ github.actor }}
           git add -A
           git commit -m "deployment done"
