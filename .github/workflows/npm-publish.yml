@@ -32,8 +32,7 @@ jobs:
           git config --local user.name  ${{ github.actor }}
           git add -A
           git commit -m "deployment done"
-      - name: Push changes
-        uses: ad-m/github-push-action@master
+          git push -u origin master
         with:
-          github_token: ${{ secrets.REPO_GITHUB_TOKEN }}
-          force: true
+            github_token: ${{ secrets.REPO_GITHUB_TOKEN }}
+            force: true
