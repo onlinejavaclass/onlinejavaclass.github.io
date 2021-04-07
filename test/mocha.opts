@@ -1,3 +1,0 @@
---require should
---require should-promised
---require test/babelhook
