@@ -1,4 +1,4 @@
-cat <<EOF
+cat <<EOF >> gi
 /.github/
 /.idea/
 /deployment/

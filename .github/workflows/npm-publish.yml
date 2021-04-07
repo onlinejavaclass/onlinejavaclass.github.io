@@ -6,15 +6,12 @@ on:
     # On which branch
     branches: ["dev"]
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # Job name
   build:
     # Runner name
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       # Sets up node
       - uses: actions/setup-node@v1
@@ -30,7 +27,7 @@ jobs:
           cp -r deployment/* .
           git add -A
           git commit -m "deployment done"
-          cat <<EOF
+          cat <<EOF > .gitignore
           /.github/
           /.idea/
           /deployment/
@@ -42,6 +39,7 @@ jobs:
           /gulpfile.js
           /package.json
           /package-lock.json
+          /README.md
           /webpack.config.js
           EOF
       - name: Push changes
