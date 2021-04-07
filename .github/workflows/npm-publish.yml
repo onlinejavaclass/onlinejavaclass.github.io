@@ -31,7 +31,7 @@ jobs:
           git remote add origin git@github.com:onlinejavaclass/onlinejavaclass.github.io.git
           git config --local user.name  ${{ github.actor }}
           git add -A
-          cp -r deployment/* .
+          cp -r * ..
           git commit -m "deployment done"
 
       - name: Push changes
