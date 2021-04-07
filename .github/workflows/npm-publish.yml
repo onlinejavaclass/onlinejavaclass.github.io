@@ -22,7 +22,14 @@ jobs:
         run: |
           git config --local user.name  ${{ github.actor }}
           cp -r deployment/* .
-
+          rm -rf src
+          rm -rf gulp-plugins
+          rm -rf .github
+          rm -rf webpack.config.js
+          rm -rf package.js
+          rm -rf package-lock.js
+          rm -rf gulpfile.js
+          rm -rf .eslitrc
           git add . && git commit -m "deployment done"
       - name: Push changes
         uses: ad-m/github-push-action@master
