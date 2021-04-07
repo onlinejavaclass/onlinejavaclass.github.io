@@ -16,7 +16,7 @@ export default class PinterestHandler extends React.Component {
           </li>
         </ul>
 
-        <Pinterest username="allahkarami0627"/>
+        <Pinterest username="Karami0627"/>
 
       </section>
     </div>;

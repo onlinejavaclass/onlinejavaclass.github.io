@@ -57,7 +57,7 @@ export default class AppHandler extends React.Component {
                    </a>
                   </li>
                   <li className="item">
-                   <a href="https://www.linkedin.com/in/allahkarami" target="_blank">
+                   <a href="https://www.linkedin.com/in/Karami" target="_blank">
                     <i className="fap fap-linkedin"/>
                     <div className="text">LinkedIn</div>
                    </a>

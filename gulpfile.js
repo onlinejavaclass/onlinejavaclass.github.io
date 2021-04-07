@@ -5,7 +5,6 @@ const gulp = require('gulp'),
     gulpsass = require('gulp-sass'),
     iconfont = require('gulp-iconfont'),
     bourbon = require('node-bourbon').includePaths,
-    deploypages = require('gulp-gh-pages'),
     webpack = require('gulp-webpack'),
     serve = require('gulp-serve'),
     lunrindex = require('./gulp-plugins/gulp-lunrindex.js'),
@@ -104,7 +103,7 @@ gulp.task('img', function () {
 });
 
 gulp.task('CNAME', function () {
-    return gulp.src(['./CNAME'])
+    return gulp.src(['./src/CNAME'])
         .pipe(gulp.dest(dest))
 })
 

@@ -40,7 +40,6 @@
     "gulp": "latest",
     "gulp-babel": "^5.1.0",
     "gulp-eslint": "^0.7.0",
-    "gulp-gh-pages": "latest",
     "gulp-handlebars": "^4.0.0",
     "gulp-iconfont": "latest",
     "gulp-jshint": "latest",
