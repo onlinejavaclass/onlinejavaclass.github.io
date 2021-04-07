@@ -37,7 +37,7 @@ jobs:
            EOF
           git add . && git commit -m "deployment done"
       - name: Push changes
-        uses: ad-m/github-push-action@test
+        uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.REPO_GITHUB_TOKEN }}
           force: true
