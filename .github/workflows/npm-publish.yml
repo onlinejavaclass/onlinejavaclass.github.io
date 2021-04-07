@@ -33,6 +33,3 @@ jobs:
           git add -A
           git commit -m "deployment done"
           git push -u origin master
-        with:
-            github_token: ${{ secrets.REPO_GITHUB_TOKEN }}
-            force: true
