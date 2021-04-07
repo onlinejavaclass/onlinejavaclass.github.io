@@ -1,13 +1,8 @@
 .DS_Store
 /node_modules/
 npm-debug.log
-/test
-/tmp/
-/.publish/
-/marked
-/.idea
-/.publish
+/.idea/
 publish.sh
-marked
-deployment
-test
+/test/
+/marked/
+/deployment/
