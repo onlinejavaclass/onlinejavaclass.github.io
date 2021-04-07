@@ -1,9 +1,6 @@
 name: deployment
-
-# Controls when the action will run.
 on:
   push:
-    # On which branch
     branches: ["dev"]
 
 jobs:
@@ -39,7 +36,6 @@ jobs:
           /gulpfile.js
           /package.json
           /package-lock.json
-          /README.md
           /webpack.config.js
           EOF
       - name: Push changes
