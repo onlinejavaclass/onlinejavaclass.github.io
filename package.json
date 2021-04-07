@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "http://onlinejavaclass.com",
   "scripts": {
-    "deploy": "gulp"
+    "deploy": "gulp",
+    "show": "gulp serve"
   },
   "dependencies": {
     "@onlinejavaclass/marked": "0.0.4",

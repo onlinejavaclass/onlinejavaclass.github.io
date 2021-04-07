@@ -92,7 +92,7 @@ public class Chess {
         Vertex root = new Vertex("1:F");
         List<Vertex> vertices = new ArrayList<>();
         
-        Graph g = new Graph(vertices, );
+        Graph g = new Graph(vertices);
     }
     
     static void dfs(Graph g, Vertex root) {

@@ -1,10 +1,10 @@
-name: Run gulp tasks
+name: deployment
 
 # Controls when the action will run.
 on:
   push:
     # On which branch
-    branches: ["master"]
+    branches: ["dev"]
     # On which files
     #paths: ["scripts/scripts.js", "styles/styles.scss"]
 
@@ -28,9 +28,12 @@ jobs:
 
       - name: Commit files
         run: |
+          cd deployment
+          git init
+          git checkout master
           git config --local user.name  ${{ github.actor }}
           git add -A
-          git commit -m "Update gulp output files"
+          git commit -m "deployment done"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:

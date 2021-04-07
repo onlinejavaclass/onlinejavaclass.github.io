@@ -5,7 +5,9 @@
 ```
 npm install
 
-npm deploy
+npm run deploy
+
+npm run show
 
 ```
 
