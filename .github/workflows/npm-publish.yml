@@ -5,8 +5,6 @@ on:
   push:
     # On which branch
     branches: ["dev"]
-    # On which files
-    #paths: ["scripts/scripts.js", "styles/styles.scss"]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -30,6 +28,7 @@ jobs:
         run: |
           cd deployment
           git init
+          git remote add origin git@github.com:onlinejavaclass/onlinejavaclass.github.io.git
           git config --local user.name  ${{ github.actor }}
           git add -A
           git commit -m "deployment done"
