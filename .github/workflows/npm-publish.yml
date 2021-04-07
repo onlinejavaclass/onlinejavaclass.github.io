@@ -22,22 +22,22 @@ jobs:
         run: |
           git config --local user.name  ${{ github.actor }}
           cp -r deployment/* .
+          cat <<EOF > .gitignore
+           /.github/
+           /.idea/
+           /deployment/
+           /gulp-plugins/
+           /node_modules/
+           /src/
+           /.eslintrc
+           /.gitignore
+           /gulpfile.js
+           /package.json
+           /package-lock.json
+           /webpack.config.js
+           EOF
           git add -A
           git commit -m "deployment done"
-          cat <<EOF > .gitignore
-          /.github/
-          /.idea/
-          /deployment/
-          /gulp-plugins/
-          /node_modules/
-          /src/
-          /.eslintrc
-          /.gitignore
-          /gulpfile.js
-          /package.json
-          /package-lock.json
-          /webpack.config.js
-          EOF
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
