@@ -26,8 +26,8 @@ jobs:
           rm -rf gulp-plugins
           rm -rf .github
           rm -rf webpack.config.js
-          rm -rf package.js
-          rm -rf package-lock.js
+          rm -rf package.json
+          rm -rf package-lock.json
           rm -rf gulpfile.js
           rm -rf .eslitrc
           git add . && git commit -m "deployment done"
