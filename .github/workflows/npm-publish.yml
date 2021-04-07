@@ -22,7 +22,6 @@ jobs:
         run: |
           git config --local user.name  ${{ github.actor }}
           cp -r deployment/* .
-          git rm -r --cached .
           cat <<EOF > .gitignore
            /.github/
            /.idea/
@@ -37,8 +36,7 @@ jobs:
            /package-lock.json
            /webpack.config.js
            EOF
-          git add -A
-          git commit -m "deployment done"
+          git add . && git commit -m "deployment done"
       - name: Push changes
         uses: ad-m/github-push-action@master
         with:
