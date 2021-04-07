@@ -46,7 +46,13 @@ export default class About extends React.Component {
                     <div className="about">
                         <p><b>Hi, I’m Mehrdad, and I run this website.</b></p>
 
-                        <p>I’m a software developer, Java expertise and Cloud architect.</p>
+                        <p>I’m a software developer. I worked a lot with Java. since 2006 from version 1.5 to 16 today
+                            I use Java daily.(I know that seems crazy)
+                            I still love Java. To be able to know Java I practiced a lot.
+                            I have a lot of experience in Java projects (done around 200) combining with Cloud technologies.
+                            So the reason why I ran this website is to help people learn it too.
+                            I don't want to teach magics in Java. Let's learn Java in the proper way so you also would feel love with it.
+                        </p>
                     </div>
                 </div>
                 <blockquote className="center-box">
