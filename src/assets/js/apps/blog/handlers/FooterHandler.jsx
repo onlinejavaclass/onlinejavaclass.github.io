@@ -16,6 +16,8 @@ export default class FooterHandler extends React.Component {
 
             <div className="footer-center">
 
+                <div id="paypal-button-container">If you liked the website I am so happy. I work day and night to run this website. If you can support it I can keep this website and deliver more articles for you. </div>
+                <br/>
                 <div>
                     <Link to="about" activeClassName="active">
                         <i className="fap fap-avatar"/>
