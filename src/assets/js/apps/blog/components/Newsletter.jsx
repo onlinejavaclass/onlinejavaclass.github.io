@@ -38,7 +38,7 @@ export default class Newsletter extends React.Component {
                         </span>
                     <form method="GET" onSubmit={this.submitEmail}>
                         <div hidden={!this.state.subscribed}>Thank you!</div>
-                        <input type="email" name="email" placeholder="Your Email Please"
+                        <input type="email" name="email" placeholder="Your Email"
                                value={this.state.email} onChange={this.handleEmailChange}
                                hidden={this.state.subscribed} required>
                             <button className="button button1" type="submit" disabled={this.state.subscribed}>Subscribe
