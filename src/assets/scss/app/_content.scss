@@ -139,9 +139,10 @@ td:first-child {
 .navigation-spans {
   font-weight: bold;
   max-width: 290px;
+  font-size: 14px;
   @media screen and (max-width: 638px) {
     max-width: 90px;
-    font-size: 9px;
+    font-size: 11px;
   }
 }
 
