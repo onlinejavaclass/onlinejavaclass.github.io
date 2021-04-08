@@ -21,22 +21,39 @@
     <meta property="og:image:type" content="image/jpeg"/>
     <meta property="og:image:width" content="400"/>
     <meta property="og:image:height" content="300"/>
-    <link href="assets/css/app.css" type="text/css" rel="stylesheet" media="screen,projection"/>
     <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
     <link rel="dns-prefetch" href="//use.fontawesome.com">
     <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
-    <!--Tooltip utility-->
-    <link rel="stylesheet" href="https://unpkg.com/balloon-css/balloon.min.css">
+    <noscript>
+        <link href="assets/css/app.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <!--Tooltip utility-->
+        <link rel="stylesheet" href="https://unpkg.com/balloon-css/balloon.min.css">
+    </noscript>
+    <script>
+        (function() {
+            // load main.css
+            const cssMain = document.createElement('link');
+            cssMain.href = 'assets/css/app.css';
+            cssMain.rel = 'stylesheet';
+            cssMain.type = 'text/css';
+            document.getElementsByTagName('head')[0].appendChild(cssMain);
+            const cssFa = document.createElement('link');
+            cssFa.href = 'https://unpkg.com/balloon-css/balloon.min.css';
+            cssFa.rel = 'stylesheet';
+            cssFa.type = 'text/css';
+            document.getElementsByTagName('head')[0].appendChild(cssFa);
+        })();
+    </script>
     <!--  Scripts-->
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.js"></script>
+    <script async src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script async src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.js"></script>
     <script type="text/javascript" src="assets/js/lib.js"></script>
     <script type="text/javascript" src="assets/js/apps.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script data-ad-client="ca-pub-6809756741710034" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!--clipboard utility-->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script async  src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-174204408-1"></script>
     <script>
@@ -72,7 +89,7 @@
 </head>
 <body>
 <!--[if lt IE 9]>
-<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
 <noscript>

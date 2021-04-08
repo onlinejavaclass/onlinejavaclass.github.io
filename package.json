@@ -1,7 +1,7 @@
 {
   "name": "mehrdad-karami",
   "version": "1.0.0",
-  "description": "http://onlinejavaclass.com",
+  "description": "https://onlinejavaclass.com",
   "scripts": {
     "deploy": "gulp",
     "show": "gulp serve"
