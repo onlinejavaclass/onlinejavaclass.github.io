@@ -10,7 +10,7 @@ export default class FooterHandler extends React.Component {
 
                 <h3>Online<span>Java</span>Class</h3>
 
-                <p className="footer-company-name">&copy;Copyright 2015-2020 All rights reserved.<br/> This blog is
+                <p className="footer-company-name">&copy;Copyright 2015-2021 All rights reserved.<br/> This blog is
                     fully run by myself and the powerful React framework</p>
             </div>
 
