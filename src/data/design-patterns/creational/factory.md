@@ -3,7 +3,7 @@
 
 Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.
 
-![factory_diagram](data/archive/design-patterns/creational/assets/factory-diagram.png)
+![factory_diagram](data/design-patterns/creational/assets/factory-diagram.png)
 
 
 Here demo class uses HTMLDialog which is a subclass of Dialog class. As the result the instantiation deferred to the subclasses.
@@ -170,7 +170,7 @@ public class Demo {
 
 #### Output would be like this:
         
-![factory](data/archive/design-patterns/creational/assets/factory.png)
+![factory](data/design-patterns/creational/assets/factory.png)
 
 #### Real world examples
 ```

@@ -8,7 +8,7 @@ Lazy loading is a design pattern commonly used to defer initialization of an obj
     It can contribute to efficiency in the program's operation if properly and appropriately used.
 
 
-![lazy_loading](data/archive/design-patterns/idiom/assets/lazy-loading.png)
+![lazy_loading](data/design-patterns/idiom/assets/lazy-loading.png)
 
 ### Use the Lazy Loading idiom when
 

@@ -28,7 +28,7 @@ State pattern can be recognized by methods that change their behavior depending 
 
 #### Example
 
-![state_uml](data/archive/design-patterns/behavioral/assets/tcpstate.gif)
+![state_uml](data/design-patterns/behavioral/assets/tcpstate.gif)
 
 Abstract representations for changes in state are to be created. For example, consider a class **TCPConnection** that represents different states of a network connection. 
 The effect of a request such as Open depends on the current state of the connection.

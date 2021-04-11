@@ -29,7 +29,7 @@ The entity class that implements the **Container** interface will be responsible
 **IteratorPatternDemo** , our demo class uses the entity class **NamesRepository** to print the Names stored in the **NamesRepository** as a collection .
 
 
-![iterator_class_diagram](data/archive/design-patterns/behavioral/assets/iterator_pattern_uml_diagram.jpg)
+![iterator_class_diagram](data/design-patterns/behavioral/assets/iterator_pattern_uml_diagram.jpg)
 
 ~
 public interface Iterator {

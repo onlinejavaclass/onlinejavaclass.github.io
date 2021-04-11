@@ -73,7 +73,7 @@ dfs(G, v):
 
 Imagine we have tree (sort of a simple graph), then you can see the below action when you run the algo against this tree:  
 
-![dfs](data/archive/structures/assets/dfs.gif)
+![dfs](data/structures/assets/dfs.gif)
       
 ## Implementation of Chess algo     
 

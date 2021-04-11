@@ -7,7 +7,7 @@ Asynchronous method invocation is pattern where the calling thread is not blocke
 The pattern provides parallel processing of multiple independent tasks and retrieving the results via callbacks or waiting until everything is done.
 ```
 
-![with_strategy](data/archive/design-patterns/concurrency/assets/async-method-invocation.png)
+![with_strategy](data/design-patterns/concurrency/assets/async-method-invocation.png)
 
 #### Use async method invocation pattern when
 

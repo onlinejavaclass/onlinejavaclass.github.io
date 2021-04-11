@@ -36,7 +36,7 @@ We will create two classes **ChatRoom** and **User**. **User** objects use the *
 **MediatorPatternDemo** , our demo class uses **User** objects to show the communication between them.
 
 
-![mediator](data/archive/design-patterns/behavioral/assets/mediator_pattern_uml_diagram.jpg)
+![mediator](data/design-patterns/behavioral/assets/mediator_pattern_uml_diagram.jpg)
 
 
 ~

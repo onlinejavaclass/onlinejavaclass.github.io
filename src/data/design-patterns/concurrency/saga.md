@@ -12,7 +12,7 @@ A saga is a sequence of local transactions in a certain context. If one transact
 * Orchestration-Based Saga In this approach, there is a Saga orchestrator that manages all the transactions and directs the participant services to execute local transactions based on events. This orchestrator can also be though of as a Saga Manager.
 
 
-![saga](data/archive/design-patterns/concurrency/assets/saga.png)
+![saga](data/design-patterns/concurrency/assets/saga.png)
 
 ```
 The major difference with choreography saga is an ability to handle crashed services

@@ -15,8 +15,9 @@ export default class FooterHandler extends React.Component {
             </div>
 
             <div className="footer-center">
-
-                <div id="paypal-button-container">If you liked the website I am so happy. I work day and night to run this website. If you can support it I can keep this website and deliver more articles for you. </div>
+                <div id="paypal-button-container">If you liked the website I am so happy. I work hard to make it better.
+                    If you can support me I can keep this website up and deliver more articles for you.
+                </div>
                 <br/>
                 <div>
                     <Link to="about" activeClassName="active">
@@ -47,7 +48,7 @@ export default class FooterHandler extends React.Component {
 
                 <p className="footer-company-about">
                     <span>About Online Java Class</span>
-                    Online Java Class has different classes in Java for beginners and professionals.
+                    Online Java Class has many classes in Java for beginners and professionals.
                 </p>
 
                 <div className="footer-icons">

@@ -11,7 +11,7 @@ Let us assume that you are a Telecom service provider and you provide prepaid re
 The Telecom service system can have a **TelecomOperator** class. 
 On each recharge this class has to determine different offer depending on the recharge amount.
 
-![without_strategy](data/archive/design-patterns/behavioral/assets/withoutStrategy.png)
+![without_strategy](data/design-patterns/behavioral/assets/withoutStrategy.png)
 
 #### So This class may look like this.
 
@@ -72,7 +72,7 @@ Using Strategy pattern each of if statement can be encapsulated as an algorithm 
 To apply the Strategy here we can introduce a **interface** and provide it's concrete implementation as **BasicPlan** and **SuperPlan** strategies as shown here
 
 
-![with_strategy](data/archive/design-patterns/behavioral/assets/withStrategy.png)
+![with_strategy](data/design-patterns/behavioral/assets/withStrategy.png)
 
 
 ~

@@ -41,7 +41,7 @@ export default class Privacy extends React.Component {
         if (this.state.STORE_MISS) {
             return <div/>;
         } else {
-            let txt = marked(this.state.text);
+            let txt = this.state.text;
             return <div className="markdown" dangerouslySetInnerHTML={{__html: txt}}/>;
         }
     }

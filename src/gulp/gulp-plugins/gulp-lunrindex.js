@@ -1,6 +1,6 @@
 'use strict';
-var through = require('through2');
-var lunr = require('lunr');
+const through = require('through2');
+const lunr = require('lunr');
 
 module.exports = function (opts) {
 
@@ -36,8 +36,7 @@ module.exports = function (opts) {
                 })
             }
             file.path = file.base + '/' + (opts.filename || 'searchindex.json');
-            console.log(file.path);
-            file.contents = new Buffer(JSON.stringify(index.toJSON()));
+            file.contents = Buffer.from(JSON.stringify(index.toJSON()));
             return cb(null, file);
         }
     });

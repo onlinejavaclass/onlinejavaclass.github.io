@@ -1,15 +1,9 @@
 /*global FB:true*/
 
 import React from 'react';
-import marked from '@onlinejavaclass/marked';
 import moment from 'moment';
 import Spinner from './../components/Spinner.jsx';
-import {
-    BrowserView,
-    MobileView,
-    isBrowser,
-    isMobile
-} from "react-device-detect";
+import {isMobile} from "react-device-detect";
 
 export default class Item extends React.Component {
 
@@ -78,7 +72,7 @@ export default class Item extends React.Component {
         if (this.state.STORE_MISS) {
             jsx = <Spinner/>;
         } else {
-            let txt = marked(this.state.text);
+            let txt = this.state.text;
             let date = moment(this.state.date).fromNow();
             jsx = <div className="post markdown center-box">
                 <div className="operational-btn">

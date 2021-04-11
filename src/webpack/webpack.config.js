@@ -17,7 +17,7 @@ module.exports = {
 	new webpack.optimize.CommonsChunkPlugin("lib", 'lib.js')
   ],
   resolve: {
-    extensions: ["", ".jsx", ".js", ".json"],
+    extensions: ["", ".jsx", ".js", ".json", ".html"],
     //https://github.com/desandro/masonry/issues/679
     modulesDirectories: ['node_modules'],
     alias:{

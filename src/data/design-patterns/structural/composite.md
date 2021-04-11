@@ -487,7 +487,7 @@ public class Demo {
 
 Execution result
  
-![output](data/archive/design-patterns/structural/assets/OutputDemo.png)  
+![output](data/design-patterns/structural/assets/OutputDemo.png)  
 
 That was all about the composite design pattern! As always thanks for reading this article.
 

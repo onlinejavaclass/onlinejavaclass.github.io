@@ -7,8 +7,9 @@ const gulp = require('gulp'),
     bourbon = require('node-bourbon').includePaths,
     webpack = require('gulp-webpack'),
     serve = require('gulp-serve'),
-    lunrindex = require('./gulp-plugins/gulp-lunrindex.js'),
-    sitemap = require('./gulp-plugins/gulp-sitemap.js'),
+    converter = require('./src/gulp/gulp-plugins/gulp-converter.js'),
+    lunrindex = require('./src/gulp/gulp-plugins/gulp-lunrindex.js'),
+    sitemap = require('./src/gulp/gulp-plugins/gulp-sitemap.js'),
     clean = require('gulp-clean');
 
 const dest = './deployment',
@@ -20,14 +21,14 @@ gulp.task('clean', function () {
 });
 
 gulp.task("webpack", function () {
-    var config = require('./webpack.config.js');
+    const config = require('./src/webpack/webpack.config.js');
     return gulp.src('src/assets/js/apps/apps.js')
         .pipe(webpack(config))
         .pipe(gulp.dest(dest + '/assets/js/'));
 });
 
 gulp.task("webpack-watch", function () {
-    var config = require('./webpack.config.js');
+    const config = require('./webpack/webpack.config.js');
     config.watch = true;
     return gulp.src('src/assets/js/apps/apps.js')
         .pipe(webpack(config))
@@ -41,32 +42,16 @@ gulp.task('lint', function () {
         .pipe(eslint.failOnError());
 });
 
-gulp.task('code', function () {
-    return gulp.src([
-        './src/data/archive/**'
-    ])
-        .pipe(gulpCode({
-            outputStyle: 'expanded',
-            includePaths: [
-                './src/assets/scss'
-            ].concat(bourbon),
-            errLogToConsole: true
-        }))
-        .pipe(gulp.dest(dest + '/data/archive'));
-});
-
 gulp.task('styles', function () {
     return gulp.src([
         './src/assets/scss/app.scss'
-    ])
-        .pipe(gulpsass({
-            outputStyle: 'expanded',
-            includePaths: [
-                './src/assets/scss'
-            ].concat(bourbon),
-            errLogToConsole: true
-        }))
-        .pipe(gulp.dest(dest + '/assets/css'));
+    ]).pipe(gulpsass({
+        outputStyle: 'expanded',
+        includePaths: [
+            './src/assets/scss'
+        ].concat(bourbon),
+        errLogToConsole: true
+    })).pipe(gulp.dest(dest + '/assets/css'));
 });
 
 gulp.task('iconfont', function () {
@@ -75,13 +60,11 @@ gulp.task('iconfont', function () {
             fontName: fontName,
             appendCodepoints: true,
             descent: 80
-        }))
-        .pipe(gulp.dest(dest + '/assets/fonts'))
-
+        })).pipe(gulp.dest(dest + '/assets/fonts'))
 });
 
 gulp.task('resources', function () {
-    return gulp.src(['./src/**', '!./src/assets/**'])
+    return gulp.src(['./src/**', '!./src/data/**/*.md', '!./src/assets/**', '!./src/gulp/**', '!./src/webpack/**'])
         .pipe(gulp.dest(dest));
 });
 
@@ -116,7 +99,17 @@ gulp.task('watch', function () {
     gulp.watch('./src/assets/img/**', gulp.series('img'));
 });
 
+gulp.task('convert2html', function () {
+    return gulp.src([
+        './src/data/**'
+    ]).pipe(converter({
+        outExtension: '.html',
+        dest: dest,
+        errLogToConsole: true
+    })).pipe(gulp.dest(dest + '/data'))
+});
+
 gulp.task('serve', serve(dest));
 
-gulp.task('default', gulp.series('styles', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'webpack', 'CNAME'));
-gulp.task('dev', gulp.series('styles', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'webpack', 'watch', 'webpack-watch', 'serve'));
+gulp.task('default', gulp.series('styles', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'convert2html', 'webpack', 'CNAME'));
+gulp.task('dev', gulp.series('styles', 'resources', 'img', 'lunrindex', 'sitemap', 'iconfont', 'convert2html', 'webpack', 'serve', 'watch', 'webpack-watch', 'serve'));

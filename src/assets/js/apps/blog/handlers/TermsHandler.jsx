@@ -6,7 +6,7 @@ export default class TermsHandler extends React.Component {
     render() {
         return <div className="content">
             <section>
-                <Terms link="/data/footer/terms.md"/>
+                <Terms link="/data/footer/terms.html"/>
             </section>
         </div>;
     }

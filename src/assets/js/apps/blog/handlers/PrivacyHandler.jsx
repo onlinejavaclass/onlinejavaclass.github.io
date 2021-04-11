@@ -6,7 +6,7 @@ export default class PrivacyHandler extends React.Component {
     render() {
         return <div className="content">
             <section>
-                <Privacy link="/data/footer/privacy.md"/>
+                <Privacy link="/data/footer/privacy.html"/>
             </section>
         </div>;
     }

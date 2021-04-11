@@ -1,8 +1,5 @@
 'use strict';
-var gutil = require('gulp-util');
-var through = require('through2');
-var lunr = require('lunr');
-var fs = require('fs');
+const through = require('through2');
 
 // <?xml version="1.0" encoding="UTF-8"?>
 // <urlset
@@ -25,7 +22,7 @@ var fs = require('fs');
 
 module.exports = function(opts) {
 
-    var stream = through.obj(function(file, enc, cb) {
+    return through.obj(function(file, enc, cb) {
         if (file.isNull()) {
             return cb(null, file);
         }
@@ -35,27 +32,27 @@ module.exports = function(opts) {
         }
 
         if (file.isBuffer()) {
-            var sitemap = JSON.parse(file.contents);
-            var urls = [];
+            const sitemap = JSON.parse(file.contents);
+            const urls = [];
             for (var resourcePath in sitemap) {
                 urls.push(opts.url + resourcePath)
             }
 
-            var sm = ''
-                +'<?xml version="1.0" encoding="UTF-8"?>\r\n'
-                +'<urlset '
-                +'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
-                +'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
-                +'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 '
-                +' http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">'
-                +urls.map(function (loc) {
+            const sm = ''
+                + '<?xml version="1.0" encoding="UTF-8"?>\r\n'
+                + '<urlset '
+                + 'xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '
+                + 'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" '
+                + 'xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 '
+                + ' http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">'
+                + urls.map(function (loc) {
                     return ''
-                        +'<url>\r\n'
-                        +'<loc>'+loc+'</loc>\r\n'
-                        +'<lastmod>'+(new Date()).toISOString()+'</lastmod>\r\n'
-                        +'</url>\r\n'
+                        + '<url>\r\n'
+                        + '<loc>' + loc + '</loc>\r\n'
+                        + '<lastmod>' + (new Date()).toISOString() + '</lastmod>\r\n'
+                        + '</url>\r\n'
                 }).join('')
-                +'</urlset>';
+                + '</urlset>';
 
             file.path = file.base + "/" + (opts.filename || 'sitemap.xml');
             file.contents = Buffer.from(sm);
@@ -63,5 +60,4 @@ module.exports = function(opts) {
         }
     });
 
-    return stream;
 }

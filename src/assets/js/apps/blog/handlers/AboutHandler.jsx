@@ -6,7 +6,7 @@ export default class AboutHandler extends React.Component {
     render() {
         return <div className="content">
             <section>
-                <About link="/data/footer/about.md"/>
+                <About link="/data/footer/about.html"/>
             </section>
         </div>;
     }

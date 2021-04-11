@@ -177,7 +177,7 @@ Total: 7MB (instead of 36MB)
 
 
 ###  OutputDemo.png: Screenshot
-![output](data/archive/design-patterns/structural/assets/Flyweight_OutputDemo.png)  
+![output](data/design-patterns/structural/assets/Flyweight_OutputDemo.png)  
 
 
 That was all about the flyweight design pattern! As always thanks for reading this article.

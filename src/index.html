@@ -32,7 +32,7 @@
         <!--Tooltip utility-->
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/balloon-css/balloon.min.css">
     </noscript>
-    <script async src="https://www.paypal.com/sdk/js?client-id=AZQl9uqiD0JMwjqfLtEcIJUFCkG9j_hUAxQ7lMTes5C5_9TZ_lk5dt3_tPduExvB8wzj2TcJu5_rLxmu">
+    <script src="https://www.paypal.com/sdk/js?client-id=AZQl9uqiD0JMwjqfLtEcIJUFCkG9j_hUAxQ7lMTes5C5_9TZ_lk5dt3_tPduExvB8wzj2TcJu5_rLxmu">
     </script>
     <script>
         (function() {
@@ -47,18 +47,19 @@
             cssFa.rel = 'stylesheet';
             cssFa.type = 'text/css';
             document.getElementsByTagName('head')[0].appendChild(cssFa);
+            paypal.Buttons().render('#paypal-button-container');
         })();
     </script>
     <!--  Scripts-->
-    <script async src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
-    <script async src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/prettify.js"></script>
     <script type="text/javascript" src="assets/js/lib.js"></script>
     <script type="text/javascript" src="assets/js/apps.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script data-ad-client="ca-pub-6809756741710034" async
             src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <!--clipboard utility-->
-    <script async  src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-174204408-1"></script>
     <script>
@@ -72,9 +73,7 @@
 
         gtag('config', 'UA-174204408-1');
     </script>
-    <script>
-        paypal.Buttons().render('#paypal-button-container');
-    </script>
+
     <script>
         (function (b, o, i, l, e, r) {
             b.GoogleAnalyticsObject = l;
