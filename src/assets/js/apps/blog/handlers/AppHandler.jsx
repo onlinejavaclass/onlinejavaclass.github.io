@@ -22,7 +22,7 @@ export default class AppHandler extends React.Component {
           <div className="top-header-wrap-1">
             <div className="top-header-wrap-2">
               <div className="top-header-h1 z-depth-1">
-                  <span className="top-header-title">bash-3.2$ echo "Online Java Class" | tee $1</span>
+                  <span className="top-header-title">$ java OnlineJavaClass.java</span>
               </div>
               <a className="face" href="/">
                 <img alt="avatar" className="avatar" src="assets/img/avatar.jpg" loading="lazy"/>
