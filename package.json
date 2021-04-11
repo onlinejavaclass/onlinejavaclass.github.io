@@ -15,6 +15,7 @@
     "fastclick": "latest",
     "flummox": "~3.1.0",
     "gulp-clean": "^0.4.0",
+    "gulp-clean-css": "^4.3.0",
     "jquery": "latest",
     "lru-cache": "^2.5.0",
     "lunr": "^0.5.7",

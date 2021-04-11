@@ -1,4 +1,17 @@
 {
+  "/java8-features": {
+    "type": "archive",
+    "date": "2021-04-11T22:03:26.733Z",
+    "title": "Useful Java 8 features that will change the way You code",
+    "tags": [
+      "software",
+      "java8",
+      "java"
+    ],
+    "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dfs",
+    "next": "/dfs",
+    "src": "/data/java-features/java8.html"
+  },
   "/dfs": {
     "type": "archive",
     "date": "2020-09-07T12:16:26.733Z",
@@ -11,6 +24,7 @@
     ],
     "repo": "https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dfs",
     "next": "/solid-principles",
+    "pre": "/java8-features",
     "src": "/data/structures/dfs.html"
   },
   "/solid-principles": {

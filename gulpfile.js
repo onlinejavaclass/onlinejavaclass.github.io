@@ -10,6 +10,7 @@ const gulp = require('gulp'),
     converter = require('./src/gulp/gulp-plugins/gulp-converter.js'),
     lunrindex = require('./src/gulp/gulp-plugins/gulp-lunrindex.js'),
     sitemap = require('./src/gulp/gulp-plugins/gulp-sitemap.js'),
+    cleanCSS = require('gulp-clean-css'),
     clean = require('gulp-clean');
 
 const dest = './deployment',
@@ -51,7 +52,8 @@ gulp.task('styles', function () {
             './src/assets/scss'
         ].concat(bourbon),
         errLogToConsole: true
-    })).pipe(gulp.dest(dest + '/assets/css'));
+    })).pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(gulp.dest(dest + '/assets/css'));
 });
 
 gulp.task('iconfont', function () {
