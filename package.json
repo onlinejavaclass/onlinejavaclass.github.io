@@ -7,7 +7,7 @@
     "show": "gulp serve"
   },
   "dependencies": {
-    "@onlinejavaclass/marked": "0.0.4",
+    "@onlinejavaclass/marked": "0.0.6",
     "body-parser": "latest",
     "cheerio": "latest",
     "d3": "latest",
