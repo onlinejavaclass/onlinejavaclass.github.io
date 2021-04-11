@@ -96,9 +96,15 @@ export default class Item extends React.Component {
                        href={this.state.repo}
                        target="_blank"> <span className="fap fap-github"/>View Source on Github &nbsp;</a>
                 </div>
-                <div className="markdown" dangerouslySetInnerHTML={{__html:  txt}}/>
+                <div className="markdown" dangerouslySetInnerHTML={{__html: txt}}/>
             </div>;
         }
+        window.setTimeout(function () {
+            const elements = document.querySelectorAll('.language-java');
+            elements.forEach(function (element) {
+                element.innerHTML = PR.prettyPrintOne(element.innerHTML, 'java', false);
+            });
+        }, 3000);
         return jsx;
     }
 

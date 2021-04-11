@@ -150,7 +150,7 @@ public class Demo {
         System.out.println("---------------------");
         System.out.println("Memory usage:");
         System.out.println("Tree size (8 bytes) * " + TREES_TO_DRAW);
-        System.out.println("+ TreeTypes size (~30 bytes) * " + TREE_TYPES + "");
+        System.out.println("+ TreeTypes size (30 bytes) * " + TREE_TYPES + "");
         System.out.println("---------------------");
         System.out.println("Total: " + ((TREES_TO_DRAW * 8 + TREE_TYPES * 30) / 1024 / 1024) +
                 "MB (instead of " + ((TREES_TO_DRAW * 38) / 1024 / 1024) + "MB)");
@@ -160,6 +160,7 @@ public class Demo {
         return min + (int) (Math.random() * ((max - min) + 1));
     }
 }
+
 ~
 
 

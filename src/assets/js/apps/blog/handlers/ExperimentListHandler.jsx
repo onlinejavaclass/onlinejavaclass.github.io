@@ -53,17 +53,13 @@ export default class ExperimentListHandler extends React.Component {
                 <div>{this.props.query}</div>
                 {posts.map((p, i) => {
                     let key = 'post' + i;
-                    return <Item key={key} link={p.link} pre={p.pre} next={p.next} linkClicked={this.linkClicked}/>;
+                    return <Item key={key} link={p.link} pre={p.pre} next={p.next}/>;
                 })}
                 <InfiniteTracker key="inf0" loadMore={this.loadMore}>
                 </InfiniteTracker>
 
             </div>;
         }
-    }
-
-    linkClicked(){
-
     }
 }
 

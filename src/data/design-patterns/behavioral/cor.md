@@ -18,7 +18,7 @@ elements in the chain to take responsibility.
 Imagine that you’re working on an online ordering system. You want to restrict access to the system so only authenticated users can create orders. 
 Also, users who have administrative permissions must have full access to all orders.
 
-After a bit of planning, you realized that these checks must be performed sequentiall
+After a bit of planning, you realized that these checks must be performed sequentially
 y. The application can attempt to authenticate a user to the system whenever it receives a request that contains the user’s credentials. 
 However, if those credentials aren’t correct and authentication fails, there’s no reason to proceed with any other checks.
 
