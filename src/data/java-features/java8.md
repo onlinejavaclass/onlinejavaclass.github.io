@@ -28,7 +28,7 @@ of JDK but also a new programming paradigm!
 
 Java 8 introduced functional paradigm in Java world, with Lambda language. 
 Actually you still write Java but you can tell Java to take benefit of 
-functional programming languages inside Java codes! 
+functional programming languages inside Java codes too! 
 
 So I just wanted to have a bit of emphasise, the mindset changes here.
 Developers with solid and classic Java developing mindset have less willing to learn this new style
@@ -44,4 +44,8 @@ to your work, still getting the same result if you'd do it all classic way.
 Specially when we deal with data and arrays and need to play with data to make 
 some meaningful info, Java 8 helps us to get rid of complexity of huge classic 
 code architecture and as a result lees error prune codes.
+
+
+### Java features:
+
 
