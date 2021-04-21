@@ -105,10 +105,12 @@ export default class Item extends React.Component {
             lazyLoadingImages = document.querySelectorAll(".lazy");
             codeElements = document.querySelectorAll('.language-java');
             const imageObserver = new IntersectionObserver(function (entries, observer) {
+                let count = 0;
                 entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
                         const image = entry.target;
                         image.src = image.dataset.src;
+                        image.key = count++;
                         image.classList.remove("lazy");
                         imageObserver.unobserve(image);
                     }
@@ -116,9 +118,11 @@ export default class Item extends React.Component {
             });
 
             const codeObserver = new IntersectionObserver(function (entries, observer) {
+                let count = 0;
                 entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
                         const element = entry.target;
+                        element.key = count++;
                         element.innerHTML = PR.prettyPrintOne(element.innerHTML, 'java', false);
                         codeObserver.unobserve(element);
                     }

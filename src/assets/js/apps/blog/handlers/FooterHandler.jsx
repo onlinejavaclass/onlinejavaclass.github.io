@@ -15,10 +15,6 @@ export default class FooterHandler extends React.Component {
             </div>
 
             <div className="footer-center">
-                <div id="paypal-button-container">If you liked the website I am so happy. I work hard to make it better.
-                    If you can support me I can keep this website up and deliver more articles for you.
-                </div>
-                <br/>
                 <div>
                     <Link to="about" activeClassName="active">
                         <i className="fap fap-avatar"/>
@@ -41,7 +37,13 @@ export default class FooterHandler extends React.Component {
                     <i className="fap fap-mail"/>
                     <p><a href="mailto:support@company.com">contact@onlinejavaclass.com</a></p>
                 </div>
-
+                <div id="paypal-button-container">
+                    <p>
+                        If you liked the website I am so happy. I work hard to make it better.
+                        You can support me so I can keep this website up and deliver more articles to you.
+                    </p>
+                </div>
+                <br/>
             </div>
 
             <div className="footer-right">
@@ -52,8 +54,8 @@ export default class FooterHandler extends React.Component {
                 </p>
 
                 <div className="footer-icons">
-                    <a href="#"><i className="fap fap-linkedin"/></a>
-                    <a href="#"><i className="fap fap-github"/></a>
+                    <a href="https://www.linkedin.com/in/mkarami"><i className="fap fap-linkedin"/></a>
+                    <a href="https://github.com/metao1"><i className="fap fap-github"/></a>
                 </div>
 
             </div>

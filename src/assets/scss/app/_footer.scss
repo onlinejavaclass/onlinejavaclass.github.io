@@ -18,7 +18,7 @@ footer {
   width: 100%;
   text-align: left;
   font: bold 16px sans-serif;
-  padding: 34px 50px;
+  padding: 20px 20px;
   margin-top: 60px;
 }
 
@@ -27,10 +27,7 @@ footer {
 .footer-right {
   display: inline-block;
   vertical-align: top;
-}
-
-.footer-left {
-  width: 40%;
+  width: 30%;
 }
 
 .footer-distributed h3 {
@@ -62,10 +59,15 @@ footer {
   font-size: 14px;
   font-weight: normal;
   margin: 0;
+
+  a {
+    display: block;
+    color: #fff;
+  }
 }
 
 .footer-center {
-  width: 35%;
+  width: 40%;
 }
 
 .footer-center a {
@@ -124,7 +126,7 @@ footer {
   color: #92999f;
   font-size: 13px;
   font-weight: normal;
-  margin: 0;
+  margin: 1em;
 }
 
 .footer-company-about span {
@@ -136,7 +138,7 @@ footer {
 }
 
 .footer-icons {
-  margin-top: 25px;
+  margin: 1em;
 }
 
 .footer-icons a {
