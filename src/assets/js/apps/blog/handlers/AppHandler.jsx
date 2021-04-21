@@ -6,10 +6,11 @@ import FooterHandler from "./FooterHandler";
 export default class AppHandler extends React.Component {
 
   static async routerWillRunOnClient(state, flux) {
+      console.log(state)
       gtag('event', 'page_view', {
-          page_title: state.page_title,
-          page_location: '/' + state.path,
-          page_path: '/' + state.path,
+          page_title: state.path,
+          page_location: state.path,
+          page_path: state.path,
           send_to: 'UA-174204408-1'
       })
       let sitemap = flux.getStore('appStore').getSiteMap();
