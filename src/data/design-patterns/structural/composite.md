@@ -372,7 +372,7 @@ public class CompoundShape extends BaseShape {
             disableSelectionStyle(graphics);
         }
 
-        for (refactoring_guru.composite.example.shapes.Shape child : children) {
+        for (Shape child : children) {
             child.paint(graphics);
         }
     }
