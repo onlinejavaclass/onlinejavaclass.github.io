@@ -32,10 +32,10 @@
         <!--Tooltip utility-->
         <link rel="stylesheet" type="text/css" href="https://unpkg.com/balloon-css/balloon.min.css">
     </noscript>
-    <script src="https://www.paypal.com/sdk/js?client-id=AZQl9uqiD0JMwjqfLtEcIJUFCkG9j_hUAxQ7lMTes5C5_9TZ_lk5dt3_tPduExvB8wzj2TcJu5_rLxmu">
+    <script src="https://www.paypal.com/sdk/js?client-id=AQp8JNzxNnGR00RhvRMpU0it23hU_s8fGNAa73Fj7TphuXD9X80Sl-9yiXqGgCbWqLQhiR53wx83cFTk">
     </script>
     <script>
-        (function() {
+        setTimeout(function () {
             // load main.css
             const cssMain = document.createElement('link');
             cssMain.href = 'assets/css/app.css';
@@ -47,8 +47,23 @@
             cssFa.rel = 'stylesheet';
             cssFa.type = 'text/css';
             document.getElementsByTagName('head')[0].appendChild(cssFa);
-            paypal.Buttons().render('#paypal-button-container');
-        })();
+            paypal.Buttons({
+                createOrder: function (data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: '1'
+                            }
+                        }]
+                    });
+                },
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                        alert('Thank you! Transaction completed by ' + details.payer.name.given_name);
+                    });
+                }
+            }).render('#paypal-button-container');
+        }, 3);
     </script>
     <!--  Scripts-->
     <script async src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script>
