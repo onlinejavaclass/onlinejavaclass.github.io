@@ -8,7 +8,7 @@ export default class AppHandler extends React.Component {
   static async routerWillRunOnClient(state, flux) {
       gtag('event', 'page_view', {
           page_title: state.page_title,
-          page_location: '<Page Location>',
+          page_location: '/' + state.path,
           page_path: '/' + state.path,
           send_to: 'UA-174204408-1'
       })
