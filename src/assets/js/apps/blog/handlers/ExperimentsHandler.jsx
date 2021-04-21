@@ -1,5 +1,5 @@
 import React from 'react';
-import {RouteHandler, Link} from 'react-router';
+import {Link, RouteHandler} from 'react-router';
 import {debounce} from './../utils/Timer.js';
 import Popup from "../components/Popup";
 import Newsletter from "../components/Newsletter";
@@ -11,8 +11,8 @@ export default class ExperimentsHandler extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            showDataSchutzen: cookie.load('showDataSchutzen'),
-            showPopup: cookie.load('showPopup'),
+            showDataSchutzen: !!cookie.load('showDataSchutzen'),
+            showPopup: !!cookie.load('showPopup'),
             query: '',
         };
 
@@ -25,7 +25,7 @@ export default class ExperimentsHandler extends React.Component {
 
     componentWillMount() {
         let that = this;
-        this.handleSearchDebounced = debounce(function () {
+        this.handleSearchDebounced = debounce(() => {
             this.handleSearch.apply(that, [this.state.query]);
         }, 500);
     }
@@ -50,14 +50,14 @@ export default class ExperimentsHandler extends React.Component {
         this.setState({
             showPopup: true
         });
-        cookie.save('showPopup', true);
+        cookie.save('showPopup', true, {"maxAge": 1872000}); //30 days
     }
 
     closeDataschutzen() {
         this.setState({
             showDataSchutzen: true
         });
-        cookie.save('showDataSchutzen', true);
+        cookie.save('showDataSchutzen', true, {"maxAge": 1872000}); //30 days
     }
 
     render() {
