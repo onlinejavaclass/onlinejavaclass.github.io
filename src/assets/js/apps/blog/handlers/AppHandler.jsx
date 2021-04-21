@@ -6,7 +6,6 @@ import FooterHandler from "./FooterHandler";
 export default class AppHandler extends React.Component {
 
   static async routerWillRunOnClient(state, flux) {
-      console.log(state)
       gtag('event', 'page_view', {
           page_title: state.path,
           page_location: state.path,
