@@ -99,15 +99,11 @@ export default class Item extends React.Component {
                 <div className="markdown" dangerouslySetInnerHTML={{__html: txt}}/>
             </div>;
         }
-        let lazyloadImages;
-        window.setTimeout(function () {
-            const elements = document.querySelectorAll('.language-java');
-            elements.forEach(function (element) {
-                element.innerHTML = PR.prettyPrintOne(element.innerHTML, 'java', false);
-            });
-        }, 3000);
+        let lazyLoadingImages, codeElements;
+
         if ("IntersectionObserver" in window) {
-            lazyloadImages = document.querySelectorAll(".lazy");
+            lazyLoadingImages = document.querySelectorAll(".lazy");
+            codeElements = document.querySelectorAll('.language-java');
             const imageObserver = new IntersectionObserver(function (entries, observer) {
                 entries.forEach(function (entry) {
                     if (entry.isIntersecting) {
@@ -119,37 +115,56 @@ export default class Item extends React.Component {
                 });
             });
 
-            lazyloadImages.forEach(function (image) {
+            const codeObserver = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        const element = entry.target;
+                        element.innerHTML = PR.prettyPrintOne(element.innerHTML, 'java', false);
+                        codeObserver.unobserve(element);
+                    }
+                });
+            });
+            codeElements.forEach(function (codeElement) {
+                codeObserver.observe(codeElement);
+            });
+            lazyLoadingImages.forEach(function (image) {
                 imageObserver.observe(image);
             });
         } else {
-            let lazyloadThrottleTimeout;
-            lazyloadImages = document.querySelectorAll(".lazy");
+            let lazyLoadingThrottleTimeout;
+            lazyLoadingImages = document.querySelectorAll(".lazy");
+            codeElements = document.querySelectorAll('.language-java');
 
-            function lazyload() {
-                if (lazyloadThrottleTimeout) {
-                    clearTimeout(lazyloadThrottleTimeout);
+            function lazyLoad() {
+                if (lazyLoadingThrottleTimeout) {
+                    clearTimeout(lazyLoadingThrottleTimeout);
                 }
 
-                lazyloadThrottleTimeout = setTimeout(function () {
-                    var scrollTop = window.pageYOffset;
-                    lazyloadImages.forEach(function (img) {
+                lazyLoadingThrottleTimeout = setTimeout(function () {
+                    const scrollTop = window.pageYOffset;
+                    lazyLoadingImages.forEach(function (img) {
                         if (img.offsetTop < (window.innerHeight + scrollTop)) {
                             img.src = img.dataset.src;
                             img.classList.remove('lazy');
                         }
                     });
-                    if (lazyloadImages.length === 0) {
-                        document.removeEventListener("scroll", lazyload);
-                        window.removeEventListener("resize", lazyload);
-                        window.removeEventListener("orientationChange", lazyload);
+
+                    codeElements.forEach(function (codeElement) {
+                        if (codeElement.offsetTop < (window.innerHeight + scrollTop)) {
+                            codeElement.innerHTML = PR.prettyPrintOne(codeElement.innerHTML, 'java', false);
+                        }
+                    });
+                    if (lazyLoadingImages.length === 0 && codeElements.length === 0) {
+                        document.removeEventListener("scroll", lazyLoad);
+                        window.removeEventListener("resize", lazyLoad);
+                        window.removeEventListener("orientationChange", lazyLoad);
                     }
                 }, 20);
             }
 
-            document.addEventListener("scroll", lazyload);
-            window.addEventListener("resize", lazyload);
-            window.addEventListener("orientationChange", lazyload);
+            document.addEventListener("scroll", lazyLoad);
+            window.addEventListener("resize", lazyLoad);
+            window.addEventListener("orientationChange", lazyLoad);
 
         }
 
