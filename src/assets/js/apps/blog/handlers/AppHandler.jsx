@@ -6,13 +6,18 @@ import FooterHandler from "./FooterHandler";
 export default class AppHandler extends React.Component {
 
   static async routerWillRunOnClient(state, flux) {
-    gtag('send', 'pageview', '#'+state.path);
-    let sitemap = flux.getStore('appStore').getSiteMap();
-    if (Object.getOwnPropertyNames(sitemap).length === 0) {
-      let appActions = flux.getActions('appActions');
-      await appActions.getSiteMap();
-      await appActions.getSearchIndex();
-    }
+      gtag('event', 'page_view', {
+          page_title: state.page_title,
+          page_location: '<Page Location>',
+          page_path: '/' + state.path,
+          send_to: 'UA-174204408-1'
+      })
+      let sitemap = flux.getStore('appStore').getSiteMap();
+      if (Object.getOwnPropertyNames(sitemap).length === 0) {
+          let appActions = flux.getActions('appActions');
+          await appActions.getSiteMap();
+          await appActions.getSearchIndex();
+      }
   }
 
   render() {
