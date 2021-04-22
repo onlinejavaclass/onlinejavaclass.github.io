@@ -78,53 +78,205 @@ Imagine we have tree (sort of a simple graph), then you can see the below action
 ## Implementation of Chess algo     
 
 Now Let's see how to we can implement the chess algo in Java using DFS.
-I will implement the iterative approach.
- 
+
+There are two ways to implement the DFS:
+
+* Recursive approach
+* Iterative approach 
+  
+I will implement the recursive approach.
+
 ~
 
+~
+
+
+I will implement the iterative approach.
+
+~
 import java.util.Stack;
-import java.util.List;
-import java.util.ArrayList;
 
-public class Chess { 
+public class DFS {
 
-    public static void main(String[] args) {
-        Vertex root = new Vertex("1:F");
-        List<Vertex> vertices = new ArrayList<>();
-        
-        Graph g = new Graph(vertices);
-    }
-    
-    static void dfs(Graph g, Vertex root) {
-        Stack<Vertex> stack = new Stack<>();
-    }
-    
-    class Graph {
-        private final List<Vertex> vertices;
-        Graph(List<Vertex> vertices) {
-            this.vertices = vertices;
-        }
-        
-        List<Vertex> vertices() {
-            return this.vertices;
-        }
-    }
-    
-    class Vertex {
+    static class Vertex {
         private final String cell;
-        Vertex(String cell){
+
+        Vertex(String cell) {
             this.cell = cell;
         }
-        
-        String cellName() {
-            return this.cell;
+    }
+
+    static class Tree {
+        public final Vertex vertex;
+        public final Tree left;
+        public final Tree right;
+        public boolean visited;
+
+        private Tree(Builder builder) {
+            this.left = builder.getLeft();
+            this.right = builder.getRight();
+            this.vertex = builder.getValue();
         }
-        
+
+        public static class Builder {
+            private Tree left, right;
+            private final Vertex value;
+
+            public Builder(Vertex vertex) {
+                value = vertex;
+            }
+
+            public static Builder builder(Vertex vertex) {
+                return new Builder(vertex);
+            }
+
+            public Builder setLeft(Tree left) {
+                this.left = left;
+                return this;
+            }
+
+            public Builder setRight(Tree right) {
+                this.right = right;
+                return this;
+            }
+
+            public Tree getLeft() {
+                return left;
+            }
+
+            public Tree getRight() {
+                return right;
+            }
+
+            public Vertex getValue() {
+                return value;
+            }
+
+            Tree build() {
+                return new Tree(this);
+            }
+        }
+
+        public Vertex getVertex() {
+            return vertex;
+        }
+
+        public Tree getRight() {
+            return right;
+        }
+
+        public Tree getLeft() {
+            return left;
+        }
+    }
+
+    public DFS() {
+        Tree tree = Tree.Builder.builder(new Vertex("2"))
+                .setLeft(Tree.Builder.builder(new Vertex("3"))
+                        .setLeft(Tree.Builder.builder(new Vertex("4")).build())
+                        .setRight(Tree.Builder.builder(new Vertex("1")).build())
+                        .build()
+                )
+                .setRight(Tree.Builder.builder(new Vertex("10")).build())
+                .build();
+
+        Tree tree2 = Tree.Builder.builder(new Vertex("1"))
+                .setLeft(Tree.Builder.builder(new Vertex("2"))
+                        .setLeft(Tree.Builder.builder(new Vertex("3"))
+                                .setLeft(Tree.Builder.builder(new Vertex("4")).build())
+                                .setRight(Tree.Builder.builder(new Vertex("5")).build())
+                                .build())
+                        .build()).build();
+ 
+        Stack<Tree> vertices = new Stack<>();
+        vertices.push(tree);
+        vertices.push(tree2);
+        while (!vertices.isEmpty()) {
+            Tree topNode = vertices.pop();
+            if (!topNode.visited) {
+                System.out.println(topNode.vertex.cell);
+            }
+            topNode.visited = true;
+            Tree leftChild = topNode.left;
+            Tree rightChild = topNode.right;
+            if (rightChild != null && !rightChild.visited) {
+                vertices.push(rightChild);
+            }
+            if (leftChild != null && !leftChild.visited) {
+                vertices.push(leftChild);
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        new DFS();
     }
 }
 
+~
+
+
+Another example using Graph
 
 ~
- 
+
+public class DepthFirstSearch {
+
+    public static void main(String[] args) {
+        Vertex v1 = Vertex.build("1");
+        Vertex v2 = Vertex.build("2");
+        Vertex v3 = Vertex.build("3");
+        Vertex v4 = Vertex.build("4");
+        Vertex v5 = Vertex.build("5");
+
+        v1.setConnection(v2.setConnection(v3, v4), v5);
+        dfs(v1);
+    }
+
+    static void dfs(Vertex root) {
+        List<Vertex> visited = new ArrayList<>();
+        Stack<Vertex> stack = new Stack<>();
+        stack.push(root);
+        while (!stack.empty()) {
+            Vertex top = stack.pop();
+            if (!visited.contains(top)) {
+                visited.add(top);
+            }
+            if (top.vertices != null) {
+                for (Vertex vertex : top.vertices) {
+                    stack.push(vertex);
+                }
+            }
+        }
+        visited.forEach(vertex -> System.out.println(vertex.cell));
+    }
+
+    private static class Graph {
+        private final Vertex root;
+
+        Graph(Vertex root) {
+            this.root = root;
+        }
+    }
+
+    private static class Vertex {
+        private final String cell;
+        private Vertex[] vertices;
+
+        private Vertex(String cell) {
+            this.cell = cell;
+        }
+
+        static Vertex build(String cell) {
+            return new Vertex(cell);
+        }
+
+        public Vertex setConnection(Vertex... vertices) {
+            this.vertices = vertices;
+            return this;
+        }
+    }
+}
+~
  
 
