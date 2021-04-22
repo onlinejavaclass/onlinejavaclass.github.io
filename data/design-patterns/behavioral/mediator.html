@@ -1,0 +1,74 @@
+<h1 id="behavioural-design-patterns">Behavioural design patterns</h1>
+<h2 id="iterator-pattern">Iterator pattern</h2>
+<p>The Mediator Pattern is used to reduce the complexity of communication between multiple objects and classes. This mode provides an intermediary class that usually handles communication between different classes and supports loose coupling, making the code easy to maintain. The intermediary model is a behavioral model.</p>
+<pre><code>Use an intermediary object to encapsulate a series of object interactions. 
+The intermediary makes the objects do not need to explicitly refer to each other, thereby loosening the coupling, and can independently change the interaction between them.
+</code></pre><h4 id="the-main-solution-">The main solution:</h4>
+<p>there are a large number of associations between objects, which will inevitably lead to the structure of the system becoming very complicated. At the same time, if an object changes, we also need to track the objects associated with it, and make corresponding processing .</p>
+<h4 id="when-to-use-">When to use:</h4>
+<p>Multiple classes are coupled with each other to form a network structure.</p>
+<h4 id="how-to-solve-">How to solve:</h4>
+<p>Separate the above-mentioned network structure into a star structure.</p>
+<h4 id="advantages-">Advantages:</h4>
+<ul>
+<li>Reduce the complexity of the class and transform one-to-many into one-to-one. </li>
+<li>Decoupling between various classes.</li>
+<li>Comply with the Dimit principle.</li>
+</ul>
+<h4 id="disadvantages-">Disadvantages:</h4>
+<ul>
+<li>The intermediary will be large, complicated and difficult to maintain.</li>
+</ul>
+<h4 id="example">Example</h4>
+<p>We use chat room examples to demonstrate the intermediary model. In an example, multiple users can send messages to a chat room, and the chat room displays messages to all users. 
+We will create two classes <strong>ChatRoom</strong> and <strong>User</strong>. <strong>User</strong> objects use the <strong>ChatRoom</strong> method to share their messages.</p>
+<p><strong>MediatorPatternDemo</strong> , our demo class uses <strong>User</strong> objects to show the communication between them.</p>
+<p><img src="data/design-patterns/behavioral/assets/mediator_pattern_uml_diagram.jpg" alt="mediator"></p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-421" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-421" class="display prettyprint language-java">
+package com.metao.dp.mediator;
+public class User {
+   private String name;
+
+   public String getName() {
+      return name;
+   }
+
+   public void setName(String name) {
+      this.name = name;
+   }
+
+   public User(String name){
+      this.name  = name;
+   }
+
+   public void sendMessage(String message){
+      ChatRoom.showMessage(this,message);
+   }
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-421" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-421" class="display prettyprint language-java">
+package com.metao.dp.mediator;
+
+import java.util.Date;
+
+public class ChatRoom {
+    public static void showMessage(User user, String message) {
+        System.out.println(new Date().toString()
+                + " [" + user.getName() + "] : " + message);
+    }
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-400" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-400" class="display prettyprint language-java">
+package com.metao.dp.mediator;
+
+public class MediatorPatternDemo {
+   public static void main(String[] args) {
+      User robert = new User("Robert");
+      User john = new User("John");
+
+      robert.sendMessage("Hi! John!");
+      john.sendMessage("Hello! Robert!");
+   }
+}
+</pre><h4 id="and-output-would-be-like-this-">And output would be like this:</h4>
+<pre><code>Mon Aug 24 21:15:30 CEST 2020 [Robert] : Hi! John!
+Mon Aug 24 21:15:30 CEST 2020 [John] : Hello! Robert!
+</code></pre>

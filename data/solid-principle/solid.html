@@ -1,0 +1,256 @@
+<h2 id="solid-guide-to-solid-principles">Solid: Guide to SOLID Principles</h2>
+<h3 id="usage-in-java">Usage in Java</h3>
+<h4 id="the-following-5-concepts-make-up-our-solid-principles-">The following 5 concepts make up our SOLID principles:</h4>
+<pre><code>1. Single Responsibility
+2. Open/Closed
+3. Liskov Substitution
+4. Interface Segregation
+5. Dependency Inversion
+</code></pre><h4 id="1-introduction">1. Introduction</h4>
+<p>In this tutorial, we&#39;ll be discussing the SOLID principles of Object-Oriented Design.</p>
+<p>First, we&#39;ll start by exploring the reasons they came about and why we should consider them when designing software. 
+Then, we&#39;ll outline each principle alongside some example code to emphasize the point.</p>
+<p>I specially want to discuss this before anything else, since this is a principle for designing a good high quality software.
+You may encounter with this principle before or even wrote codes solidly! But one may wonder what are those other principles 
+to observe and have pretty good software design. Specially I want to discuss this in Java and how we do those pricipals.</p>
+<h4 id="2-the-reason-for-solid-principles">2. The Reason for SOLID Principles</h4>
+<p>The SOLID principles were first conceptualized by Robert C. Martin in his 2000 paper, Design Principles and Design Patterns. 
+These concepts were later built upon by Michael Feathers, who introduced us to the SOLID acronym and in the last 20 years, these 5 principles have revolutionized the world of object-oriented programming, changing the way that we write software.</p>
+<p>So, what is SOLID and how does it help us write better code? Simply put, Martin&#39;s and Feathers&#39; </p>
+<pre><code>design principles encourage us to create more maintainable, understandable, and flexible software. Consequently, as our applications grow in size, we can reduce their complexity and save ourselves a lot of headaches further down the road!
+</code></pre><p>The following 5 concepts make up our SOLID principles:</p>
+<ol>
+<li><strong><em>S</em></strong>ingle Responsibility</li>
+<li><strong><em>O</em></strong>pen/Closed</li>
+<li><strong><em>L</em></strong>iskov Substitution</li>
+<li><strong><em>I</em></strong>nterface Segregation</li>
+<li><strong><em>D</em></strong>ependency Inversion</li>
+</ol>
+<p>While some of these words may sound scary!, they can be easily understood with some simple code examples. 
+In the following sections, I&#39;ll take a deep dive into what each of these principles means, along with a quick Java example to illustrate each one.</p>
+<h4 id="3-single-responsibility">3. Single Responsibility</h4>
+<p>Let&#39;s kick things off with the single responsibility principle. As we might expect, this principle states that <strong><em>a class should only have one responsibility. Furthermore, it should only have one reason to change.</em></strong></p>
+<p>How does this principle help us to build better software? Let&#39;s see a few of its benefits:</p>
+<ol>
+<li><strong><em>Testing</em></strong> – A class with one responsibility will have far fewer test cases</li>
+<li><strong><em>Lower coupling</em></strong> – Less functionality in a single class will have fewer dependencies</li>
+<li><strong><em>Organization</em></strong> – Smaller, well-organized classes are easier to search than monolithic ones</li>
+</ol>
+<p>Take, for example, a class to represent a simple book:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-230" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-230" class="display prettyprint language-java">
+public class Book {
+
+    private String name;
+    private String author;
+    private String text;
+
+    //constructor, getters and setters
+}
+</pre><p>In this code, we store the name, author, and text associated with an instance of a Book.</p>
+<p>Let&#39;s now add a couple of methods to query the text:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-223" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-223" class="display prettyprint language-java">
+public class Book {
+
+    private String name;
+    private String author;
+    private String text;
+
+    //constructor, getters and setters
+
+    // methods that directly relate to the book properties
+    public String replaceWordInText(String word){
+        return text.replaceAll(word, text);
+    }
+
+    public boolean isWordInText(String word){
+        return text.contains(word);
+    }
+}
+</pre><p>Now, our Book class works well, and we can store as many books as we like in our application. But, what good is storing the information if we can&#39;t output the text to our console and read it?</p>
+<p>Let&#39;s throw caution to the wind and add a print method:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-011" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-011" class="display prettyprint language-java">
+public class Book {
+    //...
+
+    void printTextToConsole(){
+        // our code for formatting and printing the text
+    }
+}
+</pre><p>This code does, however, violate the single responsibility principle we outlined earlier. To fix our mess, we should implement a separate class that is concerned only with printing our texts:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-021" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-021" class="display prettyprint language-java">
+public class BookPrinter {
+
+    // methods for outputting text
+    void printTextToConsole(String text){
+        //our code for formatting and printing the text
+    }
+
+    void printTextToAnotherMedium(String text){
+        // code for writing to any other location..
+    }
+}
+</pre><p>Awesome. Not only have we developed a class that relieves the Book of its printing duties, but we can also leverage our BookPrinter class to send our text to other media.</p>
+<p>Whether it&#39;s email, logging, or anything else, we have a separate class dedicated to this one concern!</p>
+<h4 id="4-open-for-extension-closed-for-modification">4. Open for Extension, Closed for Modification</h4>
+<p>Now, time for the ‘O&#39; – more formally known as the open-closed principle. Simply put, classes should be open for extension,
+but closed for modification. 
+In doing so, we stop ourselves from modifying existing code and causing potential new bugs in an otherwise happy application.</p>
+<p>Of course, the one exception to the rule is when fixing bugs in existing code.</p>
+<p>Let&#39;s explore the concept further with a quick code example. As part of a new project, imagine we&#39;ve implemented a Guitar class.</p>
+<p>It&#39;s fully fledged and even has a volume knob:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-323" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-323" class="display prettyprint language-java">
+public class Guitar {
+
+    private String make;
+    private String model;
+    private int volume;
+
+    //Constructors, getters & setters
+}
+</pre><p>We launch the application, and everyone loves it. However, after a few months, we decide the Guitar is a little bit boring and could do with an awesome flame pattern to make it look a bit more ‘rock and roll&#39;.</p>
+<p>At this point, it might be tempting to just open up the Guitar class and add a flame pattern – but who knows what errors that might throw up in our application.</p>
+<p>Instead, let&#39;s stick to the open-closed principle and simply extend our Guitar class:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-041" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-041" class="display prettyprint language-java">
+public class SuperCoolGuitarWithFlames extends Guitar {
+
+    private String flameColor;
+
+    //constructor, getters + setters
+}
+</pre><p>By extending the Guitar class we can be sure that our existing application won&#39;t be affected.</p>
+<h4 id="5-liskov-substitution-lsp">5. Liskov Substitution - LSP</h4>
+<p>Next up on our list is Liskov substitution, which is arguably the most complex of the 5 principles. </p>
+<p>Simply put, <strong><em>if class A is a subtype of class B, then we should be able to replace B with A without disrupting the behavior of our program.</em></strong></p>
+<p>Let&#39;s just jump straight to the code to help wrap our heads around this concept:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-144" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-144" class="display prettyprint language-java">
+public interface Vehicle {
+
+    void turnOnEngine();
+    void accelerate();
+}
+</pre><p>Above, we define a simple Vehicle interface with a couple of methods that all cars should be able to fulfill – turning on the engine, and accelerating forward.</p>
+<p>Let&#39;s implement our interface and provide some code for the methods:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-403" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-403" class="display prettyprint language-java">
+public class Car implements Vehicle {
+
+    private Engine engine;
+
+    //Constructors, getters + setters
+
+    public void turnOnEngine() {
+        //turn on the engine!
+        engine.on();
+    }
+
+    public void accelerate() {
+        //move forward!
+        engine.powerOn(1000);
+    }
+}
+</pre><p>As our code describes, we have an engine that we can turn on, and we can increase the power. But wait, its 2020 and we are now using bikes as a vehicle too! </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-303" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-303" class="display prettyprint language-java">
+public class Bike implements Vehicle {
+
+    public void turnOnEngine() {
+        throw new AssertionError("I don't have an engine!");
+    }
+
+    public void accelerate() {
+        //this acceleration is crazy!
+    }
+}
+</pre><p>By throwing a bike without an engine into the mix, we are inherently changing the behavior of our program.
+This is a blatant <strong><em>violation of Liskov substitution and is a bit harder to fix than our previous 2 principles.</em></strong></p>
+<p>One possible solution would be to rework our model into interfaces that take into account the engine-less state of our Vehicle.</p>
+<p>I would rewire them with another example to satisfy Mr. Liskov in <a target="_blank" href="#/lsp">this article</a> separately, make sure to check it out.</p>
+<h4 id="6-interface-segregation">6. Interface Segregation</h4>
+<p>The ‘I ‘ in SOLID stands for interface segregation, and it simply means that larger interfaces should be split into smaller ones.
+It states that no client should be forced to depend on methods it does not use. 
+By doing so, we can ensure that implementing classes only need to be concerned about the methods that are of interest to them.</p>
+<p>For this example, we&#39;re going to try our hands as zookeepers. And more specifically, we&#39;ll be working in the bear enclosure.</p>
+<p>Let&#39;s start with an interface that outlines our roles as a bear keeper:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-043" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-043" class="display prettyprint language-java">
+public interface BearKeeper {
+    void washTheBear();
+    void feedTheBear();
+    void petTheBear();
+}
+</pre><p>As avid zookeepers, we&#39;re more than happy to wash and feed our beloved bears. However, we&#39;re all too aware of the dangers of petting them.
+Unfortunately, our interface is rather large, and we have no choice than to implement the code to pet the bear.</p>
+<p>Let&#39;s fix this by splitting our large interface into 3 separate ones:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-443" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-443" class="display prettyprint language-java">
+public interface BearCleaner {
+    void washTheBear();
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-403" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-403" class="display prettyprint language-java">
+public interface BearFeeder {
+    void feedTheBear();
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-021" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-021" class="display prettyprint language-java">
+public interface BearPetter {
+    void petTheBear();
+}
+</pre><p>Now, thanks to interface segregation, we&#39;re free to implement only the methods that matter to us:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-111" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-111" class="display prettyprint language-java">
+public class BearCarer implements BearCleaner, BearFeeder {
+
+    public void washTheBear() {
+        //I think we missed a spot...
+    }
+
+    public void feedTheBear() {
+        //Tuna Tuesdays...
+    }
+}
+</pre><p>And finally, we can leave the dangerous stuff to the crazy people:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-110" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-110" class="display prettyprint language-java">
+public class CrazyPerson implements BearPetter {
+
+    public void petTheBear() {
+        //Good luck with that!
+    }
+}
+</pre><h4 id="7-dependency-inversion">7. Dependency Inversion</h4>
+<p><strong><em>The principle of Dependency Inversion refers to the decoupling of software modules. 
+This way, instead of high-level modules depending on low-level modules, both will depend on abstractions.</em></strong></p>
+<p>To demonstrate this, let&#39;s go old-school and bring to life a Windows 98 computer with code:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-100" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-100" class="display prettyprint language-java">
+public class Windows98Machine {}
+</pre><p>But what good is a computer without a monitor and keyboard? Let&#39;s add one of each to our constructor so that every Windows98Computer we instantiate comes pre-packed with a Monitor and a StandardKeyboard:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-414" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-414" class="display prettyprint language-java">
+public class Windows98Machine {
+
+    private final StandardKeyboard keyboard;
+    private final Monitor monitor;
+
+    public Windows98Machine() {
+        monitor = new Monitor();
+        keyboard = new StandardKeyboard();
+    }
+
+}
+</pre><p>This code will work, and we&#39;ll be able to use the <strong><em>StandardKeyboard</em></strong> and <strong><em>Monitor</em></strong> freely within our <strong><em>Windows98Computer</em></strong> class.
+Problem solved? <strong><em>Not quite</em></strong>. By declaring the <strong><em>StandardKeyboard</em></strong> and <strong><em>Monitor</em></strong> with the new keyword, we&#39;ve tightly coupled these 3 classes together.</p>
+<p>Not only does this make our Windows98Computer hard to test, but we&#39;ve also lost the ability to switch out our <strong><em>StandardKeyboard</em></strong>
+class with a different one should the need arise. And we&#39;re stuck with our <strong><em>Monitor</em></strong> class, too.</p>
+<p>Let&#39;s decouple our machine from the <strong><em>StandardKeyboard</em></strong> by adding a more general <strong><em>Keyboard</em></strong> interface and using this in our class:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-232" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-232" class="display prettyprint language-java">
+public interface Keyboard { }
+</pre><p>And now by using <strong>Keyboard</strong> we can would allow <strong>Windows98Machine</strong> substitute any type of <strong>Keyboard</strong>  </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-312" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-312" class="display prettyprint language-java">
+public class Windows98Machine{
+
+    private final Keyboard keyboard;
+    private final Monitor monitor;
+
+    public Windows98Machine(Keyboard keyboard, Monitor monitor) {
+        this.keyboard = keyboard;
+        this.monitor = monitor;
+    }
+}
+</pre><p>Here, we&#39;re using the dependency injection pattern here to facilitate adding the Keyboard dependency into the Windows98Machine class.</p>
+<p>Let&#39;s also modify our StandardKeyboard class to implement the Keyboard interface so that it&#39;s suitable for injecting into the Windows98Machine class:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-420" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-420" class="display prettyprint language-java">
+public class StandardKeyboard implements Keyboard { }
+</pre><p>Now our classes are decoupled and communicate through the Keyboard abstraction. If we want, we can easily switch out the type of keyboard in our machine with a different implementation of the interface. We can follow the same principle for the Monitor class.</p>
+<p>Excellent! We&#39;ve decoupled the dependencies and are free to test our Windows98Machine with whichever testing framework we choose.</p>

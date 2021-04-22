@@ -1,0 +1,246 @@
+<h1 id="structural-design-patterns">Structural Design patterns</h1>
+<h2 id="bridge-pattern">Bridge pattern</h2>
+<p>Bridge design pattern is used to decouple a class into two parts – abstraction and it’s implementation – so that both can evolve in future without affecting each other.</p>
+<p><code>It increases the loose coupling between class abstraction and it’s implementation.</code>
+Usage examples: The Bridge pattern is especially useful when dealing with cross-platform apps, supporting multiple types of database servers or working with several API providers of a certain kind (for example, cloud platforms, social networks, etc.)</p>
+<p>Here is an example. We have a <strong><em>device</em></strong> interface.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-403" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-403" class="display prettyprint language-java">
+public interface Device {
+     boolean isEnabled();
+
+     void enable();
+
+     void disable();
+
+     int getVolume();
+
+     void setVolume(int percent);
+}
+</pre><p>Imagine that <strong><em>TV</em></strong> is a Device!</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-113" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-113" class="display prettyprint language-java">
+public class TV implements Device {
+    private boolean on = false;
+    private int volume = 30;
+
+    public boolean isEnabled() {
+        return on;
+    }
+
+    public void enable() {
+        on = true;
+    }
+
+    public void disable() {
+        on = false;
+    }
+
+    public int getVolume() {
+        return volume;
+    }
+
+    @Override
+    public void setVolume(int volume) {
+        if (volume > 100) {
+            this.volume = 100;
+        } else if (volume < 0) {
+            this.volume = 0;
+        } else {
+            this.volume = volume;
+        }
+    }
+}
+</pre><p>And also <strong><em>Radio</em></strong> is a device!</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-140" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-140" class="display prettyprint language-java">
+public class Radio implements Device {
+    private boolean on = false;
+    private int volume = 30;
+
+    @Override
+    public boolean isEnabled() {
+        return on;
+    }
+
+    @Override
+    public void enable() {
+        on = true;
+    }
+
+    @Override
+    public void disable() {
+        on = false;
+    }
+
+    @Override
+    public int getVolume() {
+        return volume;
+    }
+
+    @Override
+    public void setVolume(int volume) {
+        if (volume > 100) {
+            this.volume = 100;
+        } else if (volume < 0) {
+            this.volume = 0;
+        } else {
+            this.volume = volume;
+        }
+    }
+}
+</pre><p>Any device needs a controller.
+Here is a <strong><em>RemoteController</em></strong> class that uses <strong><em>Device</em></strong> to control it like below. </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-130" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-130" class="display prettyprint language-java">
+public class RemoteController {
+    protected Device device;
+
+    public RemoteController() {}
+
+    public RemoteController(Device device) {
+        this.device = device;
+    }
+
+    public void power() {
+        System.out.println("Remote: power toggle");
+        if (device.isEnabled()) {
+            device.disable();
+        } else {
+            device.enable();
+        }
+    }
+
+    public void volumeDown() {
+        System.out.println("Remote: volume down");
+        device.setVolume(device.getVolume() - 10);
+    }
+
+    public void volumeUp() {
+        System.out.println("Remote: volume up");
+        device.setVolume(device.getVolume() + 10);
+    }
+
+}
+</pre><p>Until now everything is pretty similar to Factory pattern. You can check <a href="/#/design-patterns-builder-factory" target="_blank">Factory Pattern</a> in my previous articles.</p>
+<h4 id="the-differences-start-here-">The differences start here:</h4>
+<p>Now imagine that we want to have different remotes the save way we did with device.
+I define a <strong><em>Remote</em></strong> interface like below. </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-420" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-420" class="display prettyprint language-java">
+public interface Remote {
+    void power();
+
+    void volumeDown();
+
+    void volumeUp();
+}
+</pre><p>Let&#39;s have <strong><em>TvRemoteController</em></strong> class implements it via <strong><em>Remote</em></strong> interface for controlling <strong><em>TV</em></strong> device.
+This helps us expand our Remote products easily as many types as we want!</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-211" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-211" class="display prettyprint language-java">
+public class TvRemoteController implements Remote {
+    protected Device device;
+
+    public TvRemoteController() {}
+
+    public TvRemoteController(Device device) {
+        this.device = device;
+    }
+
+    @Override
+    public void power() {
+        System.out.println("TV Remote: power toggle");
+        if (device.isEnabled()) {
+            device.disable();
+        } else {
+            device.enable();
+        }
+    }
+
+    @Override
+    public void volumeDown() {
+        System.out.println("TV Remote: volume down");
+        device.setVolume(device.getVolume() - 10);
+    }
+
+    @Override
+    public void volumeUp() {
+        System.out.println("TV Remote: volume up");
+        device.setVolume(device.getVolume() + 10);
+    }
+
+}
+</pre><p>We can now have <strong><em>RadioRemoteController</em></strong> like below for controlling <strong>Radio</strong> device.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-324" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-324" class="display prettyprint language-java">
+public class RadioRemoteController implements Remote {
+
+    protected Device device;
+
+    public RadioRemoteController() {}
+
+    public RadioRemoteController(Device device) {
+        this.device = device;
+    }
+
+    @Override
+    public void power() {
+        System.out.println("Remote: power toggle");
+        if (device.isEnabled()) {
+            device.disable();
+        } else {
+            device.enable();
+        }
+    }
+
+    @Override
+    public void volumeDown() {
+        System.out.println("Radio Remote: volume down");
+        device.setVolume(device.getVolume() - 2);
+    }
+
+    @Override
+    public void volumeUp() {
+        System.out.println("Radio Remote: volume up");
+        device.setVolume(device.getVolume() + 2);
+    }
+
+}
+</pre><p> </p>
+<p>It simply has the same functionalities as <strong><em>RemoteController</em></strong>
+but has different volume scales to control device - also maybe Radio device is mechanical rather than digital ;)</p>
+<p>Now you can see we have two vertical layers of hierarchy.
+One side is <strong><em>Remote</em></strong> interface and other side is <strong>Device*</strong> interface at the same layer.
+Other classes are below this two interfaces in the hierarchy.
+So it looks like a bridge with this two interface connecting belonging classes to each other through interfaces!</p>
+<p>We are just dealing with interfaces as bridge and don&#39;t care what is below them! 
+Accessing other entities (from Remote to Device) is through bridge (here two interfaces)</p>
+<p>Finally, we can use them like below. </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-300" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-300" class="display prettyprint language-java">
+public class Demo {
+    public static void main(String[] args) {
+        testRadioDevice(new TV());
+        testTvDevice(new Radio());
+    }
+
+    public static void testRadioDevice(Device device) {
+        Remote remote = new RadioRemoteController(device);
+        /* Power on the device */
+        remote.power();
+        /* Volume up and down the device */
+        remote.volumeUp();
+        remote.volumeUp();
+        remote.volumeDown();
+        remote.volumeDown();
+    }
+
+    public static void testTvDevice(Device device) {
+        Remote remote = new TvRemoteController(device);
+        /* Power on the device */
+        remote.power();
+        /* Volume up and down the device */
+        remote.volumeUp();
+        remote.volumeUp();
+        remote.volumeDown();
+        remote.volumeDown();
+    }            
+}
+</pre><p> </p>
+<p>That was all about the bridge design pattern! As always thanks for reading this article.
+You can find the whole code of this article at <a href="https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/bridge">this address</a>.
+You can find the whole codes and another deign pattern examples in <a href="https://github.com/metao1">link</a></p>
+<p>To support me simply give me a star in the <a href="https://github.com/metao1/design-patterns">GitHub project of this project</a></p>

@@ -1,0 +1,154 @@
+<h1 id="structural-design-patterns">Structural Design patterns</h1>
+<h2 id="adapter-pattern">Adapter pattern</h2>
+<p>Ever tried to use your camera memory card in your laptop. You cannot use it directly simply because there is no port in the laptop which accept it.You must use a compatible card reader.
+You put your memory card into the card reader and then inject the card reader into the laptop. This card reader can be called the adapter.</p>
+<p>A similar example is your mobile charger, or your laptop charger which can be used with any power supply without fear of the variance power supply in different locations. That is also called power “adapter”. </p>
+<p>In programming as well, adapter pattern used for similar purposes. It enables two incompatible interfaces to work smoothly with each other. Going by definition:</p>
+<p><code>Adapter design pattern is one of the structural design pattern and its used so that two unrelated interfaces can work together. The object, that joins these unrelated interfaces, is called an Adapter.</code></p>
+<p>Adapter pattern is helpful when some other existing components you want to adapt  by the existing code but you have not access to the source code.</p>
+<p>Take a look at the typical interaction like this:</p>
+<ul class="banner-landing-nav" markdown="1">
+    <li class="image-part-avatar" markdown="1">
+        <img src="data/design-patterns/structural/assets/adapter_sequence.png" alt="adapter_design_pattern"><br>    </li>
+</ul>
+
+
+<p>Here the <strong>Adaptee</strong> functions are not accessible for Client so client uses an <strong>Adapter</strong> to call the required functions.</p>
+<p>Let&#39;s start with one example. </p>
+<p>Consider a <strong>MusicPlayer</strong> needs to play musics with different formats. It does not have access to <strong>MusicConverter</strong>
+To give <strong>MusicPlayer</strong> access to any converter we use <strong>MusicAdapter</strong> that can negotiate in between.
+Simply put any kind of Music formats e.g <strong>MP3Format</strong> or &quot;MP4Format&quot; and adapter facilitates stream from MusicPlayer
+to Converter, and the converter returns the expected stream as output stream.
+Pretty good idea! 
+Now let&#39;s take a look at each entity separately below.</p>
+<p><strong>MP3Format</strong> as a domain class contains all the relevant methods and attributes. 
+Here <strong>convertToMP3</strong> does convert to mp3 format.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-413" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-413" class="display prettyprint language-java">
+public class MP3Format implements MusicConverter {
+    OutputStream convertToMP3(String musicType, InputStream inputStream){
+        //do convert 
+    }
+}
+</pre><p><strong>MusicConverter</strong> is an interface. It just needs to get musicType and inputStream as arguments 
+and returns the OutputStream; OutputStream can be used for <strong>MusicPlayer</strong> to play a song with!</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-134" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-134" class="display prettyprint language-java">
+public interface MusicConverter {
+
+    /* This is the method for using in adapter */
+    OutputStream convertTo(String musicType, InputStream inputStream);
+}
+</pre><p>Here <strong>MusicAdapter</strong> just should have the same methods that <strong>MP3Format</strong> class has.
+So we implement <strong>MusicConverter</strong> and <strong>convertTo</strong> is available inside the class.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-111" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-111" class="display prettyprint language-java">
+public class MusicAdapter implements MusicConverter {
+
+    @Override
+    OutputStream convertTo(String musicType, InputStream inputStream) {
+
+        /* one can use switch-case here to determine the propper call */
+        // converts to any music type based-on the musicType
+        final Mp3Format mp3Format = new MP3Format();
+        return mp3Format.convertToMP3(inputStream);     
+    }
+}
+</pre><p><strong>MusicPlayer</strong> class simply creates <strong>MusicAdapter</strong> object to call the converter method.
+You can pass <strong>OutputStream</strong> that actually is comming from a converter and is transparent for
+<strong>MusicPlayer</strong> class.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-233" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-233" class="display prettyprint language-java">
+public class MusicPlayer {
+
+    void playMusic(){
+        // read file and put in one inputStream
+        // InputStream inputStream = ...
+        MusicAdapter musicAdapter = new MusicAdapter();
+        OutputStream outputStream = musicAdapter.convertTo("mp3", inputStream) {
+        //...pass outputStream to player       
+    }    
+}
+</pre><p>This was a simple case of using adapter pattern to access. It is using one class 
+as mediator to access other classes. </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-322" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-322" class="display prettyprint language-java">
+public class MusicAdapter implements MusicConverter {
+
+    @Override
+    OutputStream convertTo(String musicType, InputStream inputStream) {
+
+        /* one can use switch-case here to determine the propper call */
+        // converts to any music type based-on the musicType
+        final Mp3Format mp3Format = new MP3Format();
+        return mp3Format.convertToMP3(inputStream);     
+    }
+}
+</pre><p>  </p>
+<p>There is a better adapter to access any classes and converts every type like a swiss knife!</p>
+<p>We said we can use a switch case inside the <strong>convertTo</strong> method to indentify the music format type.
+For example if the format is mp3 we simply check the string and create one object of <strong>MP3Format</strong>.</p>
+<p>If you want to support mp4 formats for example , then you simply can add new class called MP4Format 
+and so on. As you can see inside the <strong>convertTo</strong> method you don&#39;t see all the supported formats.
+Specially this is the case when you deliver this class in a library for other developers in the team
+,and they need to know which format supported. It is unlikely they check the implementation of the method.
+All of this problem comes because string variable &quot;musicType&quot; can accept any character and 
+one may have typos then he will get an nullException as returned value.
+To minimize the error I like the idea to pass an interface instead of a string type as an argument.</p>
+<h4 id="how-this-helps-">How this helps?</h4>
+<p>Let me rewrite the  <strong>MusicConverter</strong> interface revisely.</p>
+<p>We have a pretty nice inheritance of <strong>MusicFormat</strong> as we can define here like this.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-332" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-332" class="display prettyprint language-java">
+public interface MusicFormat {
+
+     /* This is the method for using in adapter */
+     OutputStream convertTo(InputStream inputStream);
+}
+</pre><p><strong>MP3Format</strong> is a music format so is the <strong>MP4Format</strong> and so on. </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-024" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-024" class="display prettyprint language-java">
+public class MP3Format implements MusicFormat {
+
+    @Override
+    OutputStream convert(InputStream inputStream){
+        //Convert to mp3 format 
+    }
+}
+</pre><p>And now we can support mp4 format too!</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-321" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-321" class="display prettyprint language-java">
+public class MP4Format implements MusicFormat {
+
+    @Override
+    OutputStream convert(InputStream inputStream){
+        //Convert to mp4 format 
+    }
+}
+</pre><p>Let&#39;s go further and make our adapter a little better.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-102" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-102" class="display prettyprint language-java">
+public class MusicAdapter {
+
+
+    OutputStream convertTo(MusicFormat musicFormat, InputStream inputStream) {
+
+        // converts to any music type based-on the musicType       
+        return musicFormat.convert(inputStream);     
+    }
+}
+</pre><p>  </p>
+<p>Our adapter is very simple now! That is all a music adapter now should have.
+We could reduce complexity and increase the maintainability of our code.</p>
+<p>At the end our music player would look like below:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-112" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-112" class="display prettyprint language-java">
+public class MusicPlayer {
+
+    void playMusic(){
+        // read file and put in one inputStream
+        // InputStream inputStream = ...
+        final MusicAdapter musicAdapter = new MusicAdapter();
+        try(OutputStream mp3OutStream = musicAdapter.convertTo(new MP3Format(), inputStream)){
+            //...pass outputStream to player
+            //...save it to a file    
+        }      
+
+        try(OutputStream mp4OutStream = musicAdapter.convertTo(new MP4Format(), inputStream)){      
+            //...pass outputStream to player
+            //...save it to a file
+        }
+    }    
+}
+</pre><p>That was all about the adapter design pattern! As always thanks for reading this article.</p>
+<p>To check another deign pattern code on GitHub check <a href="https://github.com/metao1/design-patterns">GitHub project</a></p>

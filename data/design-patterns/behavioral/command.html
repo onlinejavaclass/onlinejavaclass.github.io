@@ -1,0 +1,97 @@
+<h1 id="behavioural-design-patterns">Behavioural design patterns</h1>
+<h2 id="command-pattern">Command pattern</h2>
+<p>Command is behavioral design pattern that converts requests or simple operations into objects.</p>
+<pre><code>The conversion allows deferred or remote execution of commands, storing command history, etc.
+</code></pre><h4 id="usage-examples-">Usage examples:</h4>
+<p>The Command pattern is pretty common in Java code. Most often it’s used as an alternative for callbacks to parameterizing UI elements with actions. 
+It’s also used for queueing tasks, tracking operations history, etc</p>
+<p>Here are some examples of Commands in core Java libraries:</p>
+<pre><code>All implementations of java.lang.Runnable
+
+All implementations of javax.swing.Action
+</code></pre><h4 id="text-editor-commands-and-undo">Text editor commands and undo</h4>
+<p>Note: The system needs to support the undo (Undo) operation and the redo operation of the command. You can also consider using the command mode.</p>
+<p>We first create the Order interface as the command , and then create the Stock class as the request . The entity command classes <strong>BuyStock</strong> and <strong>SellStock</strong> implement the <strong>Order</strong> interface and will execute the actual command processing. 
+Create the class <strong>Broker</strong> as the calling object , which accepts orders and can place orders.</p>
+<p>The <strong>Broker</strong> object uses the command mode to determine which object executes which command based on the type of command. <strong>CommandPatternDemo</strong> , our demo class uses the <strong>Broker</strong> class to demonstrate the command pattern.</p>
+<h4 id="create-a-command-interface-">Create a command interface.</h4>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-210" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-210" class="display prettyprint language-java">
+public interface Order {
+    void execute();
+}
+</pre><h4 id="create-a-request-class-">Create a request class.</h4>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-414" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-414" class="display prettyprint language-java">
+public class Stock { 
+    private String name = " ABC " ;
+    private int quantity = 10 ;
+
+    public void buy() {
+        System.out.println( " Stock [Name: " + name + " , Quantity: " + quantity + " ] bought " ) ;
+    }
+    public void sell() {
+        System.out.println( " Stock [Name: " + name + " , Quantity: " + quantity + " ] sold " ) ;
+    } 
+}
+</pre><h4 id="create-an-entity-class-that-implements-the-order-interface-">Create an entity class that implements the Order interface.</h4>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-101" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-101" class="display prettyprint language-java">
+public class BuyStock implements Order { 
+    private Stock abcStock ;
+
+    public BuyStock(Stock abcStock) {
+        this.abcStock = abcStock;
+    } 
+    public void execute () {
+        abcStock.buy();
+    }
+}
+</pre><h4 id="sell-stock">Sell stock</h4>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-411" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-411" class="display prettyprint language-java">
+public class SellStock implements Order { 
+    private Stock abcStock;
+
+    public SellStock(Stock abcStock) {
+        this.abcStock = abcStock;
+    } 
+    public void execute() {
+        abcStock.sell();
+    } 
+}
+</pre><h4 id="create-a-command-call-class-">Create a command call class.</h4>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-410" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-410" class="display prettyprint language-java">
+import java.util.ArrayList;
+import java.util.List;
+
+public class Broker {
+   private List<Order> orderList = new ArrayList<Order>(); 
+
+   public void takeOrder(Order order){
+      orderList.add(order);      
+   }
+
+   public void placeOrders(){
+      for (Order order : orderList) {
+         order.execute();
+      }
+      orderList.clear();
+   }
+}
+</pre><h4 id="use-the-broker-class-to-accept-and-execute-commands-">Use the Broker class to accept and execute commands.</h4>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-414" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-414" class="display prettyprint language-java">
+public class CommandPatternDemo {
+   public static void main(String[] args) {
+      Stock abcStock = new Stock();
+
+      BuyStock buyStockOrder = new BuyStock(abcStock);
+      SellStock sellStockOrder = new SellStock(abcStock);
+
+      Broker broker = new Broker();
+      broker.takeOrder(buyStockOrder);
+      broker.takeOrder(sellStockOrder);
+
+      broker.placeOrders();
+   }
+}
+</pre><h4 id="execute-the-program-and-output-the-result-">Execute the program and output the result:</h4>
+<pre><code>Stock [ Name: ABC, Quantity: 10 ] bought
+Stock [ Name: ABC, Quantity: 10 ] sold
+</code></pre>

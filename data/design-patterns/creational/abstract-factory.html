@@ -1,0 +1,157 @@
+<h1 id="creational-design-patterns">Creational design patterns</h1>
+<h2 id="abstract-factory-pattern">Abstract Factory Pattern</h2>
+<p>A factory of factories; a factory that groups the individual but related/dependent factories together without specifying their concrete classes.</p>
+<pre><code>Allows you to create different flavors of an object while avoiding constructor pollution. Useful when there could be several flavors of an object. Or when there are a lot of steps involved in creation of an object.
+</code></pre><p>Usage examples: Imagine a character generator for a role playing game. The easiest option is to let computer create the character for you. But if you want to select the character details like profession, gender, hair color etc. the character generation becomes a step-by-step process that completes when all the selections are ready.</p>
+<p>Wikipedia says</p>
+<pre><code>The abstract factory pattern provides a way to encapsulate a group of individual factories that have a common theme without specifying their concrete classes
+</code></pre><p>In the Abstract Factory pattern, we get rid of if-else block and have a factory class for each sub-class. Then an Abstract Factory class that will return the sub-class based on the input factory class. At first, it seems confusing but once you see the implementation, it’s really easy to grasp and understand the minor difference between Factory and Abstract Factory pattern.</p>
+<p>Like our factory pattern post, we will use the same superclass and sub-classes.</p>
+<h4 id="abstract-factory-design-pattern-super-class-and-subclasses">Abstract Factory Design Pattern Super Class and Subclasses</h4>
+<h4 id="example-">Example:</h4>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-123" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-123" class="display prettyprint language-java">
+public abstract class Computer {
+
+    public abstract String getRAM();
+    public abstract String getHDD();
+    public abstract String getCPU();
+
+    @Override
+    public String toString(){
+        return "RAM= "+this.getRAM()+", HDD="+this.getHDD()+", CPU="+this.getCPU();
+    }
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-241" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-241" class="display prettyprint language-java">
+public class PC extends Computer {
+
+    private String ram;
+    private String hdd;
+    private String cpu;
+
+    public PC(String ram, String hdd, String cpu){
+        this.ram=ram;
+        this.hdd=hdd;
+        this.cpu=cpu;
+    }
+    @Override
+    public String getRAM() {
+        return this.ram;
+    }
+
+    @Override
+    public String getHDD() {
+        return this.hdd;
+    }
+
+    @Override
+    public String getCPU() {
+        return this.cpu;
+    }
+
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-223" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-223" class="display prettyprint language-java">
+public class Server extends Computer {
+
+    private String ram;
+    private String hdd;
+    private String cpu;
+
+    public Server(String ram, String hdd, String cpu){
+        this.ram=ram;
+        this.hdd=hdd;
+        this.cpu=cpu;
+    }
+    @Override
+    public String getRAM() {
+        return this.ram;
+    }
+
+    @Override
+    public String getHDD() {
+        return this.hdd;
+    }
+
+    @Override
+    public String getCPU() {
+        return this.cpu;
+    }
+
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-032" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-032" class="display prettyprint language-java">
+public interface ComputerAbstractFactory {
+
+    public Computer createComputer();
+
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-322" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-322" class="display prettyprint language-java">
+public class PCFactory implements ComputerAbstractFactory {
+
+    private String ram;
+    private String hdd;
+    private String cpu;
+
+    public PCFactory(String ram, String hdd, String cpu){
+        this.ram=ram;
+        this.hdd=hdd;
+        this.cpu=cpu;
+    }
+    @Override
+    public Computer createComputer() {
+        return new PC(ram,hdd,cpu);
+    }
+
+}
+</pre><p>Similarly we will have a factory class for Server subclass.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-434" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-434" class="display prettyprint language-java">
+public class ServerFactory implements ComputerAbstractFactory {
+
+    private String ram;
+    private String hdd;
+    private String cpu;
+
+    public ServerFactory(String ram, String hdd, String cpu){
+        this.ram=ram;
+        this.hdd=hdd;
+        this.cpu=cpu;
+    }
+
+    @Override
+    public Computer createComputer() {
+        return new Server(ram,hdd,cpu);
+    }
+
+}
+</pre><p>Now we will create a consumer class that will provide the entry point for the client classes to create sub-classes.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-112" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-112" class="display prettyprint language-java">
+public class ComputerFactory {
+    public static Computer getComputer(ComputerAbstractFactory factory){
+        return factory.createComputer();
+    }
+}
+</pre><p>Notice that its a simple class and <strong><em>getComputer</em></strong> method is accepting <strong><em>ComputerAbstractFactory</em></strong> argument and returning <strong><em>Computer</em></strong> object. 
+At this point the implementation must be getting clear.</p>
+<p>Let’s write a simple test method and see how to use the abstract factory to get the instance of sub-classes.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-414" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-414" class="display prettyprint language-java">
+public class TestDesignPatterns {
+
+    public static void main(String[] args) {
+        Computer pc = ComputerFactory.getComputer(new PCFactory("2 GB","500 GB","2.4 GHz"));
+        Computer server = ComputerFactory.getComputer(new ServerFactory("16 GB","1 TB","2.9 GHz"));
+        System.out.println("AbstractFactory PC Config::"+pc);
+        System.out.println("AbstractFactory Server Config::"+server);
+    }
+}
+</pre><h4 id="when-you-run-the-program-the-output-would-be-">When you run the program the output would be:</h4>
+<pre><code>AbstractFactory PC Config::RAM= 2 GB, HDD=500 GB, CPU=2.4 GHz
+AbstractFactory Server Config::RAM= 16 GB, HDD=1 TB, CPU=2.9 GHz
+</code></pre><h4 id="real-world-examples">Real world examples</h4>
+<pre><code>java.lang.StringBuilder
+java.nio.ByteBuffer as well as similar buffers such as FloatBuffer, IntBuffer and so on.
+java.lang.StringBuffer
+All implementations of java.lang.Appendable
+Apache Camel builders
+Apache Commons Option.Builder
+</code></pre><p>That was all about the builder design pattern! As always thanks for reading this article.
+You can find the whole code of this article at <a href="https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/builder">this address</a>.
+Also another deign pattern examples are in <a href="https://github.com/metao1">this repository</a></p>
+<p>To support me simply give me a star <a href="https://github.com/metao1/design-patterns">GitHub project of this project</a></p>

@@ -1,0 +1,84 @@
+<h1 id="behavioural-design-patterns">Behavioural design patterns</h1>
+<h2 id="iterator-pattern">Iterator pattern</h2>
+<p>Iterator Pattern is a very commonly used design pattern in Java. This aim is used to sequentially access the elements of the collection object without knowing the underlying representation of the collection object.</p>
+<pre><code>To provide a way to sequentially access each element in an aggregated object without exposing the internal representation of the object.
+</code></pre><h4 id="advantages-">Advantages:</h4>
+<ul>
+<li>It supports traversing an aggregate object in different ways. </li>
+<li>The iterator simplifies the aggregation class. </li>
+<li>There can be multiple traversals on the same aggregation. </li>
+<li>In the iterator mode, it is very convenient to add new aggregation classes and iterator classes, without modifying the original code.</li>
+</ul>
+<h4 id="disadvantages-">Disadvantages:</h4>
+<p>Since the iterator mode separates the responsibilities of storing data and traversing data, adding new aggregate classes requires corresponding new iterator classes, and the number of classes increases in pairs, which increases the complexity of the system to a certain extent.</p>
+<h4 id="usage-scenarios-">Usage scenarios:</h4>
+<ul>
+<li>Access the content of an aggregate object without exposing its internal representation. </li>
+<li>Need to provide multiple traversal methods for aggregated objects. </li>
+<li>Provide a unified interface for traversing different aggregation structures.</li>
+</ul>
+<p>Note: The iterator pattern is to separate the traversal behavior of the collection object, and abstract an iterator class to be responsible, so that the internal structure of the collection is not exposed, and the data inside the collection can be transparently accessed by external code.</p>
+<p>We will create an <strong>Iterator</strong> interface that describes navigation methods and a <strong>Container</strong> interface that returns an iterator . 
+The entity class that implements the <strong>Container</strong> interface will be responsible for implementing the <strong>Iterator</strong> interface.</p>
+<p><strong>IteratorPatternDemo</strong> , our demo class uses the entity class <strong>NamesRepository</strong> to print the Names stored in the <strong>NamesRepository</strong> as a collection .</p>
+<p><img src="data/design-patterns/behavioral/assets/iterator_pattern_uml_diagram.jpg" alt="iterator_class_diagram"></p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-221" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-221" class="display prettyprint language-java">
+public interface Iterator {
+    public boolean hasNext();
+
+    public Object next();
+}
+</pre><p> </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-000" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-000" class="display prettyprint language-java">
+public interface Container {
+    public Iterator getIterator();
+}
+</pre><p>Create an entity class that implements the Container interface. This class has an internal class NameIterator that implements the Iterator interface .</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-034" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-034" class="display prettyprint language-java">
+public class NameRepository implements Container {
+   public String[] names = {"Robert", "John", "Julie", "Lora"};
+
+   @Override
+   public Iterator getIterator() {
+      return new NameIterator();
+   }
+
+   private class NameIterator implements Iterator {
+
+      int index;
+
+      @Override
+      public boolean hasNext() {
+         if(index < names.length){
+            return true;
+         }
+         return false;
+      }
+
+      @Override
+      public Object next() {
+         if(this.hasNext()){
+            return names[index++];
+         }
+         return null;
+      }     
+   }
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-310" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-310" class="display prettyprint language-java">
+public class IteratorPatternDemo {
+
+    public static void main(String[] args) {
+        NameRepository namesRepository = new NameRepository();
+
+        for (Iterator iter = namesRepository.getIterator(); iter.hasNext(); ) {
+            String name = (String) iter.next();
+            System.out.println("Name : " + name);
+        }
+    }
+}
+</pre><h4 id="and-yes-the-output-would-be-like-this">And yes, the output would be like this</h4>
+<pre><code>Name : Robert
+Name : John
+Name : Julie
+Name : Lora
+</code></pre>

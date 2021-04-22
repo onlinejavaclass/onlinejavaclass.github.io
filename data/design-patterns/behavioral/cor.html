@@ -1,0 +1,210 @@
+<h1 id="behavioural-design-patterns">Behavioural design patterns</h1>
+<h2 id="chain-of-responsibilities-pattern">Chain of Responsibilities pattern</h2>
+<p>Chain of Responsibility is a behavioral design pattern that lets you pass requests along a chain of handlers.
+Upon receiving a request, each handler decides either to process the request or to pass it to the next handler in the chain.</p>
+<p>Wikipedia says:</p>
+<pre><code>The chain-of-responsibility pattern is structurally nearly identical to the decorator pattern, the difference being that for the decorator,
+all classes handle the request, while for the chain of responsibility, exactly one of the classes in the chain handles the request. 
+This is a strict definition of the Responsibility concept in the GoF book. 
+However, many implementations (such as loggers below, or UI event handling, or servlet filters in Java, etc) allow several
+elements in the chain to take responsibility.
+</code></pre><p>Imagine that you’re working on an online ordering system. You want to restrict access to the system so only authenticated users can create orders. 
+Also, users who have administrative permissions must have full access to all orders.</p>
+<p>After a bit of planning, you realized that these checks must be performed sequentially
+y. The application can attempt to authenticate a user to the system whenever it receives a request that contains the user’s credentials. 
+However, if those credentials aren’t correct and authentication fails, there’s no reason to proceed with any other checks.</p>
+<p>During the next few months, you implemented several more of those sequential checks.</p>
+<ol>
+<li><p>One of your colleagues suggested that it’s unsafe to pass raw data straight to the ordering system. So you added an extra validation step to sanitize the data in a request.</p>
+</li>
+<li><p>Later, somebody noticed that the system is vulnerable to brute force password cracking. To negate this, you promptly added a check that filters repeated failed requests coming from the same IP address.</p>
+</li>
+<li><p>Someone else suggested that you could speed up the system by returning cached results on repeated requests containing the same data. Hence, you added another check which lets the request pass through to the system only if there’s no suitable cached response.</p>
+</li>
+</ol>
+<h5 id="usage-examples-">Usage examples:</h5>
+<p>The Chain of Responsibility pattern isn’t a frequent guest in a Java program since it’s only relevant when code operates with chains of objects.
+One of the most popular use cases for the pattern is bubbling events to the parent components in GUI classes. Another notable use case is sequential access filters.</p>
+<p>Here are some examples of the pattern in core Java libraries:</p>
+<pre><code>javax.servlet.Filter#doFilter()
+java.util.logging.Logger#log()
+</code></pre><p>Identification: The pattern is recognizable by behavioral methods of one group of objects that indirectly call the same methods in other objects, while all the objects follow the common interface.</p>
+<h3 id="filtering-access">Filtering access</h3>
+<p>This example shows how a request containing user data passes a sequential chain of handlers that perform various things such as authentication, authorization, and validation.</p>
+<p>This example is a bit different from the canonical version of the pattern given by various authors. 
+Most of the pattern examples are built on the notion of looking for the right handler, launching it and exiting the chain after that. 
+But here we execute every handler until there’s one that can’t handle a request. Be aware that this still is the Chain of Responsibility pattern, 
+even though the flow is a bit different.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-343" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-343" class="display prettyprint language-java">
+/* Base middleware class.*/
+public abstract class Middleware {
+    private Middleware next;
+
+    /* Builds chains of middleware objects.*/
+    public Middleware linkWith(Middleware next) {
+        this.next = next;
+        return next;
+    }
+
+
+    /* Subclasses will implement this method with concrete checks.*/
+    public abstract boolean check(String email, String password);
+
+    /* Runs check on the next object in chain or ends traversing if we're in */
+    /* last object in chain.*/
+    protected boolean checkNext(String email, String password) {
+        if (next == null) {
+            return true;
+        }
+        return next.check(email, password);
+    }
+}
+</pre><p>Check request amount limit is done with a simple class like below.</p>
+<p><strong><em>There is a dedicated design pattern that I&#39;ve covered in this website.
+Make sure to search for throttling design pattern, it is a better approach dedicated for throttling only</em></strong> </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-014" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-014" class="display prettyprint language-java">
+public class ThrottlingMiddleware extends Middleware {
+    private int requestPerMinute;
+    private int request;
+    private long currentTime;
+
+    public ThrottlingMiddleware(int requestPerMinute) {
+        this.requestPerMinute = requestPerMinute;
+        this.currentTime = System.currentTimeMillis();
+    }
+
+    /* Please, not that checkNext() call can be inserted both in the beginning of this method and in the end.. */
+    public boolean check(String email, String password) {
+        if (System.currentTimeMillis() > currentTime + 60_000) {
+            request = 0;
+            currentTime = System.currentTimeMillis();
+        }
+
+        request++;
+
+        if (request > requestPerMinute) {
+            System.out.println("Request limit exceeded!");
+            Thread.currentThread().stop();
+        }
+        return checkNext(email, password);
+    }
+}
+</pre><p>Check user’s credentials:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-000" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-000" class="display prettyprint language-java">
+/* ConcreteHandler. Checks whether a user with the given credentials exists.*/
+public class UserExistsMiddleware extends Middleware {
+    private Server server;
+
+    public UserExistsMiddleware(Server server) {
+        this.server = server;
+    }
+
+    public boolean check(String email, String password) {
+        if (!server.hasEmail(email)) {
+            System.out.println("This email is not registered!");
+            return false;
+        }
+        if (!server.isValidPassword(email, password)) {
+            System.out.println("Wrong password!");
+            return false;
+        }
+        return checkNext(email, password);
+    }
+}
+</pre><p>Check user’s role</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-313" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-313" class="display prettyprint language-java">
+/* ConcreteHandler. Checks a user's role.*/
+public class RoleCheckMiddleware extends Middleware {
+    public boolean check(String email, String password) {
+        if (email.equals("admin@example.com")) {
+            System.out.println("Hello, admin!");
+            return true;
+        }
+        System.out.println("Hello, user!");
+        return checkNext(email, password);
+    }
+}
+</pre><p>Authorization target</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-101" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-101" class="display prettyprint language-java">
+import java.util.HashMap;
+import java.util.Map;
+
+/** Server class.*/
+public class Server {
+    private Map<String, String> users = new HashMap<>();
+    private Middleware middleware;
+
+    /**Client passes a chain of object to server. This improves flexibility and makes testing the server class easier.*/
+    public void setMiddleware(Middleware middleware) {
+        this.middleware = middleware;
+    }
+
+    /**Server gets email and password from client and sends the authorization request to the chain.*/
+    public boolean logIn(String email, String password) {
+        if (middleware.check(email, password)) {
+            System.out.println("Authorization have been successful!");
+
+            // Do something useful here for authorized users.
+
+            return true;
+        }
+        return false;
+    }
+
+    public void register(String email, String password) {
+        users.put(email, password);
+    }
+
+    public boolean hasEmail(String email) {
+        return users.containsKey(email);
+    }
+
+    public boolean isValidPassword(String email, String password) {
+        return users.get(email).equals(password);
+    }
+}
+</pre><p>And the usage would be like this:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-221" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-221" class="display prettyprint language-java">
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+/* Demo class. Everything comes together here.*/
+public class Demo {
+    private static BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private static Server server;
+
+    private static void init() {
+        server = new Server();
+        server.register("admin@example.com", "admin_pass");
+        server.register("user@example.com", "user_pass");
+
+        // All checks are linked. Client can build various chains using the same
+        // components.
+        Middleware middleware = new ThrottlingMiddleware(2);
+        middleware.linkWith(new UserExistsMiddleware(server))
+                .linkWith(new RoleCheckMiddleware());
+
+        // Server gets a chain from client code.
+        server.setMiddleware(middleware);
+    }
+
+    public static void main(String[] args) throws IOException {
+        init();
+
+        boolean success;
+        do {
+            System.out.print("Enter email: ");
+            String email = reader.readLine();
+            System.out.print("Input password: ");
+            String password = reader.readLine();
+            success = server.logIn(email, password);
+        } while (!success);
+    }
+}
+</pre><h4 id="and-the-output-would-be-like-this">And the output would be like this</h4>
+<pre><code>Enter email: contact@onlinejavaclass.com
+Input password: mehrdad
+Hello, user!
+Authorization have been successful!
+</code></pre>

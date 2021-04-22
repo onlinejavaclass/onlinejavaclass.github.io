@@ -1,0 +1,43 @@
+<h1 id="creational-design-patterns">Creational design patterns</h1>
+<h2 id="prototype-pattern">Prototype  pattern</h2>
+<p>Specify the kinds of objects to create using a prototypical instance, and create new objects by copying this prototype.</p>
+<p>First it should be noted that Prototype pattern is not used to gain performance benefits. It&#39;s only used for creating new objects from prototype instance.</p>
+<p><code>Create object based on an existing object through cloning.</code></p>
+<p>Usage examples:  In short, it allows you to create a copy of an existing object and modify it to your needs, instead of going through the trouble of creating an object from scratch and setting it up.   </p>
+<p>Wikipedia says</p>
+<pre><code>The prototype pattern is a creational design pattern in software development. It is used when the type of objects to create is determined by a prototypical instance, which is cloned to produce new objects.
+</code></pre><h3 id="programmatic-example">Programmatic Example</h3>
+<p>In Java, it can be easily done by implementing Cloneable and overriding clone from Object</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-040" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-040" class="display prettyprint language-java">
+class Sheep implements Cloneable {
+  private String name;
+  public Sheep(String name) { this.name = name; }
+  public void setName(String name) { this.name = name; }
+  public String getName() { return name; }
+  @Override
+  public Sheep clone() {
+    try {
+      return (Sheep)super.clone();
+    } catch(CloneNotSupportedException ex) {
+      throw new InternalError();
+    }
+  }
+}
+</pre><p>Then it can be cloned like below</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-214" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-214" class="display prettyprint language-java">
+var original = new Sheep("Jolly");
+System.out.println(original.getName()); // Jolly
+
+// Clone and modify what is required
+var cloned = original.clone();
+cloned.setName("Dolly");
+System.out.println(cloned.getName()); // Dolly
+</pre><h4 id="output-would-be-like-this-">Output would be like this:</h4>
+<pre><code>Jolly
+Dolly
+</code></pre><h4 id="real-world-examples">Real world examples</h4>
+<pre><code>java.lang.Object#clone()
+</code></pre><p>That was all about the prototype design pattern! As always thanks for reading this article.
+You can find the whole code of this article at <a href="https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/prototype">this address</a>.
+Also another deign pattern examples are in <a href="https://github.com/metao1">this repository</a></p>
+<p>To support me simply give me a star <a href="https://github.com/metao1/design-patterns">GitHub project of this project</a></p>

@@ -1,0 +1,77 @@
+<h1 id="creational-design-patterns">Creational design patterns</h1>
+<h2 id="singleton-pattern">Singleton pattern</h2>
+<p>Ensure a class only has one instance, and provide a global point of access to it.</p>
+<pre><code>Ensures that only one object of a particular class is ever created.
+</code></pre><p>Wikipedia says</p>
+<pre><code>In software engineering, the singleton pattern is a software design pattern that 
+restricts the instantiation of a class to one object. This is useful when exactly on
+object is needed to coordinate actions across the system.
+</code></pre><p>Programmatic Example</p>
+<p>So many developers -articles- are using the below or almost equal pattern to create an instance of a singleton object. </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-241" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-241" class="display prettyprint language-java">
+public final class Singleton {
+    private static Singleton instance;
+    public String value;
+
+    private Singleton(String value) {
+        // The following code emulates slow initialization.
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        this.value = value;
+    }
+
+    public static Singleton getInstance(String value) {
+        if (instance == null) {
+            instance = new Singleton(value);
+        }
+        return instance;
+    }
+}
+</pre><p>And one can use it this way:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-102" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-102" class="display prettyprint language-java">
+Singleton singleton = Singleton.getInstance("FOO");
+</pre><p>While this is a right singleton pattern, this is not thread-safe at all!  </p>
+<p>As we mentioned earlier a singleton object should ensure that only one object of a particular class is ever created.
+When you run the above code using multiple threads, it can be seen that there might be several threads 
+enters into the critical area, where the instance of object is generating.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-330" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-330" class="display prettyprint language-java">
+if (instance == null) {
+        // here there might be more than one thread to come
+    instance = new Singleton(value);
+}
+</pre><p>So if the first thread generates the instance the second one runs after can override the object!
+Then this is not a good approach for multi-threaded environment.</p>
+<p>To solve this problem we apply <strong><em>synchronized</em></strong> for the <strong><em>getInstance</em></strong> method! Although this method can be slow
+for heavy constructors, tt blocks any thread until an object is creating so it is thread-safe approach. 
+(To resolve this problem of latency for those heavy constructors search in this website for lazy-loading pattern)</p>
+<p>This ensures that next threads wait until the first thread initiates object. They use that object and won&#39;t override. 
+We change it to the following easily:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-230" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-230" class="display prettyprint language-java">
+public final class Singleton {
+    private static Singleton instance;
+    public String value;
+
+    private Singleton(String value) {
+        // The following code emulates slow initialization.
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ex) {
+            ex.printStackTrace();
+        }
+        this.value = value;
+    }
+
+    public static synchronized Singleton getInstance(String value) {
+        if (instance == null) {
+            instance = new Singleton(value);
+        }
+        return instance;
+    }
+}
+</pre><p>That was all about the singleton design pattern! As always thanks for reading this article.
+You can find the whole code of this article at <a href="https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/singleton">this address</a>.
+Also another deign pattern examples are in <a href="https://github.com/metao1">this repository</a></p>
+<p>To support me simply give me a star <a href="https://github.com/metao1/design-patterns">GitHub project of this project</a></p>

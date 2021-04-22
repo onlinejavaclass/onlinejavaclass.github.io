@@ -1,0 +1,169 @@
+<h1 id="creational-design-patterns">Creational design patterns</h1>
+<h2 id="builder-pattern">Builder pattern</h2>
+<p>Separate the construction of a complex object from its representation so that the same construction process can create different representations.</p>
+<p><code>Allows you to create different flavors of an object while avoiding constructor pollution. Useful when there could be several flavors of an object. Or when there are a lot of steps involved in creation of an object.</code></p>
+<p>Usage examples: Imagine a character generator for a role playing game. The easiest option is to let computer create the character for you. But if you want to select the character details like profession, gender, hair color etc. the character generation becomes a step-by-step process that completes when all the selections are ready.</p>
+<p>Wikipedia says</p>
+<p><code>The builder pattern is an object creation software design pattern with the intentions of finding a solution to the telescoping constructor anti-pattern.</code></p>
+<p>Having said that let me add a bit about what telescoping constructor anti-pattern is. At one point or the other we have all seen a constructor like below:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-411" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-411" class="display prettyprint language-java">
+public Hero(Profession profession, String name, HairType hairType, HairColor hairColor, Armor armor, Weapon weapon) {
+}
+</pre><p>Benefits:</p>
+<pre><code>1. Best usecase for builder is creating immutable objects. Once object created the values can&#39;t be altered;
+2. Fast to create complex objects without needed different arguments in constroctors.
+3. The object is thread-safe hence it is an immutable object. 
+</code></pre><h3 id="programmatic-example">Programmatic Example</h3>
+<p>The sane alternative is to use the Builder pattern. First of all we have our hero that we want to create</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-033" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-033" class="display prettyprint language-java">
+public final class Hero {
+      private final Profession profession;
+      private final String name;
+      private final HairType hairType;
+      private final HairColor hairColor;
+      private final Armor armor;
+      private final Weapon weapon;
+
+      private Hero(Builder builder) {
+        this.profession = builder.profession;
+        this.name = builder.name;
+        this.hairColor = builder.hairColor;
+        this.hairType = builder.hairType;
+        this.weapon = builder.weapon;
+        this.armor = builder.armor;
+      }
+    }
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-424" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-424" class="display prettyprint language-java">
+public final class Hero {
+  private final Profession profession;
+  private final String name;
+  private final HairType hairType;
+  private final HairColor hairColor;
+  private final Armor armor;
+  private final Weapon weapon;
+
+  private Hero(Builder builder) {
+    this.profession = builder.profession;
+    this.name = builder.name;
+    this.hairColor = builder.hairColor;
+    this.hairType = builder.hairType;
+    this.weapon = builder.weapon;
+    this.armor = builder.armor;
+  }
+}
+</pre><p>And then we have the static builder inside the <strong><em>Hero</em></strong> class; </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-241" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-241" class="display prettyprint language-java">
+package com.metao.dp.builder;
+
+public final class Hero {
+    private final String profession;
+    private final String name;
+    private final String hairType;
+    private final String hairColor;
+    private final String armor;
+    private final String weapon;
+
+    private Hero(HeroBuilder heroBuilder) {
+        this.profession = heroBuilder.profession;
+        this.name = heroBuilder.name;
+        this.hairColor = heroBuilder.hairColor;
+        this.hairType = heroBuilder.hairType;
+        this.weapon = heroBuilder.weapon;
+        this.armor = heroBuilder.armor;
+    }
+
+    public static class HeroBuilder {
+        private final String profession;
+        private final String name;
+        private String hairType;
+        private String hairColor;
+        private String armor;
+        private String weapon;
+
+        public HeroBuilder(String name, String profession) {
+            this.name = name;
+            this.profession = profession;
+        }
+
+        public HeroBuilder hairType(String hairType) {
+            this.hairType = hairType;
+            return this;
+        }
+
+        public HeroBuilder hairColor(String hairColor) {
+            this.hairColor = hairColor;
+            return this;
+        }
+
+        public HeroBuilder armor(String armor) {
+            this.armor = armor;
+            return this;
+        }
+
+        public HeroBuilder weapon(String weapon) {
+            this.weapon = weapon;
+            return this;
+        }
+
+        public static HeroBuilder builder(String name, String profession) {
+            return new HeroBuilder(name, profession);
+        }
+
+        public Hero build() {
+            return new Hero(this);
+        }
+    }
+
+    public String getArmor() {
+        return armor;
+    }
+
+    public String getHairColor() {
+        return hairColor;
+    }
+
+    public String getHairType() {
+        return hairType;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getProfession() {
+        return profession;
+    }
+
+    public String getWeapon() {
+        return weapon;
+    }
+}
+</pre><p>And then it can be used as:</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-240" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-240" class="display prettyprint language-java">
+package com.metao.dp.builder;
+
+public class Main {
+    public static void main(String[] args) {
+        Hero crazyFrog = Hero.HeroBuilder
+                .builder("Crazy Frog", "fighter")
+                .hairColor("Black")
+                .armor("Knife")
+                .hairType("Blond")
+                .weapon("DAGGER")
+                .build();
+
+        System.out.println(crazyFrog.getName() + " is a " + crazyFrog.getProfession());
+    }
+}
+</pre><h4 id="real-world-examples">Real world examples</h4>
+<pre><code>java.lang.StringBuilder
+java.nio.ByteBuffer as well as similar buffers such as FloatBuffer, IntBuffer and so on.
+java.lang.StringBuffer
+All implementations of java.lang.Appendable
+Apache Camel builders
+Apache Commons Option.Builder
+</code></pre><p>That was all about the builder design pattern! As always thanks for reading this article.
+You can find the whole code of this article at <a href="https://github.com/metao1/design-patterns/tree/master/src/main/java/com/metao/dp/builder">this address</a>.
+Also another deign pattern examples are in <a href="https://github.com/metao1">this repository</a></p>
+<p>To support me simply give me a star <a href="https://github.com/metao1/design-patterns">GitHub project of this project</a></p>

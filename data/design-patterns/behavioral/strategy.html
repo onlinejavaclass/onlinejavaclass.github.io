@@ -1,0 +1,132 @@
+<h1 id="behavioural-design-patterns">Behavioural design patterns</h1>
+<h2 id="strategy-pattern">Strategy pattern</h2>
+<pre><code>A strategy to determine the best algorithm to use and avoid if-else and switches
+</code></pre><p>Strategy pattern defines family of algorithms which are encapsulated and are interchangeable at run time depending on a factor that requires a particular algorithm to be executed. Strategy pattern encourages open-close design principle where a class is open for extension but closed for modification.
+It is a suitable replacement for if-else or switch-case statements or complex conditional logic within a method. It also leads to more testable code, especially when coupled with IOC.</p>
+<h4 id="when-to-use-">When to use:</h4>
+<p>Let us assume that you are a Telecom service provider and you provide prepaid recharge facility to the customer. Depending on the recharge amount you would like to provide free SMS and free Talk time offer.
+The Telecom service system can have a <strong>TelecomOperator</strong> class. 
+On each recharge this class has to determine different offer depending on the recharge amount.</p>
+<p><img src="data/design-patterns/behavioral/assets/withoutStrategy.png" alt="without_strategy"></p>
+<h4 id="so-this-class-may-look-like-this-">So This class may look like this.</h4>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-120" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-120" class="display prettyprint language-java">
+public class TelecomOperator {
+    public int getFreeSMS(int amount) {
+        int freeSMS = 0;
+        if (amount == 250) {
+            freeSMS = 25;
+        } else if (amount == 500) {
+            freeSMS = 50;
+        }
+        return freeSMS;
+    }
+
+    public int getFreeMinute(int amount) {
+        int freeMinute = 0;
+        if (amount == 250) {
+            freeMinute = 20;
+        } else if (amount == 500) {
+            freeMinute = 60;
+        }
+        return freeMinute;
+    }
+}
+</pre><p>To use the above operator a Telecom Client can be written as following, On each recharge this class will determine the free SMS and Free Talk time offer. </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-134" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-134" class="display prettyprint language-java">
+public class TelecomClient {
+    private static final TelecomOperator operator = new TelecomOperator();
+
+    public static void main(String[] args) {
+        int freeSMS = 0;
+        int freeMinute = 0;
+        //On Rs. 250 recharge get the free SMS and Free Talk time offer.
+        freeSMS = operator.getFreeSMS(250);
+        freeMinute = operator.getFreeMinute(250);
+        System.out.println("You have " + freeSMS + "  SMS and " + freeMinute + " Minute free talk time");
+        //On Rs. 500 recharge get the free SMS and Free Talk time offer.
+        freeSMS = operator.getFreeSMS(500);
+        freeMinute = operator.getFreeMinute(500);
+        System.out.println("You have " + freeSMS + "  SMS and " + freeMinute + " Minute free talk time");
+    }
+}
+</pre><h4 id="problem">Problem</h4>
+<p>Without strategy pattern you would end up having multiple if-else or switch statements to determine the free SMS and free Talk time for different recharge amounts. If there is a new SMS or Talk time offer then you will have to modify the Operator class which violates open close design principle.
+It means you violated the open-close principal. You were only allowed to modify not to change the base classes.</p>
+<h4 id="solution">Solution</h4>
+<p>Using Strategy pattern each of if statement can be encapsulated as an algorithm and can be selected at run time depending on the recharge amount.</p>
+<p>To apply the Strategy here we can introduce a <strong>interface</strong> and provide it&#39;s concrete implementation as <strong>BasicPlan</strong> and <strong>SuperPlan</strong> strategies as shown here</p>
+<p><img src="data/design-patterns/behavioral/assets/withStrategy.png" alt="with_strategy"></p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-012" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-012" class="display prettyprint language-java">
+public interface PlanStrategy {
+    public int getFreeSMS();
+    public int getTalkTime();
+}
+</pre><p>Now we can create a plan as <strong>BasicPlan</strong> strategy as following</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-301" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-301" class="display prettyprint language-java">
+public class BasicPlan implements PlanStrategy {
+    public int getFreeSMS() {
+        return 25;
+    }
+
+    public int getTalkTime() {
+        return 20;
+    }
+}
+</pre><p>Now we can create an other plan as <strong>SuperPlan</strong> strategy as following</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-023" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-023" class="display prettyprint language-java">
+public class SuperPlan implements PlanStrategy {
+     public int getFreeSMS() {
+        return 50;
+     }
+
+    public int getTalkTime() {
+        return 60;
+    }
+}
+</pre><p>Now modify the <strong>TelecomOperator</strong> class to use the Strategies defined above as following.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-033" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-033" class="display prettyprint language-java">
+public class TelecomOperator {
+    private PlanStrategy plan;
+
+    public void activatePlan (PlanStrategy strategy) {
+        this.plan = strategy;
+    }
+
+    public int getFreeSMS() {
+        return plan.getFreeSMS();
+    }
+
+    public int getFreeTalkTime() {
+        return plan.getTalkTime();
+    }
+}
+</pre><p>And also we will modify the <strong>TelecomClient</strong> class to use these Plan strategies.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-131" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-131" class="display prettyprint language-java">
+public class TelecomClient {
+
+    private static final TelecomOperator operator = new TelecomOperator();
+
+    public static void main(String args[]) {
+        int freeSMS = 0;
+        int freeMinute = 0;
+        // On recharge of Rs. 250 set the Strategy for BasicPlan
+        operator.activatePlan(new BasicPlan());
+        freeSMS = operator.getFreeSMS();
+        freeMinute = operator.getFreeTalkTime();
+        System.out.println("You have " + freeSMS + "  SMS and " + freeMinute + " Minute free talk time");
+
+        // On recharge of Rs. 500 set the Strategy for SuperPlan
+        operator.activatePlan(new SuperPlan());
+        freeSMS = operator.getFreeSMS();
+        freeMinute = operator.getFreeTalkTime();
+        System.out.println("You have " + freeSMS + "  SMS and " + freeMinute + " Minute free talk time");
+    }
+}
+</pre><p>With this design we helped to expand our business easily. When required adding a new plan just requires a 
+new class to implement the baseclass. So we can actually switch between plans just by passing different plans 
+to activePlan() method. Since inside the TelecomOperator PlanStrategy interface is used, so it is adoptable with all the 
+implemented classes as well. </p>
+<pre><code>Output:
+You have 25  SMS and 20 Minute free talk time
+You have 50  SMS and 60 Minute free talk time
+</code></pre>

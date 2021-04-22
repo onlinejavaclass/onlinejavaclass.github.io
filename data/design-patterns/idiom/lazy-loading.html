@@ -1,0 +1,146 @@
+<h1 id="idioms">Idioms</h1>
+<h2 id="lazy-loading">Lazy Loading</h2>
+<p>Lazy loading is a design pattern commonly used to defer initialization of an object until the point at which it is needed.</p>
+<pre><code>It can contribute to efficiency in the program&#39;s operation if properly and appropriately used.
+</code></pre><p><img src="data/design-patterns/idiom/assets/lazy-loading.png" alt="lazy_loading"></p>
+<h3 id="use-the-lazy-loading-idiom-when">Use the Lazy Loading idiom when</h3>
+<p>Eager loading is expensive or the object to be loaded might not be needed at all</p>
+<h4 id="real-world-examples">Real world examples</h4>
+<pre><code>JPA annotations @OneToOne, @OneToMany, @ManyToOne, @ManyToMany and fetch = FetchType.LAZY
+</code></pre><h4 id="example">Example</h4>
+<p>We define a class that simulate like a object that is expensive to create</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-202" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-202" class="display prettyprint language-java">
+public class Heavy {
+
+  public Heavy() {
+    System.out.println("Creating Heavy ...");
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      System.err.printf("Exception caught. %s.%n", e);
+    }
+    System.out.println("... Heavy created");
+  }
+}
+</pre><p>Simple implementation of the lazy loading idiom. However, this is not thread safe.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-232" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-232" class="display prettyprint language-java">
+public class HolderNaive {
+
+    private Heavy heavy;
+
+    public HolderNaive() {
+        System.out.println("HolderNaive created");
+    }
+
+    /**
+     * Get heavy object.
+     */
+    public Heavy getHeavy() {
+        if (heavy == null) {
+            heavy = new Heavy();
+        }
+        return heavy;
+    }
+}
+</pre><p>Same as HolderNaive but with added synchronization. 
+This implementation is thread safe, but each <strong>getHeavy()</strong> call costs additional synchronization overhead.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-033" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-033" class="display prettyprint language-java">
+public class HolderThreadSafe {
+
+  private Heavy heavy;
+
+  public HolderThreadSafe() {
+        System.out.println("HolderThreadSafe created");
+  }
+
+  /**
+   * Get heavy object.
+   */
+  public synchronized Heavy getHeavy() {
+    if (heavy == null) {
+      heavy = new Heavy();
+    }
+    return heavy;
+  }
+}
+</pre><h4 id="solution-">Solution?</h4>
+<p>This lazy loader is thread safe and more efficient than <strong>HolderThreadSafe</strong>. 
+It utilizes Java 8 functional interface <strong>Supplier</strong> as <strong>Heavy</strong> factory.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-014" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-014" class="display prettyprint language-java">
+import java.util.function.Supplier;
+
+public class Java8Holder {
+
+    private Supplier<Heavy> heavy = this::createAndCacheHeavy;
+
+    public Java8Holder() {
+        System.out.println("Java8Holder created");
+    }
+
+    public Heavy getHeavy() {
+        return heavy.get();
+    }
+
+    private synchronized Heavy createAndCacheHeavy() {
+        class HeavyFactory implements Supplier<Heavy> {
+            private final Heavy heavyInstance = new Heavy();
+
+            @Override
+            public Heavy get() {
+                return heavyInstance;
+            }
+        }
+
+        if (!(heavy instanceof HeavyFactory)) {
+            heavy = new HeavyFactory();
+        }
+
+        return heavy.get();
+    }
+}
+</pre><p>We used the <code>supplier</code> which is supplying the object on <code>get()</code> method when is getting called. Note that 
+this call happens in runtime and the <code>get</code> method is a synchronous, so it&#39;s a blocky. Means this call
+would block the current thread until the object is provided and returned. Note that this just demonstrates
+how objects could be provided in runtime not to provide then asynchronously.</p>
+<p>If you want to provide the object in a non-blocky fashion then combine this with <code>Runnable</code> and <code>CompletableFuture</code>
+I&#39;ll cover this in another course.</p>
+<h4 id="demo-of-usage">Demo of usage</h4>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-211" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-211" class="display prettyprint language-java">
+public class App {
+
+  public static void main(String[] args) {
+
+    // Simple lazy loader - not thread safe
+    var holderNaive = new HolderNaive();
+    var heavy = holderNaive.getHeavy();
+    System.out.printf("heavy=%s.%n", heavy);
+
+    // Thread safe lazy loader, but with heavy synchronization on each access
+    var holderThreadSafe = new HolderThreadSafe();
+    var another = holderThreadSafe.getHeavy();
+    System.out.printf("another=%s.%n", another);
+
+    // The most efficient lazy loader utilizing Java 8 features
+    var java8Holder = new Java8Holder();
+    var next = java8Holder.getHeavy();
+    System.out.printf("next=%s.%n", next);
+  }
+}
+</pre><h3 id="result-is-here-">Result is here:</h3>
+<pre><code>HolderNaive created
+Creating Heavy ...
+... Heavy created
+heavy=com.metao.dp.lazyloading.Heavy@6e3c1e69.
+HolderThreadSafe created
+Creating Heavy ...
+... Heavy created
+another=com.metao.dp.lazyloading.Heavy@35851384.
+Java8Holder created
+Creating Heavy ...
+... Heavy created
+next=com.metao.dp.lazyloading.Heavy@28f67ac7.
+
+BUILD SUCCESSFUL in 3s
+3 actionable tasks: 2 executed, 1 up-to-date
+13:13:45: Task execution finished &#39;App.main()&#39;.
+</code></pre>

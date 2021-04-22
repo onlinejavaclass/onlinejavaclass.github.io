@@ -1,0 +1,272 @@
+<h1 id="behavioral-design-patterns">Behavioral design patterns</h1>
+<h2 id="state-pattern">State pattern</h2>
+<p>State allows an object to change the behavior when its internal state changes.</p>
+<pre><code>The pattern extracts state-related behaviors into separate state classes and forces the original object to delegate the work to an instance of these classes, instead of acting on its own.
+</code></pre><h4 id="usage-of-the-pattern-in-java">Usage of the pattern in Java</h4>
+<h4 id="usage-examples-">Usage examples:</h4>
+<p>The State pattern is commonly used in Java to convert massive switch-base state machines into the objects.</p>
+<p>Here are some examples of the State pattern in core Java libraries:</p>
+<pre><code>javax.faces.lifecycle.LifeCycle#execute() (controlled by the FacesServlet: behavior is dependent on current phase (state) of JSF lifecycle)
+</code></pre><h4 id="identification-">Identification:</h4>
+<p>State pattern can be recognized by methods that change their behavior depending on the objects’ state, controlled externally.</p>
+<h4 id="example">Example</h4>
+<p><img src="data/design-patterns/behavioral/assets/tcpstate.gif" alt="state_uml"></p>
+<p>Abstract representations for changes in state are to be created. For example, consider a class <strong>TCPConnection</strong> that represents different states of a network connection. 
+The effect of a request such as Open depends on the current state of the connection.</p>
+<p>By creating an abstract <strong>TCPState</strong> class, subclasses can define the state-specific behavior.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-024" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-024" class="display prettyprint language-java">
+public interface TCPState {
+    public void open();
+    public void close();
+    public void acknowledge();
+}
+</pre><p>Consider a model for a TCP connection,. Start by defining the <strong>TCPConnection</strong> class, which will provide an interface for transmitting data and handles requests to change state.</p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-011" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-011" class="display prettyprint language-java">
+public class TCPListen implements TCPState {
+    private final Connection connection;
+
+    public TCPConnection(final Connection connection) {
+        this.connection = connection;
+    }
+
+    public void open() {
+        this.connection.open();
+        System.out.println("opens connection");
+    }
+
+    public void close() {
+        this.connection.close();
+        System.out.println("closes connection");
+    }
+
+    public void acknowledge() {
+        if(this.connection.isOpen()) {
+            this.connection.acknowledge();
+            System.out.println("sends acknowledge.");
+        } else {
+            System.out.println("can't send acknowledge to closed connection.");
+        }
+    }
+
+    public void recieve(String message) {
+        if(this.connection.isOpen()) {
+            this.acknowledge(message);
+        }
+    }
+
+    public void send(String message) {
+       if(this.connection.isOpen()) {
+         System.out.println("sends acknowledge.");
+       }
+    }   
+}
+</pre><p>We defined <strong>Connection</strong> class to hold the connection tunnel for us. This is just an very simple example implementation for checking the class refer to codes in this page GitHub. </p>
+<div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-420" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-420" class="display prettyprint language-java">
+public enum State {
+    OPENED, CLOSED
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-444" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-444" class="display prettyprint language-java">
+public class Connection {
+    private State state = State.CLOSED;
+
+    public void open() {
+        this.state = State.OPENED;
+    }
+
+    public void close() {
+        this.state = State.CLOSED;
+    }
+
+    public boolean isOpen() {
+        return this.state == State.OPENED;
+    }
+
+    public void send(final Packet packet) {
+        System.out.printf("packet= %s sent.%n", packet.toString());
+    }
+
+    public State getState() {
+        return state;
+    }
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-024" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-024" class="display prettyprint language-java">
+package com.metao.dp.state.tcp;
+
+public class Packet {
+
+    private final long id;
+    private final String message;
+
+    public Packet(long id, String message) {
+        this.id = id;
+        this.message = message;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    @Override
+    public String toString() {
+        return "Packet{" +
+                "id:" + id +
+                ", message:'" + message + '\'' +
+                '}';
+    }
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-300" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-300" class="display prettyprint language-java">
+public class TCPClose implements com.metao.dp.state.tcp.TCPState {
+    private final Connection connection;
+
+    public TCPClose(final Connection connection) {
+        this.connection = connection;
+    }
+
+    @Override
+    public void open() {
+        this.connection.open();
+        System.out.println("opens connection");
+    }
+
+    @Override
+    public void close() {
+        if (this.connection.isOpen()) {
+            this.connection.close();
+            System.out.println("closes connection");
+            this.connection.close();
+        }
+    }
+
+    @Override
+    public void acknowledge(long packetId) {
+        System.out.println("sends acknowledge of packet id=" + packetId);
+    }
+
+    @Override
+    public void send(Packet packet) {
+        if (packet.getId() == 0) {
+            System.out.printf("packet %s sent. %n" , packet.toString());
+        } else {
+            System.out.println("can't send packet to a closed connection.");
+        }
+    }
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-200" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-200" class="display prettyprint language-java">
+public class TCPEstablish implements TCPState {
+    private final Connection connection;
+
+    public TCPEstablish(final Connection connection) {
+        this.connection = connection;
+    }
+
+    @Override
+    public void open() {
+        this.connection.open();
+        System.out.println("opens connection");
+    }
+
+    @Override
+    public void close() {
+        if (!this.connection.isOpen()) {
+            this.connection.close();
+            System.out.println("closes connection");
+            this.connection.close();
+        }
+    }
+
+    @Override
+    public void acknowledge(final long packetId) {
+        if (this.connection.isOpen()) {
+            System.out.println("sends acknowledge of packet id=" + packetId);
+        } else {
+            System.out.println("can't send acknowledge to a closed connection.");
+        }
+    }
+
+    @Override
+    public void send(Packet packet) {
+        System.out.printf("packet %s sent. %n" , packet.toString());
+    }
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-242" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-242" class="display prettyprint language-java">
+public class TCPListen implements TCPState {
+    private final Connection connection;
+
+    public TCPListen(final Connection connection) {
+        this.connection = connection;
+    }
+
+    @Override
+    public void open() {
+        this.connection.open();
+        System.out.println("opens connection");
+    }
+
+    @Override
+    public void close() {
+        if (!this.connection.isOpen()) {
+            this.connection.close();
+            System.out.println("closes connection");
+            this.connection.close();
+        }
+    }
+
+    @Override
+    public void acknowledge(long packetId) {
+        if (this.connection.isOpen()) {
+            System.out.println("sends acknowledge of packet id=" + packetId);
+        } else {
+            System.out.println("can't send acknowledge to a closed connection.");
+        }
+    }
+
+    public Packet receive(Packet packet) {
+        if (this.connection.isOpen()) {
+            this.acknowledge(packet.getId());
+        }
+        return packet;
+    }
+
+    public void send(Packet packet) {
+        if (this.connection.isOpen()) {
+            System.out.println("sends packet= " + packet.toString());
+            this.connection.send(packet);
+        } else {
+            System.out.println("can't send packet to a closed connection.");
+        }
+    }
+}
+</pre><div class="marked"><button class="copy-button" title="copied!" type="button" data-clipboard-target="#marker-004" aria-label="Copy it!" data-balloon-pos="up">    <img src="assets/img/clippy.svg" width="13" alt="Copy to clipboard"></button></div><pre id="marker-004" class="display prettyprint language-java">
+public interface TCPState {
+    public void open();
+
+    public void close();
+
+    public void acknowledge(final long packetId);
+
+    public void send(final Packet packet);
+}
+</pre><h4 id="output-for-running-our-tcp-state-machine-would-be-like-this-">Output for running our TCP state machine would be like this:</h4>
+<pre><code>TCP Status CLOSED
+packet Packet{id:0, message:&#39;SYN&#39;} sent. 
+opens connection
+TCP Status OPENED
+sends packet= Packet{id:1, message:&#39;s&#39;}
+packet= Packet{id:1, message:&#39;s&#39;} sent.
+sends packet= Packet{id:2, message:&#39;a&#39;}
+packet= Packet{id:2, message:&#39;a&#39;} sent.
+sends packet= Packet{id:3, message:&#39;l&#39;}
+packet= Packet{id:3, message:&#39;l&#39;} sent.
+sends packet= Packet{id:4, message:&#39;a&#39;}
+packet= Packet{id:4, message:&#39;a&#39;} sent.
+sends packet= Packet{id:5, message:&#39;m&#39;}
+packet= Packet{id:5, message:&#39;m&#39;} sent.
+closes connection
+packet Packet{id:0, message:&#39;CLOSE&#39;} sent. 
+TCP Status CLOSED
+can&#39;t send packet to a closed connection.
+</code></pre>
